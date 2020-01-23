@@ -1,0 +1,56 @@
+# Project information
+site_name: 'INFO 2602'
+site_description: 'Course site for INFO 2602'
+site_author: 'Nicholas Mendez'
+site_url: 'https://nmendez.app/info2602'
+
+# Repository
+repo_name: 'snickdx/pwadocs'
+repo_url: 'https://github.com/uwidcit/info2602'
+
+# Copyright
+copyright: 'Copyright &copy; 2019 Nicholas Mendez'
+
+# Configuration
+theme:
+  name: 'material'
+  language: 'en'
+  custom_dir: 'theme'
+  palette:
+    primary: 'Deep Purple'
+    accent: 'Amber'
+  font:
+    text: 'Source Serif Pro'
+    code: 'Roboto Mono'
+
+# Customization
+extra:
+  manifest: 'manifest.json'
+  social:
+    - type: 'github'
+      link: 'https://github.com/squidfunk'
+    - type: 'twitter'
+      link: 'https://twitter.com/squidfunk'
+    - type: 'linkedin'
+      link: 'https://linkedin.com/in/squidfunk'
+
+# Google Analytics
+google_analytics:
+  - 'UA-XXXXXXXX-X'
+  - 'auto'
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
+
+plugins:
+  - git-revision-date-localized
+
+#PWA Config
+use_directory_urls: false
+scope: "./"
+version: 1.0.0
