@@ -5,6 +5,9 @@ Please ensure you fill out the contacts <a href="https://docs.google.com/forms/d
 
 ## [Advanced Computer Literacy](https://docs.google.com/document/d/1dDqwOBqGi9j5LS66CE3BWI-uV09s1A0WTi7cuG2jCqY/edit?usp=sharing)
 
+## [Slack Group Invite Link](https://join.slack.com/t/webtechnologies1/shared_invite/enQtOTIwNjczNDI4OTc2LTdjY2I4NzQ1MDdiNjY5MjYwYmI1OGRjOTk5NjVlNzU0ZThiNDAwMGJlNDhmZGFlOGVlNzMzYjEzNmJkMDQ2M2I)
+Slack is a messaging and collaboration platform we shall use for labs and communication.
+
 ## Lab Assignments
 If you have a clash with your assigned session or unassigned; fill out this <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSehOg8Au1EqA77abtOZ_DZ0YIUbYCGN7VkCqQ0giEQ4I0XFeA/viewform?usp=sf_link">Clash Form</a> to be reassigned.
 
