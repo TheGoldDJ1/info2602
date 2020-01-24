@@ -6,7 +6,7 @@ Please ensure you fill out the contacts <a href="https://docs.google.com/forms/d
 ## [Advanced Computer Literacy](https://docs.google.com/document/d/1dDqwOBqGi9j5LS66CE3BWI-uV09s1A0WTi7cuG2jCqY/edit?usp=sharing)
 
 ## Lab Assignments
-If you have a clash on your assigned session, fill out this <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSehOg8Au1EqA77abtOZ_DZ0YIUbYCGN7VkCqQ0giEQ4I0XFeA/viewform?usp=sf_link">Clash Form</a> to be reassigned.
+If you have a clash with your assigned session or unassigned; fill out this <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSehOg8Au1EqA77abtOZ_DZ0YIUbYCGN7VkCqQ0giEQ4I0XFeA/viewform?usp=sf_link">Clash Form</a> to be reassigned.
 
 Lab Session 1: Monday 4:00PM - 6:00PM <br/>
 Lab Session 2: Tuesday 8:00PM - 10:00AM <br/>

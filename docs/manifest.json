@@ -1,6 +1,6 @@
 {
-    "name": "PWA Docs",
-    "short_name": "PWA Docs",
+    "name": "INFO 2602",
+    "short_name": "INFO 2602",
     "start_url": "index.html",
     "display": "fullscreen",
     "scope": ".",
@@ -22,7 +22,7 @@
         "type": "image/png"
       }
     ],
-    "background_color": "#3f51b5",
-    "theme_color": "#3f51b5"
+    "background_color": "#7e57c2",
+    "theme_color": "#7e57c2"
   }
   
