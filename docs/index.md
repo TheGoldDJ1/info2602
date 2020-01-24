@@ -9,11 +9,14 @@ Please ensure you fill out the contacts <a href="https://docs.google.com/forms/d
 Slack is a messaging and collaboration platform we shall use for labs and communication.
 
 ## Lab Assignments
-If you have a clash with your assigned session or unassigned; fill out this <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSehOg8Au1EqA77abtOZ_DZ0YIUbYCGN7VkCqQ0giEQ4I0XFeA/viewform?usp=sf_link">Clash Form</a> to be reassigned.
 
-Lab Session 1: Monday 4:00PM - 6:00PM <br/>
-Lab Session 2: Tuesday 8:00PM - 10:00AM <br/>
-Lab Session 3: Friday 10:00AM - 12:00PM
+!!! warning "Changing Streams"
+    If you need to change your assigned stream or you are not unassigned one; please fill out this <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSehOg8Au1EqA77abtOZ_DZ0YIUbYCGN7VkCqQ0giEQ4I0XFeA/viewform?usp=sf_link">Lab Form</a> to be reassigned.
+
+
+Lab Stream 1: Monday 4:00PM - 6:00PM <br/>
+Lab Stream 2: Tuesday 8:00PM - 10:00AM <br/>
+Lab Stream 3: Friday 10:00AM - 12:00PM
 
 | ID        | Lab Session |
 |-----------|-------------|

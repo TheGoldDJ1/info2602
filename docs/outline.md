@@ -1,7 +1,7 @@
-<!----- Conversion time: 1.149 seconds.
+<!----- Conversion time: 1.78 seconds.
 
 
-Using this HTML file:
+Using this Markdown file:
 
 1. Cut and paste this output into your source file.
 2. See the notes and action items below regarding this conversion run.
@@ -11,219 +11,215 @@ Using this HTML file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β17
-* Thu Jan 23 2020 10:55:56 GMT-0800 (PST)
+* Fri Jan 24 2020 05:53:21 GMT-0800 (PST)
 * Source doc: https://docs.google.com/open?id=1eAtFx9SiqJcC4e3wJn0HVKO1Q9lJv_huLpXwZpPDu98
+
+WARNING:
+You have 7 H1 headings. You may want to use the "H1 -> H2" option to demote all headings by one level.
+
 ----->
 
 
-<p>
-<strong>COURSE TITLE: Web Programming and Technologies I </strong>
-</p>
-<h5><strong>COURSE CODE: INFO 2602</strong></h5>
+<p style="color: red; font-weight: bold">>>>>>  gd2md-html alert:  ERRORs: 0; WARNINGs: 1; ALERTS: 0.</p>
+<ul style="color: red; font-weight: bold"><li>See top comment block for details on ERRORs and WARNINGs. <li>In the converted Markdown or HTML, search for inline alerts that start with >>>>>  gd2md-html alert:  for specific instances that need correction.</ul>
+
+<p style="color: red; font-weight: bold">Links to alert messages:</p>
+<p style="color: red; font-weight: bold">>>>>> PLEASE check and correct alert issues and delete this message and the inline alerts.<hr></p>
 
 
-<p>
-<strong>TYPE: Core</strong>
-</p>
-<p>
-<strong>LEVEL: 2</strong>
-</p>
-<p>
-<strong>SEMESTER: 2</strong>
-</p>
-<p>
-<strong>START DATE: SEPT-01-2016</strong>
-</p>
-<p>
-<strong>DEPARTMENT and FACULTY: DCIT/FST</strong>
-</p>
-<p>
-<strong>CREDITS: 3</strong>
-</p>
-<p>
-<strong>PREREQUISITE(S): INFO 1601</strong>
-</p>
-<p>
-<strong>ESTIMATED STUDY HOURS: </strong>
-</p>
-<p>
+**COURSE TITLE: Web Programming and Technologies I **
+
+**COURSE CODE: INFO 2602**
+
+**TYPE: Core**
+
+**LEVEL: 2**
+
+**SEMESTER: 2**
+
+**START DATE: SEPT-01-2016**
+
+**DEPARTMENT and FACULTY: DCIT/FST**
+
+**CREDITS: 3**
+
+**PREREQUISITE(S): INFO 1601**
+
+**ESTIMATED STUDY HOURS: **
+
 2 1-hour lectures, 1 2-hour lab, 6 hours per week independent study
-</p>
-<h2>COURSE DESCRIPTION</h2>
+
+**LECTURER: **Mr. Nicholas Mendez nicholas.mendez@sta.uwi.edu
+
+**OFFICE HOURS**
+
+**TUTOR: **Ms Venessa Kanhai 
+
+**LECTURES**
 
 
-<p>
+<table>
+  <tr>
+   <td>Day
+   </td>
+   <td>Time
+   </td>
+   <td>Location
+   </td>
+  </tr>
+  <tr>
+   <td>Thursdays
+   </td>
+   <td>9:00AM - 10:00AM
+   </td>
+   <td>FST C3
+   </td>
+  </tr>
+  <tr>
+   <td>Fridays
+   </td>
+   <td>3:00PM - 4:00PM
+   </td>
+   <td>FST C3
+   </td>
+  </tr>
+</table>
+
+
+**LABS::**
+
+
+<table>
+  <tr>
+   <td>Day
+   </td>
+   <td>Time
+   </td>
+   <td>Location
+   </td>
+  </tr>
+  <tr>
+   <td>Lab Stream 1:Monday
+   </td>
+   <td>4:00PM - 6:00PM
+   </td>
+   <td>CSL 2
+   </td>
+  </tr>
+  <tr>
+   <td>Lab Stream 2: Tuesday 
+   </td>
+   <td>8:00PM - 10:00AM
+   </td>
+   <td>CSL 1
+   </td>
+  </tr>
+  <tr>
+   <td>Lab Stream 3: Friday
+   </td>
+   <td>10:00AM - 12:00PM
+   </td>
+   <td>CSL 2
+   </td>
+  </tr>
+</table>
+
+
+
+# COURSE DESCRIPTION
+
 This course covers the design, implementation and testing of web-based applications and the incorporation of a variety of digital media into these applications. Students are exposed to a range of web technologies, both client-side and server-side. The course will be delivered using a combination of lectures, blended learning, case studies and various online resources. Assignments will take the form of written examinations and lab examinations.
-</p>
-<h2>COURSE RATIONALE</h2>
 
 
-<p>
+# COURSE RATIONALE
+
 In the Information Technology degree this is the first course that focuses on developing complex applications and services through the combination of both client-side and server-side programming. The main reason for offering the course is that employers expect the UWI graduate to be competent with writing Web Applications since most businesses are seeking to become digital firms.
-</p>
-<h2>CONTENT</h2>
 
 
-<ol>
-
-<li>Web Systems Architecture
-
-<li>Software Design Principles 
-<ol>
- 
-<li>Abstraction
- 
-<li>Software Architecture
- 
-<li>Information Hiding
- 
-<li>Considerations; Modularity, Extensibility, Scalability, Security
-</li> 
-</ol>
-
-<li>Web Design Concepts 
-<ol>
- 
-<li>Content Adaptation
- 
-<li>Responsive Design
- 
-<li>Progressive Enhancement
- 
-<li>Unobtrusive JavasScript
-</li> 
-</ol>
-
-<li>HTTP 
-<ol>
- 
-<li>The Client Server Model
- 
-<li>URLs & Query Parameters
- 
-<li>HTTP Methods	
- 
-<li>Status Codes
- 
-<li>SSL
-</li> 
-</ol>
-
-<li>Client-side web programming 
-<ol>
- 
-<li>JS Fundamentals
- 
-<li>HTML GET & POST
- 
-<li>JS High Order Functions
- 
-<li>JS ECMAScript 6
- 
-<li>DOM Manipulation
- 
-<li>AJAX
- 
-<li>Web Components
-</li> 
-</ol>
-
-<li>The Critical Rendering Path 
-<ol>
- 
-<li>DOM
- 
-<li>CSSOM
- 
-<li>Render Tree
- 
-<li>Accessibility Tree
-</li> 
-</ol>
-
-<li>Server-side programming with Flask 
-<ol>
- 
-<li>Routing
- 
-<li>Server Side Templating
- 
-<li>File Uploads
- 
-<li>ORM usage
-</li> 
-</ol>
-
-<li>Intro to Angular
-
-<li>Web APIs 
-<ol>
- 
-<li>Web Workers
- 
-<li>Web Sockets
- 
-<li>Service Workers
- 
-<li>Network State
- 
-<li>Indexed DB
-</li> 
-</ol>
-</li> 
-</ol>
-<h2>COURSE LEARNING OUTCOMES</h2>
+# CONTENT
 
 
-<p>
+
+1. Web Systems Architecture
+2. Software Design Principles
+    1. Abstraction
+    2. Software Architecture
+    3. Information Hiding
+    4. Considerations; Modularity, Extensibility, Scalability, Security
+3. Web Design Concepts
+    5. Content Adaptation
+    6. Responsive Design
+    7. Progressive Enhancement
+    8. Unobtrusive JavasScript
+4. HTTP
+    9. The Client Server Model
+    10. URLs & Query Parameters
+    11. HTTP Methods	
+    12. Status Codes
+    13. SSL
+5. Client-side web programming
+    14. JS Fundamentals
+    15. HTML GET & POST
+    16. JS High Order Functions
+    17. JS ECMAScript 6
+    18. DOM Manipulation
+    19. AJAX
+    20. Web Components
+6. The Critical Rendering Path
+    21. DOM
+    22. CSSOM
+    23. Render Tree
+    24. Accessibility Tree
+7. Server-side programming with Flask
+    25. Routing
+    26. Server Side Templating
+    27. File Uploads
+    28. ORM usage
+8. Intro to Angular
+9. Web APIs
+    29. Web Workers
+    30. Web Sockets
+    31. Service Workers
+    32. Network State
+    33. Indexed DB
+
+
+# COURSE LEARNING OUTCOMES
+
 Upon the successful completion of this course, the student will be able to:
-</p>
-<ol>
-
-<li>Identify alternative ways to organize information based on its inherent structure in a way that enables effective and efficient completion of tasks. 
-
-<li>Discuss issues involved in the development of client-side and server-side solutions
-
-<li>Discuss the contrast between entry and validation techniques in client-side and server-side programming 
-
-<li>Demonstrate the management of state and data using technologies such as databases and server-side sessions.
-
-<li>Discriminate between types of web servers including application servers, streaming media servers and transformation servers
-
-<li>Evaluate selected emerging and existing web technologies for web based solutions 
-
-<li>Develop server-side programs
-
-<li>Implement a web site integrated with other IT applications
-</li>
-</ol>
-<h2>TEACHING STRATEGIES</h2>
 
 
-<p>
+
+1. Identify alternative ways to organize information based on its inherent structure in a way that enables effective and efficient completion of tasks. 
+2. Discuss issues involved in the development of client-side and server-side solutions
+3. Discuss the contrast between entry and validation techniques in client-side and server-side programming 
+4. Demonstrate the management of state and data using technologies such as databases and server-side sessions.
+5. Discriminate between types of web servers including application servers, streaming media servers and transformation servers
+6. Evaluate selected emerging and existing web technologies for web based solutions 
+7. Develop server-side programs
+8. Implement a web site integrated with other IT applications
+
+
+# TEACHING STRATEGIES
+
 Interactive lectures will be used to introduce the main concepts of the course. However, discussions and problem solving sessions will be used throughout the course with the goal of allowing students to engage in the problem solving process. 
-</p>
-<h2>RESOURCES</h2>
 
 
-<p>
+# RESOURCES
+
 Recommended Text
-</p>
-<p>
-<a href="https://frontendmasters.com/books/front-end-handbook/2019/">https://frontendmasters.com/books/front-end-handbook/2019/</a>
-</p>
-<p>
-<a href="https://www.smashingmagazine.com/2019/01/web-standards-guide/">https://www.smashingmagazine.com/2019/01/web-standards-guide/</a>
-</p>
-<p>
 
-</p>
-<p>
-<strong>COURSE CALENDAR</strong>
-</p>
-<p>
+[https://frontendmasters.com/books/front-end-handbook/2019/](https://frontendmasters.com/books/front-end-handbook/2019/)
+
+[https://www.smashingmagazine.com/2019/01/web-standards-guide/](https://www.smashingmagazine.com/2019/01/web-standards-guide/)
+
+
+
+
+# COURSE CALENDAR
+
 (Each week has a theoretical and practical component)
-</p>
+
 
 <table>
   <tr>
@@ -255,7 +251,7 @@ Recommended Text
    </td>
    <td>26/01/2020
    </td>
-   <td>HTTP<br>
+   <td>HTTP \
 Advanced Javascript
    </td>
    <td>Lab 1: Javascript Introduction & DOM Manipulation
@@ -268,7 +264,7 @@ Advanced Javascript
    </td>
    <td>02/02/2020
    </td>
-   <td>Client Side Programming<br>
+   <td>Client Side Programming \
 Software Design Principles 
    </td>
    <td>Lab 2: Advanced JS & AJAX
@@ -281,7 +277,7 @@ Software Design Principles
    </td>
    <td>9/02/2020
    </td>
-   <td>Web Systems Architecture <br>
+   <td>Web Systems Architecture  \
 Python Programming
    </td>
    <td>Lab 3: Ajax & Client-side rendering
@@ -296,7 +292,7 @@ Python Programming
    </td>
    <td>Server Side Programming
    </td>
-   <td>Lab 4: Python Introduction<br>
+   <td>Lab 4: Python Introduction \
 Assignment 1 Due
    </td>
    <td>
@@ -309,10 +305,10 @@ Assignment 1 Due
    </td>
    <td>Web Design Concepts
    </td>
-   <td>Python & JS help Desk<br>
+   <td>Python & JS help Desk \
 (Lab Stream 3) 
    </td>
-   <td>Carnival Mon 24/02/2020<br>
+   <td>Carnival Mon 24/02/2020 \
 Carnival Tue 25/02/2020
    </td>
   </tr>
@@ -335,7 +331,7 @@ Carnival Tue 25/02/2020
    </td>
    <td>Full Stack Web Development
    </td>
-   <td>Lab 6: Flask Templating<br>
+   <td>Lab 6: Flask Templating \
 Assignment 2 Due
    </td>
    <td>
@@ -346,10 +342,10 @@ Assignment 2 Due
    </td>
    <td>15/03/2020
    </td>
-   <td>Lab Exam Prep<br>
+   <td>Lab Exam Prep \
 Help Desk
    </td>
-   <td>Lab 8: Full Stack Development<br>
+   <td>Lab 8: Full Stack Development \
 
    </td>
    <td>
@@ -374,8 +370,8 @@ Help Desk
    </td>
    <td>The Critical Rendering Path
    </td>
-   <td>Lab 9: Intro To Angular<br>
-1 hour Labs <br>
+   <td>Lab 9: Intro To Angular \
+1 hour Labs  \
 (Lab Streams 2 & 3)
    </td>
    <td>Spiritual Baptist 30/03/2020
@@ -388,8 +384,8 @@ Help Desk
    </td>
    <td>Holiday
    </td>
-   <td>Lab 10: Web APIs<br>
-1 hour Labs <br>
+   <td>Lab 10: Web APIs \
+1 hour Labs  \
 (Lab Streams 1 & 2)
    </td>
    <td>Good Friday 10/04/2020
@@ -402,7 +398,7 @@ Help Desk
    </td>
    <td>Revision
    </td>
-   <td>Project Presentation<br>
+   <td>Project Presentation \
 (Lab Streams 2 & 3)
    </td>
    <td>Easter Monday 13/04/2020
@@ -410,3 +406,6 @@ Help Desk
   </tr>
 </table>
 
+
+
+<!-- Docs to Markdown version 1.0β17 -->
