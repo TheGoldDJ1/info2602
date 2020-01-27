@@ -1,4 +1,4 @@
-<!----- Conversion time: 1.78 seconds.
+<!----- Conversion time: 1.761 seconds.
 
 
 Using this Markdown file:
@@ -11,20 +11,9 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β17
-* Fri Jan 24 2020 05:53:21 GMT-0800 (PST)
+* Fri Jan 24 2020 06:10:13 GMT-0800 (PST)
 * Source doc: https://docs.google.com/open?id=1eAtFx9SiqJcC4e3wJn0HVKO1Q9lJv_huLpXwZpPDu98
-
-WARNING:
-You have 7 H1 headings. You may want to use the "H1 -> H2" option to demote all headings by one level.
-
 ----->
-
-
-<p style="color: red; font-weight: bold">>>>>>  gd2md-html alert:  ERRORs: 0; WARNINGs: 1; ALERTS: 0.</p>
-<ul style="color: red; font-weight: bold"><li>See top comment block for details on ERRORs and WARNINGs. <li>In the converted Markdown or HTML, search for inline alerts that start with >>>>>  gd2md-html alert:  for specific instances that need correction.</ul>
-
-<p style="color: red; font-weight: bold">Links to alert messages:</p>
-<p style="color: red; font-weight: bold">>>>>> PLEASE check and correct alert issues and delete this message and the inline alerts.<hr></p>
 
 
 **COURSE TITLE: Web Programming and Technologies I **
@@ -37,7 +26,7 @@ You have 7 H1 headings. You may want to use the "H1 -> H2" option to demote all 
 
 **SEMESTER: 2**
 
-**START DATE: SEPT-01-2016**
+**START DATE: 23-01-2020**
 
 **DEPARTMENT and FACULTY: DCIT/FST**
 
@@ -86,7 +75,7 @@ You have 7 H1 headings. You may want to use the "H1 -> H2" option to demote all 
 </table>
 
 
-**LABS::**
+**LABS:**
 
 
 <table>
@@ -126,17 +115,17 @@ You have 7 H1 headings. You may want to use the "H1 -> H2" option to demote all 
 
 
 
-# COURSE DESCRIPTION
+## COURSE DESCRIPTION
 
 This course covers the design, implementation and testing of web-based applications and the incorporation of a variety of digital media into these applications. Students are exposed to a range of web technologies, both client-side and server-side. The course will be delivered using a combination of lectures, blended learning, case studies and various online resources. Assignments will take the form of written examinations and lab examinations.
 
 
-# COURSE RATIONALE
+## COURSE RATIONALE
 
 In the Information Technology degree this is the first course that focuses on developing complex applications and services through the combination of both client-side and server-side programming. The main reason for offering the course is that employers expect the UWI graduate to be competent with writing Web Applications since most businesses are seeking to become digital firms.
 
 
-# CONTENT
+## CONTENT
 
 
 
@@ -184,7 +173,7 @@ In the Information Technology degree this is the first course that focuses on de
     33. Indexed DB
 
 
-# COURSE LEARNING OUTCOMES
+## COURSE LEARNING OUTCOMES
 
 Upon the successful completion of this course, the student will be able to:
 
@@ -200,12 +189,12 @@ Upon the successful completion of this course, the student will be able to:
 8. Implement a web site integrated with other IT applications
 
 
-# TEACHING STRATEGIES
+## TEACHING STRATEGIES
 
 Interactive lectures will be used to introduce the main concepts of the course. However, discussions and problem solving sessions will be used throughout the course with the goal of allowing students to engage in the problem solving process. 
 
 
-# RESOURCES
+## RESOURCES
 
 Recommended Text
 
@@ -216,7 +205,7 @@ Recommended Text
 
 
 
-# COURSE CALENDAR
+## COURSE CALENDAR
 
 (Each week has a theoretical and practical component)
 
