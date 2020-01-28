@@ -1,0 +1,585 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Lab 1 - Javascript Introduction</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid="UA-154889698-1"
+                  id="lab1"
+                  title="Lab 1 - Javascript Introduction"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="4">
+        <p class="image-container"><img style="width: 624.00px" src="img\79e9c372adceb627.png"></p>
+<h2 is-upgraded><strong>Javascript Language</strong></h2>
+<p>Javascript is the mainstream language of the web browser. A solid understanding of the fundamentals and advanced features of this language is crucial for any front end development.</p>
+<h2 is-upgraded><strong>Task 1</strong></h2>
+<p>Just as in lab 1 follow the link below to open repl.it. Fork the project then sign in.</p>
+<p><a href="https://repl.it/@Snickdx/INFO-2602-Lab-10" target="_blank"><paper-button class="colored" raised>Open Lab 1.1</paper-button></a> (Node.js)</p>
+<p>Fork the project to make it your own. </p>
+<p class="image-container"><img style="width: 624.00px" src="img\5eb6c4548c29c72b.png"></p>
+<p>Then sign with github to be able to save changes.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\79f6c3e6b54589b0.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Variables, Assignment &amp; Operators" duration="5">
+        <p>In modern javascript we declare variables in two ways.</p>
+<ul>
+<li>Const : used to define constants which must be assigned during declaration and can never be reassigned another value.</li>
+<li>Let: Used to declare any block scoped variable of any type, can be reassigned.</li>
+</ul>
+<p>Comments in Javascript are written using \\ for single line and \* *\ for multiline. Mathematical operators such as =, +, -, *, /, % are supported.</p>
+<h2 is-upgraded><strong>Task 2</strong></h2>
+<p>Edit index.js and create variables &#34;radius&#34; assign it the value 7 and a constant &#34;pi&#34; assigned the value 3.14 then calculate area and stored in a variable called &#34;area&#34;. </p>
+<p>index.js</p>
+<pre><code>let radius = 7;
+const pi = 3.14;
+
+let area = radius * radius * pi;
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Primitive Data Types &amp; Strings" duration="5">
+        <p><br>Javascript is a dynamically typed language, this means datatypes are not given in the declaration of a variable. Instead the compiler infers the variable&#39;s data type from its given value.<br></p>
+<p>Primitive Data Types include</p>
+<h2 is-upgraded><strong>Numbers</strong></h2>
+<pre><code>let num1 = 0.1341 // float
+let num2 = 2344 // integer
+let num3 = 1.2e+3 // 12000 scientific notation
+let num4 = Infinity // really large number
+let num5 = 0b1000111 // binary number
+let num6 = 0xHFE0123 // hexadecimal number
+let num7 = 9007199254740991n //Big Integer</code></pre>
+<h2 is-upgraded><strong>Strings</strong></h2>
+<p>Can be written in three ways.</p>
+<pre><code>let str1 =&#34;Hello World&#34;;
+let str2 = &#39;Hello World&#39;;
+let str3 = `
+    hello 
+    world
+`;// template literal (backtick above tab key)
+</code></pre>
+<p>Single and double quotes more or less have the same effect. However template literals have two advantages:</p>
+<ol type="1" start="1">
+<li>They can be multiline</li>
+<li>String Interpolation</li>
+</ol>
+<p><br>String interpolation is the simply printing the values of a variable or expression within a string.</p>
+<p>We can use the typeof to get the data type of a variable.</p>
+<h2 is-upgraded><strong>Task 3</strong></h2>
+<p><br>Type and run the following.<br><br>index.js</p>
+<pre><code>let name = &#34;bob&#34;;
+let age = 24;
+
+console.log(typeof(name))//string
+console.log(typeof(age))//number
+
+console.log(`Hello my name is ${name}, I&#39;m ${age} years old`);
+//Hello my name is bob, I&#39;m 24 years old.
+
+console.log(‘I was born in ${2020 - age}&#39;)
+//I was born in 1966</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Comparison &amp; Iteration" duration="15">
+        <h2 is-upgraded><strong>Type Coercion</strong></h2>
+<p>Due to javascript&#39;s dynamic typing it does this thing called type coercion. This is where the languages converts the data type of a variable to resolve an expression. This is best understood by seeing for yourself. Update index.js with the following.</p>
+<h2 is-upgraded><strong>Task 4.1</strong></h2>
+<p>index.js</p>
+<pre><code>console.log(&#39;1&#39; == 1); //true
+console.log(1 == true); //true
+console.log(&#34;true&#34; == true); //true
+</code></pre>
+<p>To disable this we simply use ‘===&#39; (called hard comparison) instead. As a rule of thumb when writing comparisons just use ‘===&#39;. Now try the following.</p>
+<h2 is-upgraded><strong>Task </strong>4<strong>.2</strong></h2>
+<p>index.js</p>
+<pre><code>console.log(&#39;1&#39; === 1); //false
+console.log(1 === true); //false
+console.log(&#34;true&#34; === true); //false
+</code></pre>
+<h2 is-upgraded><br><strong>If Statements</strong><br></h2>
+<p>If statements work just the same as in any other language.</p>
+<p>Comparison operators include</p>
+<ul>
+<li>=== : equal to</li>
+<li>!== : not equal to</li>
+<li>&gt;= : more than or equal to</li>
+<li>&lt;= : less than or equal to</li>
+</ul>
+<p>Logical operators include</p>
+<ul>
+<li>&amp;&amp; : And</li>
+<li>|| : Or</li>
+<li>! : not</li>
+</ul>
+<pre><code>let grade = 67;
+
+if( grade &lt; 50){
+   console.log(&#39;Failed&#39;);
+}else{
+   console.log(&#39;Passed&#39;);
+}</code></pre>
+<h2 is-upgraded><br><strong>While and for</strong><br></h2>
+<p>Same goes for while and for loops</p>
+<pre><code>let num =0;
+
+while(num &lt; 10){
+  console.log(num);
+  num++;
+}
+
+for(let i=0; i &lt;10; i ++){
+  console.log(i);
+}</code></pre>
+<h2 is-upgraded><strong>Task 4.3</strong></h2>
+<p>Write some code to print the numbers 1 - 50. However when a number divisible by 3 is reached ‘fizz&#39; must be printed instead, when a number is divisible by 5 print ‘buzz&#39;. If the number is divisible by 3 and 5 print ‘fizzbuzz&#39; instead.</p>
+<p>Answer</p>
+<pre><code>for(let i=0; i&lt; 50; i++){
+  if(i %3 === 0 &amp;&amp; i%5 === 0){ // is divisible by 3 and 5?
+    console.log(&#39;fizzbuzz&#39;);
+  }else if(i%3 === 0){ // ok it&#39;s not divisible by both how about just 3?
+    console.log(&#39;fizz&#39;);
+  }else if(i%5 === 0){ //no? what about just 5 then?
+    console.log(&#39;buzz&#39;);
+  }else{              //so its not divisible by 3 or 5 then
+    console.log(i);
+  }
+}</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Functions" duration="20">
+        <p>There are three ways to write functions in javascript.</p>
+<pre><code>//named function
+function hello1() {
+  console.log(&#34;hello&#34;);
+}
+
+//assigning an anonymous function to a variable
+let hello2 = function() {
+  console.log(&#34;hello&#34;);
+};
+
+//arrow function
+let hello3 = () =&gt; console.log(&#34;hello&#34;);
+
+hello1();//hello
+hello2();//hello
+hello3();//hello</code></pre>
+<p><br>While the first two styles essentially do the same thing the third is a bit different which we shall learn at a different time. For the time being as long as the ‘this&#39; keyword isn&#39;t used, arrow functions work the same.<br></p>
+<h2 is-upgraded><strong>Parameters and Returning a Value</strong></h2>
+<p>Functions can take parameters and return values. However, if the expected parameters aren&#39;t passed to a function they will receive an undefined value.</p>
+<pre><code>function add(a, b){
+   return a + b;//undefined + undefined = NaN
+}
+
+let ans = add(5, 1);
+console.log(ans); //6
+
+Let ans2 = add();
+console.log(ans2); //NaN</code></pre>
+<h2 is-upgraded><strong>Anonymous Functions</strong></h2>
+<p><br>Style two uses an anonymous function. Sometimes we need to define a function but would have no need to call it again. In these cases we use anonymous functions which will be explored in the next lab.</p>
+<h2 is-upgraded><strong>First Class functions</strong></h2>
+<p>Javascript functions are called first class functions. This means that they are treated as any variable. Because of this we must be careful and avoid name clashes between variable names and function names as variables cannot be declared more than once.<br><br></p>
+<pre><code>let sum = 10
+
+function sum(){ //duplicate declaration error
+}</code></pre>
+<p>As they are treated as variables this means that they can be passed to functions and can be returned by other functions.</p>
+<h2 is-upgraded><strong>High Order functions</strong><br></h2>
+<p>High order functions are functions which take in a function as a parameter or returns a function. High Order functions are very common in javascript and mastering them is crucial to this course.<br></p>
+<h2 is-upgraded><strong>Task 5</strong></h2>
+<p>Write and execute the following<br><br>index.js</p>
+<pre><code>function printAnswer(ans){
+  console.log(`Answer: ${ans}`);
+}
+
+function printAnswer2(ans){
+  console.log(`The sum is ${ans}`);
+}
+
+// add takes 3 parameters a and b to add 
+// then a function which is called with the result
+//of the addition as a parameter
+function add(a, b, doStuffWithAns){
+  let answer = a + b;
+  doStuffWithAns(answer);
+ //this becomes whatever function is passed to add()
+}
+
+add(11, 23, console.log)//doStuffWithAns() =&gt; console.log()
+add(4, 5, printAnswer);// doStuffWithAns() =&gt; printAnswer()
+add(14, 9, printAnswer2);// doStuffWithAns() =&gt; printAnswer2()</code></pre>
+<h2 is-upgraded><br><strong>Callback functions</strong></h2>
+<p>Whenever a function is passed to a high order function, the parameter function is also said to be a callback function. This is because the high order function is expected to call the parameter function passed to it and intern pass a meaningful parameter to the callback.</p>
+<h2 is-upgraded><strong>Anonymous Callback function</strong></h2>
+<p>Typically anonymous functions are used when the callback function is unlikely to be used anywhere else in the code. Using anonymous functions we can rewrite the previous snippet as.</p>
+<p>index.js</p>
+<pre><code>// add takes 3 parameters a and b to add 
+// then a function which is called with the result
+//of the addition as a parameter
+function add(a, b, doStuffWithAns){
+  let answer = a + b;
+  doStuffWithAns(answer);
+}
+
+add(4, 5, function(ans){ 
+    console.log(`Answer: ${ans}`);
+});
+
+add(14, 9, function(ans){ 
+   console.log(`The sum is ${ans}`); 
+});</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Arrays" duration="15">
+        <p>Due to being dynamically typed js arrays can be heterogeneous, this means the elements of an array can be of different data types. Like in other languages array elements can be accessed via their indices which start at 0;</p>
+<pre><code>let arr = []//empty array
+let arr2 = [1, 2, 3, 4, 5, 6, 7]//initialize with elements
+let arr3 = [1, 12.9, &#34;Hi&#34;, &#39;🎈&#39;, ]// heterogeneous array
+
+console.log(arr[0]);// 1
+console.log(arr3[3]);//🎈</code></pre>
+<p>Arrays can be iterated using its index or by using a For of loop. The useful property length exists on all arrays which can be used to get the size of an array.</p>
+<pre><code>let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];// 10 elements
+
+for(let i=0; i&lt; arr.length; i++){
+  console.log(arr[i])
+}
+
+for (let item of arr){// for of loop
+   console.log(item);
+}</code></pre>
+<h2 is-upgraded><strong>Array Methods</strong><br></h2>
+<p>There are several methods on array which are available for your convenience. They help make writing complex behaviors easilier. Some popular array methods include.<br></p>
+<h2 is-upgraded><strong>Task 6</strong></h2>
+<p>Run the following code and observe the console.<br></p>
+<pre><code>let arr = [103, 42, 33, 344, -5, 16];
+
+console.log(arr.includes(5));//true
+
+console.log(arr.sort());//[ -5, 16, 33, 42, 103, 344]
+
+arr.push(11);//adds item to the end
+
+console.log(arr)//[ -5, 16, 33, 42, 103, 344, 11];
+
+let lastItem == arr.pop();//removes last item
+
+console.log(lastItem, arr);//11, [ -5, 16, 33, 42, 103, 344]
+
+console.log(arr.shift(22));//[22, -5, 16, 33, 42, 103, 344] adds item to the front
+
+let firstItem = arr.unshift();// 22 removes first item
+
+console.log(arr.reverse());//[344, 103, 43, 33, 16, -5] reverses an array
+
+console.log(arr.join(&#39;-&#39;));//&#34;344-103-43-3-16--5&#34; joins array with provided separator</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Object Literals" duration="10">
+        <p>Arrays are collections with integer indices but what if we wanted our indices to be more meaningful and descriptive? JS Object literals, (dictionaries or associative array as known in other languages) help us achieve just that.</p>
+<p>We can also put objects in array and let our object contain array values. Objects are key value pairs which can be used to create a mapping from a set of keys to a set of values.</p>
+<pre><code>let person = {
+  // key : value
+  &#34;name&#34;: &#34;John&#34;,
+  &#34;age&#34;: 12
+};
+
+//we can print the values of a key in two ways
+console.log(person[&#34;age&#34;]);//Using an index
+console.log(person.name);//referencing the key as a property
+
+person[&#34;weight&#34;] = 70;
+
+person.marks = [67, 34, 55, 89];
+
+let firstMark = person.marks[0];
+
+//mixing array and objects
+let people = [
+  person,
+  {
+    name: &#34;Jane&#34;,
+    age: 23,
+    marks: [51, 78, 99, 76]
+  }
+];
+
+let johnClone = {};//empty object
+
+//copying objects
+Object.assign(johnClone, person);
+
+console.log(john);
+
+console.log(people[0].marks[0]);//what is printed?</code></pre>
+<h2 is-upgraded><strong>Task 7</strong></h2>
+<p>Write some code to record the height, weight and name of a collection of people. Then create a function which receives this collection and calculates their average bmi.<br></p>
+<p>Answer</p>
+<pre><code>//Create a constructor a functions which builds object for us
+function createPerson(name, height, weight) {
+  return { name: name, height: height, weight: weight };
+}
+
+function calcBMI(weight, height) {
+  return weight / (height * height);
+}
+
+function avgBMI(people) {
+  let sum = 0;
+  for (let person of people) {
+    //sum the bmi of each person
+    sum += calcBMI(person.weight, person.height);
+  }
+  //calculate average
+  return sum / people.length;
+}
+
+//create a collection of people
+let people = [
+  createPerson(&#34;Sally&#34;, 60, 2.5),
+  createPerson(&#34;Ben&#34;, 81, 3),
+  createPerson(&#34;Shelly&#34;, 50, 1.7)
+];
+
+console.log(avgBMI(people));</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Exception Handling" duration="5">
+        <p>Error handling is another crucial concept in front-end programming. Web apps should be able to catch errors and handle them gracefully without crashing. This is done with try catch statements.</p>
+<h2 is-upgraded><strong>Task 8</strong></h2>
+<p>Run the following and observe the console  output.</p>
+<pre><code>function divide(a, b) {
+  //It&#39;s good practice for functions to throw errors for
+  //edge cases where the program is anticipated to fail
+  if (b === 0) throw &#34;Division by zero error&#34;;
+  return a / b;
+}
+
+try {
+  //any code which throw an error here would be caught
+  console.log(divide(4, 2));//executes
+  console.log(divide(20, 0));//throws error
+  console.log(divide(10, 4));//does not execute
+} catch (error) {
+  //handle the error
+  console.log(error);
+} finally {
+  //this runs regardless if an error was thrown
+  console.log(&#34;Finish&#34;);
+}</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="DOM Manipulation" duration="15">
+        <p><br>In this last section we shall explore how javascript can interact with HTML. Modern web applications which give a native app like experience rely on manipulating the Document Object Model (DOM).</p>
+<p>For this task we need an html 5 workspace so clone the following project.</p>
+<p><a href="https://repl.it/@Snickdx/INFO-2602-Lab-11" target="_blank"><paper-button class="colored" raised>Open Lab 1.1</paper-button></a> (HTML 5)</p>
+<h2 is-upgraded><strong>Task 9.1</strong></h2>
+<p>First let&#39;s add some html to our page.</p>
+<p>index.html</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Parcel Sandbox&lt;/title&gt;
+    &lt;meta charset=&#34;UTF-8&#34; /&gt;
+    &lt;style&gt;
+      table, th, td {
+        border: 1px solid black;
+      }
+
+      table{
+        margin: 10px;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;h1&gt;Intro To JS&lt;/h1&gt;
+
+    &lt;form
+      id=&#34;myForm&#34;
+      style=&#34;align-content:space-around; display: flex; flex-direction: row&#34;
+    &gt;
+      &lt;label&gt;
+        Firstname
+        &lt;input name=&#34;firstname&#34; type=&#34;text&#34; /&gt;
+      &lt;/label&gt;
+      &lt;label&gt;
+        Age
+        &lt;input name=&#34;age&#34; type=&#34;number&#34; /&gt;
+      &lt;/label&gt;
+      &lt;label
+      &gt;Meal Pref
+        &lt;select name=&#34;pref&#34;&gt;
+          &lt;option&gt;Meat&lt;/option&gt;
+          &lt;option&gt;Veg&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/label&gt;
+
+      &lt;input type=&#34;button&#34; onclick=&#34;addRecord()&#34; value=&#34;Add&#34; /&gt;
+    &lt;/form&gt;
+
+    &lt;table &gt;
+        &lt;table&gt;
+            &lt;thead&gt;
+              &lt;tr&gt;
+               &lt;th&gt;First Name&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;th&gt;Pref&lt;/th&gt;
+              &lt;/tr&gt;
+            &lt;/thead&gt;
+            &lt;tbody id=&#34;myTbody&#34;&gt;
+            &lt;/tbody&gt;
+          &lt;/table&gt;
+    &lt;/table&gt;
+    &lt;script src=&#34;script.js&#34;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>This should give us a form and an empty table.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\1f901030f69aaa41.png"></p>
+<p>Take note of the following</p>
+<ul>
+<li>How index.js linked to page index.html via the script tag.</li>
+<li>The use of the name attribute is very important in our input fields so we can get the values in our javascript code.</li>
+<li>The Ids also given to our table&#39;s body and form so they may be referenced in our javascript code.</li>
+<li>The add button has an attribute called ‘onlick&#39; this is called an event attribute and it allows us to trigger javascript functions in response to events occurring on our elements. So we have set up this button to call addRecord() when it&#39;s clicked.<br></li>
+</ul>
+<h2 is-upgraded><strong>Task 9.2</strong></h2>
+<p><br>Next Edit script.js to store a global array of records and create the add record function which takes the input from the form and add them to our records array.</p>
+<pre><code>let records = [];
+
+function addRecord(){
+
+  let myform = document.querySelector(&#39;#myForm&#39;);
+
+  // get the value of the various input elements by referencing
+  // their names on the elements property
+
+  let newRecord = {
+    firstname: myform.elements[&#39;firstname&#39;].value,
+    age: myform.elements[&#39;age&#39;].value,
+    pref: myform.elements[&#39;pref&#39;].value
+  };
+
+  records.push(newRecord);
+  console.log(records);
+}</code></pre>
+<p>document.querySelector() is the function we use to access html elements on the page. Specifying ‘#myForm&#39; would retrieve the element with the id ‘myForm&#39;. We store that element in a myform variable. </p>
+<aside class="special"><p><strong>Note:</strong> When using <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/elements" target="_blank">HTMLFormElement.elements</a> property; the value of the index must match up the the name given to the desired input element.</p>
+</aside>
+<p>Put data into the form, try clicking the add button and view the result in the console. You should see the data of the form being logged.</p>
+<p class="image-container"><img style="width: 500.00px" src="img\1861355157cc9b41.gif"><br></p>
+<h2 is-upgraded>Task 9.3</h2>
+<p><br>Next we want to write to the page. We shall implement a drawTable() function which would use all of the objects in the records array to write rows into the table.<br><br>index.js </p>
+<pre><code>let records = [];
+
+function drawTable() {
+        let myTbody = document.querySelector(&#39;#myTbody&#39;);
+        let html = &#39;&#39;;
+
+      //create a table row for every record
+        for (let record of records) {
+                html += `&lt;tr&gt;
+                             &lt;td&gt;${record.firstname}&lt;/td&gt;
+                             &lt;td&gt;${record.age}&lt;/td&gt;
+                             &lt;td&gt;${record.pref}&lt;/td&gt;
+                         &lt;/tr&gt;`;
+        }
+        myTbody.innerHTML = html;
+}
+
+function addRecord() {
+        let myform = document.querySelector(&#39;#myForm&#39;);
+
+        let newRecord = {
+                firstname: myform.elements[&#39;firstname&#39;].value,
+                age: myform.elements[&#39;age&#39;].value,
+                pref: myform.elements[&#39;pref&#39;].value
+        };
+
+        records.push(newRecord);
+        drawTable();
+}</code></pre>
+<p>The draw table function builds an html string, interpolating td tags with the values of the records.</p>
+<p>We use the innerHTML property to write the html string to the webpage. We then change the addRecord() function to call drawTable() everytime the add button is clicked. </p>
+<p class="image-container"><img style="width: 455.94px" src="img\17db44d9d2c757fd.gif"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conclusion" duration="1">
+        <p>That&#39;s it, we have started with the fundamentals of javascript, implemented receiving user input and using DOM manipulation to write the data to the page.</p>
+<p>In order to get more practice with the language it is recommended you try the Diagnostic Exercises by following the link below. Try solving each problem in the language you are most comfortable with then solve it using javascript.<br><br><a href="https://docs.google.com/document/d/1keObpveXpiQibWL__qofA6ZlmPFS3Nas-OaonbR8QVI/edit?usp=sharing" target="_blank"><paper-button class="colored" raised>Diagnostic Exercises</paper-button></a><br></p>
+<h2 is-upgraded><strong>References</strong></h2>
+<p><a href="https://www.tutorialrepublic.com/javascript-tutorial/javascript-data-types.php" target="_blank">Javascript Data Types</a></p>
+<p><a href="https://www.tutorialrepublic.com/javascript-tutorial/javascript-functions.php" target="_blank">Javascript Functions</a></p>
+<p><a href="https://dev.to/frugencefidel/10-javascript-array-methods-you-should-know-4lk3" target="_blank">JS Array Methods</a></p>
+<p><a href="https://eloquentjavascript.net/04_data.html" target="_blank">JS Objects</a></p>
+<p><a href="https://www.hongkiat.com/blog/dom-manipulation-javascript-methods/" target="_blank">JS Dom Manipulation</a></p>
+<h2 is-upgraded><strong>Feedback</strong></h2>
+<google-codelab-survey survey-id="lab1-1">
+<h4>[lab 1] How difficult was it to execute this lab?</h4>
+<paper-radio-group>
+<paper-radio-button>Very Easy</paper-radio-button>
+<paper-radio-button>Easy</paper-radio-button>
+<paper-radio-button>Moderate</paper-radio-button>
+<paper-radio-button>Hard</paper-radio-button>
+<paper-radio-button>Very Hard</paper-radio-button>
+</paper-radio-group>
+</google-codelab-survey>
+<google-codelab-survey survey-id="lab1-2">
+<h4>[lab 1] How difficult was it to understand the content of this lab?</h4>
+<paper-radio-group>
+<paper-radio-button>Very Easy</paper-radio-button>
+<paper-radio-button>Easy</paper-radio-button>
+<paper-radio-button>Moderate</paper-radio-button>
+<paper-radio-button>Hard</paper-radio-button>
+<paper-radio-button>Very Hard</paper-radio-button>
+</paper-radio-group>
+</google-codelab-survey>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+
+</body>
+</html>

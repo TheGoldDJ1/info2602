@@ -8,6 +8,11 @@ Please ensure you fill out the contacts <a href="https://docs.google.com/forms/d
 ## [Slack Group Invite Link](https://join.slack.com/t/webtechnologies1/shared_invite/enQtOTIwNjczNDI4OTc2LTdjY2I4NzQ1MDdiNjY5MjYwYmI1OGRjOTk5NjVlNzU0ZThiNDAwMGJlNDhmZGFlOGVlNzMzYjEzNmJkMDQ2M2I)
 Slack is a messaging and collaboration platform we shall use for labs and communication.
 
+## Taking Attendence
+A QR code will be given for each lab. Scanning the QR code will take you to a form to take roll. You can inatall a QR code scanner on you phone or use the folling sites on the lab machines.
+
+<a href="https://www.the-qrcode-generator.com/scan" target="blank">Qr Code Scanner</a>
+
 ## Lab Assignments (Updated 26/01/2020)
 
 !!! warning "Changing Streams"

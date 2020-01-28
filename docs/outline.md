@@ -1,4 +1,4 @@
-<!----- Conversion time: 1.761 seconds.
+<!----- Conversion time: 1.47 seconds.
 
 
 Using this Markdown file:
@@ -11,7 +11,7 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β17
-* Fri Jan 24 2020 06:10:13 GMT-0800 (PST)
+* Sun Jan 26 2020 19:56:21 GMT-0800 (PST)
 * Source doc: https://docs.google.com/open?id=1eAtFx9SiqJcC4e3wJn0HVKO1Q9lJv_huLpXwZpPDu98
 ----->
 
@@ -38,7 +38,7 @@ Conversion notes:
 
 2 1-hour lectures, 1 2-hour lab, 6 hours per week independent study
 
-**LECTURER: **Mr. Nicholas Mendez nicholas.mendez@sta.uwi.edu
+**LECTURER: **Mr. Nicholas Mendez [nicholas.mendez@sta.uwi.edu](mailto:nicholas.mendez@sta.uwi.edu)
 
 **OFFICE HOURS**
 
@@ -113,6 +113,19 @@ Conversion notes:
   </tr>
 </table>
 
+
+
+## ASSESSMENTS
+
+
+
+1. Assignment 1 - 5%
+2. Assignment 2 - 5%
+3. Coursework Exam - 10%
+4. Lab Exam - 10%
+5. Participation & Ethic - 5%
+6. Project - 15%
+7. Final Exam - 50%
 
 
 ## COURSE DESCRIPTION
