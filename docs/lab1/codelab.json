@@ -3,7 +3,7 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2020-01-27T19:14:55Z",
+  "updated": "2020-01-28T16:47:51Z",
   "id": "lab1",
   "duration": 95,
   "title": "Lab 1 - Javascript Introduction",
@@ -20,6 +20,6 @@
   "tags": [
     "web"
   ],
-  "ga": "UA-154889698-1",
+  "ga": "UA-154889698-2",
   "url": "lab1"
 }
