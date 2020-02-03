@@ -5,9 +5,12 @@ Please ensure you fill out the contacts <a href="https://docs.google.com/forms/d
 
 <a href="https://docs.google.com/forms/d/e/1FAIpQLScg2h4NkJNOYQglwUAJrqAbgBCysFj8a3hjLmxsPUjUd5V5kw/viewform?usp=sf_link">CONTACT FORM</a>
 
-## [Advanced Computer Literacy](https://docs.google.com/document/d/1dDqwOBqGi9j5LS66CE3BWI-uV09s1A0WTi7cuG2jCqY/edit?usp=sharing)
+## Advanced Computer Literacy
+Click on the following link to view list of advanced computing literacy skills.
 
-## [Slack Group Invite Link](https://join.slack.com/t/webtechnologies1/shared_invite/enQtOTIwNjczNDI4OTc2LTdjY2I4NzQ1MDdiNjY5MjYwYmI1OGRjOTk5NjVlNzU0ZThiNDAwMGJlNDhmZGFlOGVlNzMzYjEzNmJkMDQ2M2I)
+[SKILLS LISTING](https://docs.google.com/document/d/1dDqwOBqGi9j5LS66CE3BWI-uV09s1A0WTi7cuG2jCqY/edit?usp=sharing)
+
+## Slack Group Invite Link
 Slack is a messaging and collaboration platform we shall use for labs and communication.
 
 [JOIN ON SLACK](https://join.slack.com/t/webtechnologies1/shared_invite/enQtOTIwNjczNDI4OTc2LTdjY2I4NzQ1MDdiNjY5MjYwYmI1OGRjOTk5NjVlNzU0ZThiNDAwMGJlNDhmZGFlOGVlNzMzYjEzNmJkMDQ2M2I)
@@ -15,9 +18,15 @@ Slack is a messaging and collaboration platform we shall use for labs and commun
 ## Taking Attendence
 A QR code will be given for each lab. Scanning the QR code will take you to a form to take roll. You can inatall a QR code scanner on you phone or use the folling sites on the lab machines.
 
-<a href="https://www.the-qrcode-generator.com/scan" target="blank">Qr Code Scanner</a>
+<a href="https://www.the-qrcode-generator.com/scan" target="blank">ONLINE QR SCANNER</a>
 
-## Lab Assignments (Updated 29/01/2020)
+## Workstation Setup Instructions
+Click on the link below for instructions to install required software for this course on our windows machine.
+
+<a href="https://docs.google.com/document/d/1CYVN4OoAItWgIB2C9TYmStPfIzQsDRYv4bQjBolb2mk/edit?usp=sharing">SOFTWARE GUIDE</a>
+
+
+## Lab Assignments (Updated 03/02/2020)
 
 !!! warning "Changing Streams"
     If you need to change your assigned stream or you are not unassigned one; please fill out this <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSehOg8Au1EqA77abtOZ_DZ0YIUbYCGN7VkCqQ0giEQ4I0XFeA/viewform?usp=sf_link">Lab Form</a> to be reassigned.
@@ -34,16 +43,18 @@ Lab Stream 3: Friday 10:00AM - 12:00PM
 | 811001486 | 3           |
 | 811004486 | 3           |
 | 813000698 | 1           |
-| 813117407 | 2           |
+| 813117407 | 1           |
 | 814000498 | 1           |
 | 814003019 | 3           |
+| 814004219 | 3           |
 | 814004338 | 1           |
 | 814005674 | 1           |
-| 815006741 | 2           |
+| 815006741 | 3           |
 | 815007418 | 3           |
 | 815007829 | 3           |
-| 815117510 | 2           |
+| 815117510 | 3           |
 | 816000027 | 2           |
+| 816000453 | 2           |
 | 816000505 | 1           |
 | 816000935 | 2           |
 | 816000980 | 2           |
@@ -56,6 +67,7 @@ Lab Stream 3: Friday 10:00AM - 12:00PM
 | 816003734 | 1           |
 | 816004029 | 2           |
 | 816004460 | 3           |
+| 816004848 | 3           |
 | 816006213 | 1           |
 | 816006326 | 3           |
 | 816006722 | 2           |
@@ -91,6 +103,7 @@ Lab Stream 3: Friday 10:00AM - 12:00PM
 | 816013238 | 1           |
 | 816013341 | 3           |
 | 816013388 | 3           |
+| 816013411 | 3           |
 | 816013494 | 1           |
 | 816013573 | 3           |
 | 816013583 | 3           |
@@ -128,6 +141,7 @@ Lab Stream 3: Friday 10:00AM - 12:00PM
 | 816016755 | 1           |
 | 816016845 | 3           |
 | 816017045 | 2           |
+| 816017146 | 3           |
 | 816017202 | 1           |
 | 816017229 | 3           |
 | 816017443 | 1           |
