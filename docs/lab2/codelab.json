@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-02-04T02:59:46Z",
+  "id": "lab2",
+  "duration": 0,
+  "title": "Lab 2 - Advanced Javascript",
+  "authors": "Nicholas Mendez",
+  "summary": "In this code lab you will be exposed to the fundamentals of the Javascript Programming Language",
+  "source": "1X4Hj_PyJmE4RwWxGPkkBluL0mJ9eOc82SkrDabHA5Oc",
+  "theme": "web",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "Web"
+  ],
+  "tags": [
+    "web"
+  ],
+  "ga": "UA-154889698-2",
+  "url": "lab2"
+}

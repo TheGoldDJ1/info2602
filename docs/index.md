@@ -25,6 +25,9 @@ Click on the link below for instructions to install required software for this c
 
 <a href="https://docs.google.com/document/d/1CYVN4OoAItWgIB2C9TYmStPfIzQsDRYv4bQjBolb2mk/edit?usp=sharing">SOFTWARE GUIDE</a>
 
+## Diagnostic Exercies
+Here are a list of exercies you can try to practice with JS/Python, the list will be updated periodically with more questions.
+<a href="https://docs.google.com/document/d/1keObpveXpiQibWL__qofA6ZlmPFS3Nas-OaonbR8QVI/edit?usp=sharing" target="_blank">VIEW EXERCISES</a>
 
 ## Lab Assignments (Updated 03/02/2020)
 

@@ -1,0 +1,352 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Lab 2 - Advanced Javascript</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid="UA-154889698-2"
+                  id="lab2"
+                  title="Lab 2 - Advanced Javascript"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="0">
+        <p class="image-container"><img style="width: 464.50px" src="img\1aabf537858b7747.png"></p>
+<h2 is-upgraded><strong>Even More Javascript</strong></h2>
+<p>This is lab explores even more crucial functionalities of javascript, some of which you won&#39;t see in any other language</p>
+<h2 is-upgraded><strong>Task 1</strong></h2>
+<p>Just as in lab 1 follow the link below to open codesandbox. Fork the project then sign in.</p>
+<p><a href="https://repl.it/@Snickdx/INFO-2602-Lab-20" target="_blank"><paper-button class="colored" raised>Open Lab 2</paper-button></a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Prompt Confirm Alert" duration="0">
+        <p>These functions allow us to get immediate user input blocking all other actions on the page. <br><br>If you run the workspace at this point you shall see the following:</p>
+<h2 is-upgraded><img style="width: 384.50px" src="img\6f4c235094ba121b.png"></h2>
+<h2 is-upgraded><strong>Task 2</strong></h2>
+<p>Let&#39;s add the following functions to the script tag of the page, press the button and observe the output.</p>
+<p>index.html</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&#34;utf-8&#34;&gt;
+    &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width&#34;&gt;
+    &lt;title&gt;repl.it&lt;/title&gt;
+    &lt;link href=&#34;style.css&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34; /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+   &lt;h1&gt;My Page&lt;/h1&gt;
+   &lt;input type=&#34;button&#34; value=&#34;alert&#34; onclick=&#34;alertFun()&#34;/&gt;
+   &lt;input type=&#34;button&#34; value=&#34;confirm&#34; onclick=&#34;confirmFun()&#34;/&gt;
+   &lt;input type=&#34;button&#34; value=&#34;prompt&#34; onclick=&#34;promptFun()&#34;/&gt;
+  &lt;/br&gt;
+  &lt;span id=&#34;result&#34;&gt;&lt;/span&gt;
+
+  &lt;script&gt;
+   function alertFun(){
+    alert(&#34;Hello !&#34;);
+   }
+
+   function confirmFun(){
+     let didConfirm = confirm(&#34;Are you sure about that?&#34;);
+     let result = document.querySelector(&#39;#result&#39;);
+     if(didConfirm){
+       result.innerHTML = &#34;You confirmed :)&#34;;
+     }else{
+       result.innerHTML = &#34;You did not confirm :(&#34;;
+     }
+   }
+
+   function promptFun(){
+    let val = prompt(&#34;What is your name?&#34;);
+    document.querySelector(&#39;#result&#39;).innerHTML = `You&#39;ve entered: ${val}`;
+   }
+  &lt;/script&gt;
+  &lt;script src=&#34;script.js&#34;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="More on Array Methods" duration="0">
+        <p>Here are more popular array methods which all take an anonymous function and apply them to the elements of the array in some way.</p>
+<ul>
+<li>forEach(): Applies a function to each element</li>
+<li>Filter(): Create an array of smaller size</li>
+<li>map() : Creates another array of equal size</li>
+<li>some(): Tests all elements of an array for a condition</li>
+<li>sort(): Sorts an array according to a given sort function</li>
+</ul>
+<h2 is-upgraded><strong>Task 3</strong></h2>
+<p>Try the following code in the script tag of index.html and observe the output in the console tab.</p>
+<pre><code>let arr = [12, 33, 4, 5, -4, 8, 19, 25];
+                
+//map() creates a new array from the elements of one without changing the old one
+let doubledArr = arr.map(function(element){
+  return element * 2 ;
+}); 
+console.log(doubledArr);
+
+//Filter takes a test condition and returns only the element which 
+//make the condition true
+let odds = arr.filter(function(element){
+  return element%2 !== 0;
+});
+console.log(odds);
+
+//Returns true or false if any of the elements of the array 
+//meets a specified condition
+//This example uses an arrow function for brevity
+let hasFiveFactor = arr.some(ele =&gt; ele % 5 === 0);
+console.log(hasFiveFactor);
+
+//sort function must return either 0, +ve, -ve
+let ascending = arr.sort((a, b) =&gt; a - b )
+console.log(ascending);</code></pre>
+<aside class="special"><p>The function passed to sort must return either three type of values for two specified parameters a, b<br></p>
+<ul>
+<li>+ve number if a &gt; b</li>
+<li>-ve number if b &gt; a</li>
+<li>0 if a === b</li>
+</ul>
+<p>Hence to sort in ascending order the function is (a, b) =&gt; a - b</p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="JS References" duration="0">
+        <p>Javascript objects are always references. This means if a function changes an object then everywhere else that uses the object would see that change.</p>
+<pre><code>let myobj = {
+  name: &#39;Bob&#39;,
+  balance: 10
+}
+
+function add10(a){
+  a.balance+= 10; // a is a pointer/reference to myObj
+}
+
+console.log(myobj.balance);//10
+add10(myobj);
+console.log(myobj.balance);//20</code></pre>
+<p><br>This also means that when you assign a variable to an existing object, then both variables are the same reference.</p>
+<h2 is-upgraded><strong>Task 4</strong></h2>
+<p>Execute the following and observe how changing ob2 affects myobj</p>
+<pre><code>let obj2 = myobj;
+
+//obj2 and myobj are the same variable
+
+obj2.name = &#34;Shelly&#34;;
+
+console.log(myobj.name);//Shelly
+
+//if you need to create a new object and copy its values use Object.assign
+
+let obj3 = {};
+Object.assign(obj3, myobj);
+
+obj3.name = &#39;Smith&#39;;
+
+console.log(myobj.name, obj3.name);//Shelly, Smith</code></pre>
+<p>The same also goes for arrays.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Classes" duration="0">
+        <p>Recently a more recognizable syntax for creating classes has been added to javascript. Version 6 of javascript only supports public methods and properties.</p>
+<h2 is-upgraded><strong>Task 5</strong></h2>
+<p>Execute the following, notice how the instance of the child class automatically outputs to the console.</p>
+<pre><code>class Student {
+     //constructor
+     constructor(name, age, year){
+         this.name = name;
+         this.age = age;
+         this.year = year
+     }
+     
+     // accessor method
+     getAge(){
+         return this.age;
+     }
+    
+     //mutator method
+     setAge(age){
+        this.age = age;
+     }
+    
+}
+
+//inheritance
+class PTStudent extends Student{
+      getAge(){//method overriding
+           console.log(&#39;in part time student&#39;);
+           return super.getAge();//calls the parent method
+       }
+
+}
+
+let ken = new PTStudent(&#39;Ken&#39;, 25, 2);
+let bob = new Student(&#39;Bob&#39;, 19, 1);
+
+console.log(ken.getAge());
+bob.getAge();
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Client Side Templating/Rendering" duration="0">
+        <h2 is-upgraded><strong>Task 6.2</strong></h2>
+<p>Update Index html with the following markup. Notice the table body is given an id as that is the target for rendering data on the Document Object Model (DOM).</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;link href=&#34;https://fonts.googleapis.com/icon?family=Material+Icons&#34; rel=&#34;stylesheet&#34;&gt;
+    &lt;link rel=&#34;stylesheet&#34; href=&#34;https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css&#34;&gt;
+    &lt;title&gt;Demo&lt;/title&gt;
+    &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34;/&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;nav&gt;
+        &lt;div class=&#34;nav-wrapper teal&#34; style=&#34;padding-left: 10px;&#34;&gt;
+           &lt;a href=&#34;#!&#34; class=&#34;brand-logo&#34;&gt;Ajax Demo&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/nav&gt;
+    &lt;main class=&#34;row&#34; style=&#34;padding: 40px&#34;&gt;
+         &lt;table&gt;
+           &lt;thead&gt;
+                &lt;tr&gt;
+                   &lt;th&gt;#&lt;/th&gt;
+                   &lt;th&gt;name&lt;/th&gt;
+                   &lt;th&gt;Type&lt;/th&gt;
+                   &lt;th&gt;website&lt;/th&gt;
+                &lt;/tr&gt;
+                &lt;/thead&gt;
+                  &lt;tbody id=&#34;result&#34;&gt;
+                                                
+                  &lt;/tbody&gt;
+           &lt;/table&gt;
+     &lt;/main&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>We have utilized 3rd party css from <a href="https://materializecss.com/" target="_blank">https://materializecss.com/</a>. To add some pleasing styling to our site.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\942a5fa733ad6302.png"></p>
+<p>The result is an empty table. Next we would want to write some javascript code to fetch the data then write it out to the table. This can be done in two functions; loadData() and writeTable().</p>
+<p>First let&#39;s start with writeTable(). This should be familiar from the previous lab, writing html elements for every element in an array.</p>
+<p>For every object in an array we want to display the id, name, brewery_type and website_url properties in the columns of the table. For example</p>
+<pre><code>// if a record looks like.
+let record = {
+   id: 1,
+   name: &#34;bob&#39;s&#34;
+   brewery_type: &#34;fire&#34;,
+   website_url:&#34;https://bobs.com&#34;
+} 
+
+//*note the use of backticks
+//using string interpolation
+//a row in the table would look like;
+
+Let row = `&lt;tr&gt; 
+    &lt;td&gt;${record.id}&lt;/td&gt;
+    &lt;td&gt;${record.name}&lt;/td&gt;
+    &lt;td&gt;${record.brewery_type}&lt;/td&gt;
+    &lt;td&gt;${recoard.website_url}&lt;/td&gt;    
+&lt;/tr&gt;`;</code></pre>
+<p>We want to do this for every record in an array so the draw table function would do this in a for loop.</p>
+<h2 is-upgraded><strong>Task 6.3</strong></h2>
+<p>Implement drawTable() in a script tag of index.html. Note because of the font single and doubles quotes must be retyped.</p>
+<pre><code>function drawTable(records){
+    let result = document.querySelector(&#39;#result&#39;);
+    for(let record of records){
+        result.innerHTML += `&lt;tr&gt;//add html code inside of result 
+          &lt;td&gt;${record.id}&lt;/td&gt;
+          &lt;td&gt;${record.name}&lt;/td&gt;
+          &lt;td&gt;${record.brewery_type}&lt;/td&gt;
+          &lt;td&gt;${record.website_url}&lt;/td&gt;    
+        &lt;/tr&gt;`;
+    }
+}
+
+//testing the function
+drawTable([{
+   id: 1,
+   name: &#34;bob&#39;s&#34;,
+   brewery_type: &#34;fire&#34;,
+   website_url:&#34;https://bobs.com&#34;
+}]);</code></pre>
+<p><br>The result should look like </p>
+<p class="image-container"><img style="width: 624.00px" src="img\c6c31da00d938c5d.png"></p>
+<p>Now we have a function that can present elements of the array to the DOM, the next step is the fetch the data.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="AJAX" duration="0">
+        <p>The core functionality that makes client side web application dynamic is Asynchronous Javascript and XML (AJAX). Whereby we use javascript code to allow the browser to make an XMLHttpRequest. When a response is received by the server we output the result to the page.</p>
+<h2 is-upgraded><strong>Task 6.1</strong></h2>
+<p>Visit the link <a href="https://api.openbrewerydb.org/breweries/search?query=harry" target="_blank"><code>https://api.openbrewerydb.org/breweries/search?query=harry</code></a> and view the result. You should see the following.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\b312778ac39e587c.png"></p>
+<p>That url is said to be an Application Programming Interface (API) endpoint. What it simply means is that the server which lives on that address is programmed to only return data as opposed to html pages. Parameters can be specified in the url to affect the data being returned.</p>
+<p>In this case the query parameter &#34;query&#34; is given the value &#34;harry&#34; hence brewery data is returned for breweries which partially match with &#34;harry&#34;.</p>
+<p>To make the data look more presentable we can have Javascript request this data and write it out into our web application.</p>
+<h2 is-upgraded><strong>Task 6.2</strong></h2>
+<p>Implement the following function to fetch the data and pass it on to drawTable()</p>
+<pre><code>//function MUST be declared async
+async function loadData(url){
+   try{
+     let response = await fetch(url);//1. Send http request and get response
+     let result = await response.json();//2. Get data from response
+     drawTable(result);// 3. Do something with the data
+  }catch(e){
+      console.log(e);//catch and log any error
+  }
+}
+
+loadData(&#34;https://api.openbrewerydb.org/breweries/search?query=harry&#34;)</code></pre>
+<p>The functions drawTable() and loadData() are VERY IMPORTANT implementations which you would rely on for this course. Besure to understand the pattern to apply it in the assignment, exams and otherwise.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conclusion" duration="0">
+        <p>This concludes the build of the javascript you will be using for this course, with the last two functions being the very core. </p>
+<h2 is-upgraded><strong>References &amp; Additional Reading</strong></h2>
+<p><a href="https://codeburst.io/explaining-value-vs-reference-in-javascript-647a975e12a0" target="_blank">JS Values vs References</a></p>
+<p><a href="https://hackernoon.com/12-javascript-concepts-that-will-level-up-your-development-skills-b37d16ad7104" target="_blank">12 Javascript Concepts</a></p>
+<p><a href="https://www.internalpointers.com/post/object-literals-vs-constructors-javascript" target="_blank">JS Classes vs Objects</a></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+
+</body>
+</html>
