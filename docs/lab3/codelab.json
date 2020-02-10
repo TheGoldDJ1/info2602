@@ -3,13 +3,13 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2020-02-10T13:01:51Z",
-  "id": "lab2",
+  "updated": "2020-02-10T14:50:45Z",
+  "id": "lab3",
   "duration": 0,
-  "title": "Lab 2 - JS Syntax \u0026 AJAX",
+  "title": "Lab 3 - Advanced Javascript",
   "authors": "Nicholas Mendez",
   "summary": "In this code lab you will be exposed to the fundamentals of the Javascript Programming Language",
-  "source": "1X4Hj_PyJmE4RwWxGPkkBluL0mJ9eOc82SkrDabHA5Oc",
+  "source": "15vhC8Iw84bsrJGfytnXgthpy_Xj4jzpNwks5e7WPzaE",
   "theme": "web",
   "status": [
     "published"
@@ -21,5 +21,5 @@
     "web"
   ],
   "ga": "UA-154889698-2",
-  "url": "lab2"
+  "url": "lab3"
 }

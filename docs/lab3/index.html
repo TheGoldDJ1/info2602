@@ -1,0 +1,370 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Lab 3 - Advanced Javascript</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid="UA-154889698-2"
+                  id="lab3"
+                  title="Lab 3 - Advanced Javascript"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="0">
+        <p class="image-container"><img style="width: 464.50px" src="img\1aabf537858b7747.png"></p>
+<h2 is-upgraded><strong>Even More Javascript</strong></h2>
+<p>This is lab explores even more crucial functionalities of javascript, some of which you won&#39;t see in any other language</p>
+<h2 is-upgraded><strong>Task 1</strong></h2>
+<p>Just as in lab 1 follow the link below to open codesandbox. Fork the project then sign in.</p>
+<p><a href="https://repl.it/@Snickdx/INFO-2602-Lab-3" target="_blank"><paper-button class="colored" raised>Open Lab 3</paper-button></a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Date &amp; Math" duration="0">
+        <p>Date and Math are some built in javascript objects which are used for fundamental date and mathematical operations.</p>
+<h2 is-upgraded><strong>Unix Timestamp</strong></h2>
+<p>The <a href="https://www.unixtimestamp.com/" target="_blank">unix timestamp</a> is simply a 10 digit number which counts the number of seconds since Jan 1st 1970. It is used to uniquely identify any second of any date. Eg  1581289838  translates to 02/09/2020 @ 11:10pm (UTC).</p>
+<pre><code>let nowTimestamp = Date.now();//store the current Date
+
+console.log(nowTimestamp);//unix timestamp in milliseconds 1581291269848
+
+let now = new Date(nowTimestamp);//today&#39;s Date object 
+
+//months go from 0 - 11
+let date = new Date(2019, 11, 17, 3, 24, 0);//December 17, 2019 03:24:00
+//printing the date
+
+console.log(date.toLocaleDateString(&#34;en-US&#34;));//12/17/2019
+//1 is added to month because January is 0
+console.log(` ${now.getDate()} - ${now.getMonth() + 1} - ${now.getFullYear()} `); // 9 - 2 - 2020 
+
+//Calculate difference between two dates in milliseconds
+let difference = now - date;
+//convert milliseconds to days
+
+let daysBetween = difference * 1.15741e-8;
+console.log(daysBetween);//54.6740790437368</code></pre>
+<p>The following are some useful mathematical functions and properties which can be used instead of implementing your own version.<br></p>
+<pre><code>let root = Math.sqrt(9);// 3
+
+let cubed  = Math.pow(2, 3);// 8
+
+let roundDown = Math.floor(12.3453);// 12
+
+let roundUp = Math.ceil(12.3453);// 13
+
+let absolute = Math.abs(-34);// 34
+
+let randNum = Math.random();// random number between 0 and 1
+
+let pi = Math.pi;// pi in radians * 180 to convert to degrees
+
+//generate a random Integer between a supplied range
+function randInt(min, max){
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}</code></pre>
+<h2 is-upgraded><strong>Task 2</strong></h2>
+<ol type="1" start="1">
+<li>Create a function which takes in a date and returns the number of months between the given date and now rounded down to the nearest integer.</li>
+<li>Create a js function guess() which does the following:</li>
+</ol>
+<ol type="1" start="1">
+<li>Asks the user for a number  between 0 and 1 using prompt()</li>
+<li>Use parseInt() to convert the user&#39;s input into an integer</li>
+<li>Generates a random number between 0 and 1</li>
+<li>Alerts &#34;Correct&#34; if the entered number is equal to the random number or alerts &#34;Wrong&#34; otherwise.</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="DOM Event Listeners" duration="0">
+        <p>In html we know we can bind javascript functions to DOM events using event attributes such as onclick. The code below will call the function myFun() when the button is clicked. ie a click event occurs on the button.</p>
+<pre><code>&lt;input type=&#34;button&#34; onclick=&#34;myFun()&#34; value=&#34;click me&#34;/&gt;</code></pre>
+<p>However we can use the addEventListener() function to bind functions alternatively or in addition to this method.</p>
+<pre><code>&lt;input id=&#34;myBtn&#34; type=&#34;button&#34; onclick=&#34;myFun()&#34; value=&#34;click me&#34;/&gt;
+
+&lt;script&gt;
+  function myFun(){
+    alert(&#34;hello&#34;);
+  }
+
+  function myFun2(){
+    console.log(&#34;myFun2 called&#34;);
+  }
+
+ //receives the event parameter from addEventListener high order function
+  function logEventType(event){
+    console.log(event.type);
+  }
+
+  let myBtn = document.querySelector(&#34;#myBtn&#34;);
+
+  //attach myFun2 in addition to myFun to the click event of myBtn
+  myBtn.addEventListener(&#34;click&#34;, myFun2);
+
+  //There are other events such as mouseover and mouseout
+  
+  //Any callback passed to addeventListener receives an event object
+  myBtn.addEventListener(&#34;mouseover&#34;, logEventType);//logs ‘mouseover&#39;
+  myBtn.addEventListener(&#34;mouseout&#34;, logEventType);// logs ‘mouseout&#39;
+ //these events will fire when the mouse pointer hovers/passes over the button
+&lt;/script&gt;</code></pre>
+<h2 is-upgraded><strong>Task 3</strong></h2>
+<p>Write markup and code in  index.html to do the following;</p>
+<ol type="1" start="1">
+<li>Render an image from <a href="https://www.placecage.com/" target="_blank">https://www.placecage.com/</a> using the img tag.</li>
+<li>Create a function called ‘loaded()&#39; which logs to the console ‘img loaded&#39;.</li>
+<li>Attach the loaded() function to the &#34;load&#34; event of the image.</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Form Validation" duration="0">
+        <p>HTML 5 allows for some simple client side form validation without requiring any javascript at all!<br><br>Enter the following markup into <code>index.html</code> and try to submit the form without fields, improper emails and unsafe passwords.<br></p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&#34;en&#34;&gt;
+&lt;head&gt;
+  &lt;meta charset=&#34;UTF-8&#34;&gt;
+  &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34;&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+   &lt;link href=&#34;https://fonts.googleapis.com/icon?family=Material+Icons&#34; rel=&#34;stylesheet&#34;&gt;
+    &lt;link rel=&#34;stylesheet&#34; href=&#34;https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css&#34;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+  
+  &lt;div class=&#34;row&#34;&gt;
+    &lt;form id=&#34;myForm&#34; class=&#34;col s12&#34; &gt;
+      &lt;div class=&#34;row&#34;&gt;
+        &lt;div class=&#34;input-field col s12&#34;&gt;
+          &lt;input name=&#34;username&#34; type=&#34;text&#34; minlength=&#34;8&#34; required&gt;
+          &lt;label for=&#34;username&#34;&gt;Username&lt;/label&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&#34;row&#34;&gt;
+        &lt;div class=&#34;input-field col s12&#34;&gt;
+          &lt;input name=&#34;password&#34; type=&#34;password&#34;  required pattern=&#34;^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$&#34;&gt;
+          &lt;label for=&#34;password&#34;&gt;Password&lt;/label&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&#34;row&#34;&gt;
+        &lt;div class=&#34;input-field col s12&#34;&gt;
+          &lt;input name=&#34;email&#34; type=&#34;email&#34; required&gt;
+          &lt;label for=&#34;email&#34;&gt;Email&lt;/label&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+                
+      &lt;div class=&#34;row&#34;&gt;
+        &lt;div class=&#34;col&#34;&gt;
+          &lt;input type=&#34;submit&#34; class=&#34;btn waves-effect waves-light&#34; value=&#34;Sign Up&#34; required/&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+     
+    &lt;/form&gt;
+  &lt;/div&gt;
+  &lt;script&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><br>The browser should prevent the form from submitting displaying an error message instead.</p>
+<p>This is done via validation attributes such as:</p>
+<ul>
+<li>required: field must contain a value</li>
+<li>minlength : specifies the minimum length of valid input</li>
+<li>type=email: field must contain a valid email address.</li>
+<li>pattern: field must match with the specified <a href="https://www.thepolyglotdeveloper.com/2015/05/use-regex-to-test-password-strength-in-javascript/" target="_blank">Regular Expression</a>.</li>
+</ul>
+<p>The regular expression given to the password field would validate input if:</p>
+<ul>
+<li>It is at least 8 characters long</li>
+<li>Contains an uppercase character</li>
+<li>Contains a lowercase character</li>
+<li>Contains a special character </li>
+<li>Conans a number</li>
+</ul>
+<h2 is-upgraded><strong>Task 4</strong></h2>
+<p>Edit <code>index.html</code> to complete the following:</p>
+<ul>
+<li>Add a textarea input element to the form using <a href="https://materializecss.com/text-inputs.html" target="_blank">materializecss</a> textarea example but do not include the outer &lt;div&gt; and &lt;form&gt; tags.</li>
+<li>Change the label of the text area to &#34;comment&#34;</li>
+<li>Name the textarea &#34;comment&#34;</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Form Submission" duration="0">
+        <p>Now that the form input is valid we can send the data to an application server to be stored in a database. This will be done by performing AJAX but instead of <strong>getting</strong> data like in lab 2 we shall be <strong>posting</strong> data.</p>
+<p>Firstly we shall implement a function called <code>submit()</code> which collects the data from a form.</p>
+<p>The submit function is what we call an <strong>event handler</strong>. As it&#39;s intended to only be invoked in response to an event. In this case the event is the submission of the form. </p>
+<pre><code>//the Event object is passed to any event handler called via an event attribute eg onclick, onsubmit etc
+function submit(event){
+ event.preventDefault();//prevents page redirection
+     
+ //event target returns the element on which the event is fired upon ie event.target === myForm
+
+ //get data from form using elements property
+ let myform = event.target.elements;
+
+ let data = {
+   username: myform[&#39;username&#39;].value,
+   password: myform[&#39;password&#39;].value,
+   email: myform[&#39;email&#39;].value
+ }
+
+ console.log(data);
+}
+
+//attach the submit function to the submit event of myForm    
+document.forms[&#39;myForm&#39;].addEventListener(&#39;submit&#39;, submit);</code></pre>
+<p><strong>Event handlers</strong> are often passed to HTML event attributes or addEventListener as <strong>callback functions</strong>. In either case the <strong>event handler</strong> is passed an <a href="https://www.w3schools.com/jsref/dom_obj_event.asp" target="_blank">Event object</a> by the high order function (event attribute/ addEventListener). </p>
+<p>Secondly, we implement a <code>postData()</code> function which performs an HTTP request to send the data to a server.</p>
+<pre><code>async function postData(url, data){
+  try{
+
+     let response = await fetch(
+       url, 
+       {
+            method: &#39;POST&#39;,
+            body: JSON.stringify(data)
+       },//convert data to JSON string
+     );//1. Send http request and get response
+     
+     let result = await response.text();//2. Get message from response
+     console.log(result);//3. Do something with the message
+   
+   }catch(error){
+     console.log(error);//catch and log any errors
+   }
+}</code></pre>
+<p>We now can update <code>submit()</code> to post the data to the following endpoint <a href="https://nmendezapps.firebaseio.com/users.json" target="_blank">https://nmendezapps.firebaseio.com/users.json</a>. The server at that url saves all data that is posted to it.</p>
+<p>Update <code>submit()</code></p>
+<pre><code>//the Event object is passed to any event handler called via an event attribute eg onclick, onsubmit etc
+function submit(event){
+ event.preventDefault();//prevents page redirection
+     
+ //event target returns the element on which the event is fired upon ie event.target === myForm
+
+ //get data from form using elements property
+ let myform = event.target.elements;
+
+ let data = {
+   username: myform[&#39;username&#39;].value,
+   password: myform[&#39;password&#39;].value,
+   email: myform[&#39;email&#39;].value
+ }
+
+ //send data to an api endpoint expecting the data
+ postData(&#39;https://nmendezapps.firebaseio.com/users.json&#39;, data);</code></pre>
+<pre> </pre>
+<pre><code>myForm.reset();//clears the fields of the form
+}
+
+//attach the submit function to the submit event of myForm    
+document.forms[&#39;myForm&#39;].addEventListener(&#39;submit&#39;, submit);</code></pre>
+<p>Now submitting the form would cause the data you entered to be viewable at </p>
+<p><a href="https://nmendezapps.firebaseio.com/users.json" target="_blank">https://nmendezapps.firebaseio.com/users.json</a> ! </p>
+<h2 is-upgraded><strong>Task 5</strong></h2>
+<ol type="1" start="1">
+<li>Add code to capture data from the textarea from task 4 and send the data in the <code>submit()</code> function.</li>
+<li>Experiment submitting data from other form controls like radio, checkbox etc.</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Accessing Styles, Classes &amp; Attributes" duration="0">
+        <p>We can also retrieve and manipulate element&#39;s styles attributes and classes using javascript.</p>
+<pre><code>let styles = myForm.style;
+console.log(styles);//shows all the styles of the object
+myForm.style.backgroundColor = &#39;lightgrey&#39;;
+
+console.log(myForm.getAttribute(&#39;name&#39;));//myForm
+
+let username = myForm.elements[&#39;username&#39;];
+username.removeAttribute(&#39;maxlength&#39;);//removes an attribute
+username.setAttribute(&#39;maxlength&#39;, 7);//add an attribute and value
+
+myForm.classList.remove(&#39;s12&#39;);//removes a class
+myForm.classList.add(&#39;s8&#39;);//adds a class
+
+</code></pre>
+<h2 is-upgraded><strong>Task 6</strong></h2>
+<p>Write Javascript code to change the maxlength of the email field to 50.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Browser Object Model" duration="0">
+        <p>Javascript as a number of building objects such as window, navigator and document which can be used to interact with the browser.</p>
+<h2 is-upgraded><strong>Task 7 </strong></h2>
+<p>Execute the following and observe the output.</p>
+<pre><code>//get client data using navigator
+console.log(navigator.cookieEnabled);
+console.log(navigator.online);
+console.log(navigator.appVersion);
+console.log(navigator.userAgent)
+console.log(navigator.platform);
+
+//get window metadata using window
+console.log(window.location.href);//get full url
+console.log(window.location.protocol);
+console.log(window.location.hostname);
+
+function redirect(url){
+  window.location.assign(url);//redirects the page to another url
+}
+
+window.onload(function(event){
+   console.log(&#34;Page has loaded&#34;);
+   //do other javascript stuff here
+})</code></pre>
+<p>Using window.onload() is a pattern which can benefit the performance of the application. It will pause your javascript execution until the page has fully loaded.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conclusion" duration="0">
+        <p>Congratulations on making it to the end feel free to use labs 1-3 for javascript reference when building out your web applications.. </p>
+<h2 is-upgraded><strong>References &amp; Additional Reading</strong></h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math" target="_blank">Math Object</a></p>
+<p><a href="https://css-tricks.com/everything-you-need-to-know-about-date-in-javascript/" target="_blank">JS Date</a></p>
+<p><a href="https://www.w3schools.com/jsref/dom_obj_event.asp" target="_blank">DOM Events</a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/Events" target="_blank">DOM Events 2</a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event" target="_blank">Form Submission Event</a></p>
+<p><a href="https://www.valentinog.com/blog/formdata/" target="_blank">Form Data</a></p>
+<p><a href="https://www.w3schools.com/jsref/obj_window.asp" target="_blank">Window Object</a></p>
+<p><a href="https://javascript.info/onload-ondomcontentloaded" target="_blank">Window Events</a></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+
+</body>
+</html>

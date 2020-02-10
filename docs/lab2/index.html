@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
-  <title>Lab 2 - Advanced Javascript</title>
+  <title>Lab 2 - JS Syntax &amp; AJAX</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
@@ -23,7 +23,7 @@
   <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
   <google-codelab codelab-gaid="UA-154889698-2"
                   id="lab2"
-                  title="Lab 2 - Advanced Javascript"
+                  title="Lab 2 - JS Syntax &amp; AJAX"
                   environment="web"
                   feedback-link="">
     
@@ -250,6 +250,8 @@ bob.getAge();
                   &lt;/tbody&gt;
            &lt;/table&gt;
      &lt;/main&gt;
+     &lt;script&gt;
+     &lt;/script&gt;
   &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 <p>We have utilized 3rd party css from <a href="https://materializecss.com/" target="_blank">https://materializecss.com/</a>. To add some pleasing styling to our site.</p>
@@ -277,11 +279,12 @@ Let row = `&lt;tr&gt;
 &lt;/tr&gt;`;</code></pre>
 <p>We want to do this for every record in an array so the draw table function would do this in a for loop.</p>
 <h2 is-upgraded><strong>Task 6.3</strong></h2>
-<p>Implement drawTable() in a script tag of index.html. Note because of the font single and doubles quotes must be retyped.</p>
+<p>Implement drawTable() in the <strong>script tag of </strong><strong><code>index.html</code></strong>. Note because of the font single and doubles quotes must be retyped.</p>
 <pre><code>function drawTable(records){
     let result = document.querySelector(&#39;#result&#39;);
+    //add html code inside of result 
     for(let record of records){
-        result.innerHTML += `&lt;tr&gt;//add html code inside of result 
+        result.innerHTML += `&lt;tr&gt;
           &lt;td&gt;${record.id}&lt;/td&gt;
           &lt;td&gt;${record.name}&lt;/td&gt;
           &lt;td&gt;${record.brewery_type}&lt;/td&gt;
@@ -309,30 +312,30 @@ drawTable([{
 <h2 is-upgraded><strong>Task 6.1</strong></h2>
 <p>Visit the link <a href="https://api.openbrewerydb.org/breweries/search?query=harry" target="_blank"><code>https://api.openbrewerydb.org/breweries/search?query=harry</code></a> and view the result. You should see the following.</p>
 <p class="image-container"><img style="width: 624.00px" src="img\b312778ac39e587c.png"></p>
-<p>That url is said to be an Application Programming Interface (API) endpoint. What it simply means is that the server which lives on that address is programmed to only return data as opposed to html pages. Parameters can be specified in the url to affect the data being returned.</p>
+<p>That url is said to be an Application Programming Interface (API) endpoint. What it simply means is that the server which resides at that address is programmed to only return data as opposed to html pages. Parameters can be specified in the url to affect the data being returned.</p>
 <p>In this case the query parameter &#34;query&#34; is given the value &#34;harry&#34; hence brewery data is returned for breweries which partially match with &#34;harry&#34;.</p>
 <p>To make the data look more presentable we can have Javascript request this data and write it out into our web application.</p>
 <h2 is-upgraded><strong>Task 6.2</strong></h2>
 <p>Implement the following function to fetch the data and pass it on to drawTable()</p>
 <pre><code>//function MUST be declared async
-async function loadData(url){
+async function getData(url){
    try{
      let response = await fetch(url);//1. Send http request and get response
      let result = await response.json();//2. Get data from response
      drawTable(result);// 3. Do something with the data
   }catch(e){
-      console.log(e);//catch and log any error
+      console.log(e);//catch and log any errors
   }
 }
 
-loadData(&#34;https://api.openbrewerydb.org/breweries/search?query=harry&#34;)</code></pre>
-<p>The functions drawTable() and loadData() are VERY IMPORTANT implementations which you would rely on for this course. Besure to understand the pattern to apply it in the assignment, exams and otherwise.</p>
+getData(&#34;https://api.openbrewerydb.org/breweries/search?query=harry&#34;)</code></pre>
+<p>The functions drawTable() and getData() are VERY IMPORTANT implementations which you would rely on for this course. Be sure to understand the pattern to apply it in the assignment, exams and otherwise.</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Conclusion" duration="0">
-        <p>This concludes the build of the javascript you will be using for this course, with the last two functions being the very core. </p>
+        <p>This concludes this lab on AJAX which you shall rely on heavily for this course, with the last two functions being the very core. </p>
 <h2 is-upgraded><strong>References &amp; Additional Reading</strong></h2>
 <p><a href="https://codeburst.io/explaining-value-vs-reference-in-javascript-647a975e12a0" target="_blank">JS Values vs References</a></p>
 <p><a href="https://hackernoon.com/12-javascript-concepts-that-will-level-up-your-development-skills-b37d16ad7104" target="_blank">12 Javascript Concepts</a></p>

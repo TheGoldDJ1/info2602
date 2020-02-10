@@ -1,4 +1,4 @@
-<!----- Conversion time: 1.47 seconds.
+<!----- Conversion time: 1.544 seconds.
 
 
 Using this Markdown file:
@@ -11,9 +11,20 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β17
-* Sun Jan 26 2020 19:56:21 GMT-0800 (PST)
+* Mon Feb 10 2020 06:52:53 GMT-0800 (PST)
 * Source doc: https://docs.google.com/open?id=1eAtFx9SiqJcC4e3wJn0HVKO1Q9lJv_huLpXwZpPDu98
+
+WARNING:
+You have 8 H1 headings. You may want to use the "H1 -> H2" option to demote all headings by one level.
+
 ----->
+
+
+<p style="color: red; font-weight: bold">>>>>>  gd2md-html alert:  ERRORs: 0; WARNINGs: 1; ALERTS: 0.</p>
+<ul style="color: red; font-weight: bold"><li>See top comment block for details on ERRORs and WARNINGs. <li>In the converted Markdown or HTML, search for inline alerts that start with >>>>>  gd2md-html alert:  for specific instances that need correction.</ul>
+
+<p style="color: red; font-weight: bold">Links to alert messages:</p>
+<p style="color: red; font-weight: bold">>>>>> PLEASE check and correct alert issues and delete this message and the inline alerts.<hr></p>
 
 
 **COURSE TITLE: Web Programming and Technologies I **
@@ -115,7 +126,7 @@ Conversion notes:
 
 
 
-## ASSESSMENTS
+# ASSESSMENTS
 
 
 
@@ -128,22 +139,22 @@ Conversion notes:
 7. Final Exam - 50%
 
 
-## COURSE DESCRIPTION
+# COURSE DESCRIPTION
 
 This course covers the design, implementation and testing of web-based applications and the incorporation of a variety of digital media into these applications. Students are exposed to a range of web technologies, both client-side and server-side. The course will be delivered using a combination of lectures, blended learning, case studies and various online resources. Assignments will take the form of written examinations and lab examinations.
 
 
-## COURSE RATIONALE
+# COURSE RATIONALE
 
 In the Information Technology degree this is the first course that focuses on developing complex applications and services through the combination of both client-side and server-side programming. The main reason for offering the course is that employers expect the UWI graduate to be competent with writing Web Applications since most businesses are seeking to become digital firms.
 
 
-## CONTENT
+# CONTENT
 
 
 
 1. Web Systems Architecture
-2. Software Design Principles
+2. Software Design Concepts
     1. Abstraction
     2. Software Architecture
     3. Information Hiding
@@ -178,15 +189,20 @@ In the Information Technology degree this is the first course that focuses on de
     27. File Uploads
     28. ORM usage
 8. Intro to Angular
-9. Web APIs
-    29. Web Workers
-    30. Web Sockets
-    31. Service Workers
-    32. Network State
-    33. Indexed DB
+9. Web Storage
+    29. Local Storage
+    30. Session Storage
+    31. Cache Storage
+    32. Indexed DB
+    33. Cookies
+10. Web APIs
+    34. Web Workers
+    35. Web Sockets
+    36. Service Workers
+    37. Network State
 
 
-## COURSE LEARNING OUTCOMES
+# COURSE LEARNING OUTCOMES
 
 Upon the successful completion of this course, the student will be able to:
 
@@ -202,12 +218,12 @@ Upon the successful completion of this course, the student will be able to:
 8. Implement a web site integrated with other IT applications
 
 
-## TEACHING STRATEGIES
+# TEACHING STRATEGIES
 
 Interactive lectures will be used to introduce the main concepts of the course. However, discussions and problem solving sessions will be used throughout the course with the goal of allowing students to engage in the problem solving process. 
 
 
-## RESOURCES
+# RESOURCES
 
 Recommended Text
 
@@ -218,7 +234,7 @@ Recommended Text
 
 
 
-## COURSE CALENDAR
+# COURSE CALENDAR
 
 (Each week has a theoretical and practical component)
 
@@ -269,7 +285,7 @@ Advanced Javascript
    <td>Client Side Programming \
 Software Design Principles 
    </td>
-   <td>Lab 2: Advanced JS & AJAX
+   <td>Lab 2: Javascript Syntax AJAX
    </td>
    <td>
    </td>
@@ -282,7 +298,7 @@ Software Design Principles
    <td>Web Systems Architecture  \
 Python Programming
    </td>
-   <td>Lab 3: Ajax & Client-side rendering
+   <td>Lab 3: Advanced Javascript
    </td>
    <td>
    </td>
