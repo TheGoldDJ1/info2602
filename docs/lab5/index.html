@@ -1,0 +1,511 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Lab 5 - Flask REST &amp; SQLAlchemy</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid="UA-154889698-2"
+                  id="lab5"
+                  title="Lab 5 - Flask REST &amp; SQLAlchemy"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="0">
+        <p class="image-container"><img style="width: 624.00px" src="img\c6e9c41aa155f20a.png"></p>
+<h2 is-upgraded><strong>RESTful APIs</strong></h2>
+<p>In this code lab we shall introduce the ORM SQLAlchemy and build a REST API in flask. Object Relational Mappers (ORM) Such as SQLAlchemy allows us to create classes which model our data entities and then generate and interact with the database on our behalf.</p>
+<p class="image-container"><img style="width: 207.00px" src="img\a6fc8cffe69a7917.png"></p>
+<p>As was mentioned in lecture 3 REST Apis are simply application servers which support CRUD operations by using the appropriate HTTP methods.</p>
+<p class="image-container"><img style="width: 341.00px" src="img\62ee4a1b3c23e7bc.png"></p>
+<p>In this lab we shall implement the following API Specification</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>Route Name</p>
+</td><td colspan="1" rowspan="1"><p>HTTP method</p>
+</td><td colspan="1" rowspan="1"><p>Description</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Sign Up</p>
+</td><td colspan="1" rowspan="1"><p>POST</p>
+</td><td colspan="1" rowspan="1"><p>Creates a user and logs them in if the user does not exist.<br>Returns an error message if user exists</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Login</p>
+</td><td colspan="1" rowspan="1"><p>POST</p>
+</td><td colspan="1" rowspan="1"><p>Logs in user, returns a token if credentials are correct</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Get Todos</p>
+</td><td colspan="1" rowspan="1"><p>GET</p>
+</td><td colspan="1" rowspan="1"><p>Returns all of a user&#39;s todos</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Get Todo</p>
+</td><td colspan="1" rowspan="1"><p>GET</p>
+</td><td colspan="1" rowspan="1"><p>Retrieves a todo if the user is authorized to access it </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Create Toto</p>
+</td><td colspan="1" rowspan="1"><p>POST</p>
+</td><td colspan="1" rowspan="1"><p>Creates a Todo if the user is authorized </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Update Todo</p>
+</td><td colspan="1" rowspan="1"><p>PUT</p>
+</td><td colspan="1" rowspan="1"><p>Updates a Todo if the user is authorized to access it </p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Delete Todo</p>
+</td><td colspan="1" rowspan="1"><p>DELETE</p>
+</td><td colspan="1" rowspan="1"><p>Deletes a Todo if the user is authorized to access it</p>
+</td></tr>
+</table>
+<p>Further Details of the API is given in the following link:</p>
+<p><a href="https://documenter.getpostman.com/view/583570/SzKZsvud?version=latest" target="_blank"><paper-button class="colored" raised>Lab 5 Postman Collection</paper-button></a></p>
+<h2 is-upgraded><strong>Task 1</strong></h2>
+<p>Just as in lab 1 follow the link below to open repl.it. Fork the project then sign in.</p>
+<p><a href="https://repl.it/@Snickdx/INFO-2602-Lab-5" target="_blank"><paper-button class="colored" raised>Open Lab 5</paper-button></a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Models" duration="0">
+        <p>When you open the workspace you should see a boilerplate flask application. View the contents of <code>models.py.</code> You should find a user class which is specified according to SQLAlchemy&#39;s<a href="https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/" target="_blank"> documentation</a>.</p>
+<pre><code>from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
+
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(120), nullable=False)</code></pre>
+<p>Take note of the following:</p>
+<ol type="1" start="1">
+<li>SQLAlchemy is imported as db</li>
+<li>The user model must extend db.Model</li>
+<li>We have specified 4 fields in the user class <code>id, username, email</code> and <code>password</code></li>
+<li>A model must have a primary key field ie <code>id</code></li>
+<li>A field must have a data type and length eg <code>db.String(20)</code></li>
+<li>id is set as the primary key by passing the named parameter <code>primary_key</code> the value of True</li>
+<li>Fields are which are have <code>nullable</code> set to False cannot contain null values</li>
+<li>Fields which have <code>unique</code> set to true cannot have its value repeated in another record</li>
+</ol>
+<p><a href="https://flask-sqlalchemy.palletsprojects.com/en/2.x/models/" target="_blank">SQLAlchemy&#39;s Model Documentation</a> gives details on other data-types, constraints and setting up relationships with other models.</p>
+<h2 is-upgraded>Model Methods</h2>
+<p>We will need methods on our classes to perform some common operations on its instances. We shall define 3 methods:</p>
+<ol type="1" start="1">
+<li>toDict(): This returns a dictionary representation of an instance of the model.</li>
+<li>set_password(): Because this is the model which handles user accounts we define this method which would hash user passwords</li>
+<li>check_password(): This would be used to validate passwords by comparing a the hash of an password entered by the user against the has of the real password</li>
+<li>__repr__(): Similarly to toDict() this method returns a String representation of an instance of the model.</li>
+</ol>
+<h2 is-upgraded><strong>Task 2.1</strong></h2>
+<p>Implement a toDict() method in the user model.</p>
+<p><strong>Solution:</strong></p>
+<pre><code>from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+db = SQLAlchemy()
+
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(120), nullable=False)
+
+    def toDict(self):
+      return {
+        &#34;id&#34;: self.id,
+        &#34;username&#34;: self.username,
+        &#34;email&#34;: self.email
+      }
+    
+    #hashes the password parameter and stores it in the object
+    def set_password(self, password):
+        &#34;&#34;&#34;Create hashed password.&#34;&#34;&#34;
+        self.password = generate_password_hash(password, method=&#39;sha256&#39;)
+    
+    #Returns true if the parameter is equal to the object&#39;s password property
+    def check_password(self, password):
+        &#34;&#34;&#34;Check hashed password.&#34;&#34;&#34;
+        return check_password_hash(self.password, password)
+    
+    #To String method
+    def __repr__(self):
+        return &#39;&lt;User {}&gt;&#39;.format(self.username)  </code></pre>
+<h2 is-upgraded>Creating an Object</h2>
+<p>Now lets try creating a user object using the User model and printing it out in the response.</p>
+<h2 is-upgraded><strong>Task 2.2</strong></h2>
+<p>Update the route main.py to do the following:</p>
+<ul>
+<li>import json</li>
+<li>import the User model from models.py</li>
+<li>Create a &#34;user&#34; object of the User class with the name &#34;bob&#34;, email &#34;<a href="mailto:bob@mail.com" target="_blank">bob@mail.com</a>&#34; and password &#34;bobpass&#34; in the &#34;/&#34; route</li>
+<li>Call toDict() on the &#34;user&#34; object and store in a variable called &#34;dict&#34; </li>
+<li>In the response of the &#34;/&#34; route pass &#34;dict&#34; to json.dumps() and return the value</li>
+</ul>
+<p><strong>Solution</strong></p>
+<pre><code>from flask import Flask
+import json
+
+from models import db
+from models import User #importing our model
+# begin boilerplate code
+def create_app():
+    app = Flask(__name__)
+    app.config[&#39;SQLALCHEMY_DATABASE_URI&#39;] = &#39;sqlite:///.test.db&#39;
+    db.init_app(app)
+    return app
+
+app = create_app()
+
+app.app_context().push()
+db.create_all(app=app)
+
+#end boilerplate code#
+
+@app.route(&#39;/&#39;)
+def index():
+  user = User(username=&#34;bob&#34;, email=&#34;bob@mail.com&#34;, password=&#34;bobpass&#34;) # creates an object from the User class/model
+  dict = user.toDict()
+  return json.dumps(dict) # prints a json string representation of our object
+
+
+app.run(host=&#39;0.0.0.0&#39;, port=8080, debug=True)</code></pre>
+<p>You should get the following result</p>
+<p class="image-container"><img style="width: 517.00px" src="img\79ae7f6173294949.png"></p>
+<h2 is-upgraded><strong>Saving an object</strong></h2>
+<p>As mentioned before, ORMs persist our objects to a database. In this lab we shall be using an <a href="https://www.sqlite.org/index.html" target="_blank">sqlite</a> database which is entirely stored within the test.db file. To save an object we use the methods <code>db.session.add(&lt;object&gt;)</code> and <code>db.session.commit()</code>. Session.add() queues an object to be saved while Session.commit() saves all queued objects to the database.</p>
+<h2 is-upgraded><strong>Task 2.3</strong></h2>
+<p>Update the &#34;/&#34; route to save the user object to the database.</p>
+<pre><code>@app.route(&#39;/&#39;)
+def index():
+  user = User(username=&#34;bob&#34;, email=&#34;bob@mail.com&#34;, password=&#34;bobpass&#34;)
+  db.session.add(user)
+  db.session.commit()
+  dict = user.toDict()
+  return json.dumps(dict)</code></pre>
+<p>You should get a similar response but notice now the object&#39;s ID is not null because it has been successfully saved to the database.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\2590a2c9843d37d3.png"></p>
+<aside class="warning"><p><strong>Warning: </strong>This route will only work <strong>once</strong> then all subsequent requests will result in an error because the fields of the User model are set to be unique. You will need to change the username and email of the object to save multiple users.</p>
+</aside>
+<h2 is-upgraded><strong>Retrieving an Object</strong></h2>
+<p>We can query objects from our database using the query property available on any Model. Model.query can be used as follows: </p>
+<ul>
+<li><code>&lt;Model&gt;</code>.query.get(&lt;id&gt;) : get by primary</li>
+<li><code>&lt;Model&gt;</code>.query.all(): get all object</li>
+<li><code>&lt;Model&gt;</code>.query.offset(m).limit(n).all(): get n objects starting from the mth object</li>
+<li><code>&lt;Model&gt;</code>.query.filter(username=&#34;bob:&#34;): get all objects which match a filter</li>
+</ul>
+<h2 is-upgraded><strong>Task 2.4</strong></h2>
+<p>Update the &#34;/&#34; route to do the following:</p>
+<ol type="1" start="1">
+<li>retrieve the object with the id of 1 from the User model.</li>
+<li>Return the json.dump() of the toDict() method of the retrieved object in the response</li>
+</ol>
+<p><strong>Solution</strong></p>
+<pre><code>@app.route(&#39;/&#39;)
+def index():
+  user = User.query.get(1)
+  return json.dumps(user.toDict())</code></pre>
+<p>This should retrieve the object from the database by its Id and return it in the response as JSON.</p>
+<h2 is-upgraded><strong>Updating an object</strong></h2>
+<p>To make changes to an object simply reassign a new value to the desired property then save the object to the database.</p>
+<p><strong>Example</strong></p>
+<pre><code>user = User.query.get(1)
+user.username = &#34;bobbert&#34;
+db.session.add(user)
+db.session.commit()</code></pre>
+<h2 is-upgraded><strong>Deleting an object</strong></h2>
+<p>Deletion is also easily done by simply using the delete() method on db.session then calling db.session.commit() to save the changes to the database.<br><br></p>
+<h2 is-upgraded><strong>Task 2.5</strong></h2>
+<p>Delete the user with id 1.</p>
+<p><strong>Solution</strong></p>
+<pre><code>@app.route(&#39;/&#39;)
+def index():
+  user = User.query.get(1)
+  db.session.delete(user)
+  res = db.session.commit()
+  return json.dumps(res)</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Authentication &amp; Authorization" duration="0">
+        <p>In many applications it is typical to restrict access to features from unauthorized parties. If your application deals with user data then users should be able to only manipulate the data that belong to them. This is achieved by applying the following concepts</p>
+<ul>
+<li><strong>Authentication</strong>: Is validating that the user is who they claim to be.</li>
+<li><strong>Authorization</strong>: Controlling what a user can access.</li>
+</ul>
+<p>In this lab we shall demonstrate token based authentication where users must login to receive a token that is used in every subsequent request to restricted resources.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\4ab208321db4feea.png"></p>
+<p>We will be using <a href="https://pythonhosted.org/Flask-JWT/" target="_blank">Flask JWT</a> which implements the <a href="https://jwt.io/" target="_blank">JSON Web Token scheme</a>. Flask JWT is relatively easy to set up we just need to to the following:</p>
+<h2 is-upgraded><strong>Task 3.1</strong></h2>
+<p>Define an authentication function, this helps Flask JWT authenticate users. Simply put, it&#39;s a function which receives a user name and password and returns the corresponding user object if the credentials are correct.<br></p>
+<pre><code>def authenticate(uname, password):
+  #search for the specified user
+  user = User.query.filter_by(username=uname).first()
+  #if user is found and password matches
+  if user and user.check_password(password):
+    return user</code></pre>
+<h2 is-upgraded><strong>Task 3.2</strong></h2>
+<p>Define an identity function. This function tells Flask JWT how to retrieve the corresponding user object for a given id.</p>
+<pre><code>#Payload is a dictionary which is passed to the function by Flask JWT
+def identity(payload):
+  return User.query.get(payload[&#39;identity&#39;])</code></pre>
+<h2 is-upgraded><br><strong>Task 3.3</strong></h2>
+<p>Finally we initialize Flask JWT by passing the flask app and the functions we just defined.</p>
+<pre><code>jwt = JWT(app, authenticate, identity)</code></pre>
+<p>Now Flask-JWT would automatically provide a login route at <code>\auth</code> you can test logging in bob by passing his credentials as JSON in a post request using postman.</p>
+<h2 is-upgraded><strong>Task 3.4</strong></h2>
+<p>Open this labs API documentation and import the postman collection by first clicking the following link.<br></p>
+<p><a href="https://documenter.getpostman.com/view/583570/SzKZsvkp?version=latest" target="_blank"><paper-button class="colored" raised>Open Lab 5 API Documentation</paper-button></a></p>
+<p>Then click on the &#34;Run in Postman&#34; Button</p>
+<p class="image-container"><img style="width: 422.00px" src="img\54e0aa8bc3d039d3.png"></p>
+<p>Select Postman for Windows</p>
+<p class="image-container"><img style="width: 562.00px" src="img\9763c3eda4e43c02.png"><br></p>
+<p>Then click in on &#34;Open in Postman&#34;<br></p>
+<p class="image-container"><img style="width: 592.00px" src="img\e292db5b8ff2cbee.png"></p>
+<p><br>Postman should then open and import the Lab 5 Collection.</p>
+<p>Next expand the newly imported collection and click on the Login request in the panel on the left.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\9fcb15459c627e76.png"></p>
+<p><br>Replace <a href="https://info-2602-lab-5-1.snickdx.repl.co" target="_blank"><code>https://INFO-2602-Lab-5-1.snickdx.repl.co</code></a> with the root of your REPL&#39;s url, then press the SEND button.<br><br><img style="width: 624.00px" src="img\3b29c6b8d9f9fdb.png"></p>
+<p>You would notice the api responded with an access_token which means that the login was successful. You can inspect the JSON body of the request by clicking on the body tab.</p>
+<p>Next we shall add a route which requires authentication to access.</p>
+<h2 is-upgraded><strong>Task 3.5</strong></h2>
+<pre><code>@app.route(&#39;/identify&#39;)
+@jwt_required()
+def protected():
+    return json_dumps(current_identity.username)
+</code></pre>
+<p><br>current_identity was imported from Flask-JWT and it returns the user object of the corresponding token given in the request.</p>
+<p>The @jwt_required() decorator restricts access to this route to authenticated users.<br><br>Open the &#34;Identify User&#34; request in Postman but before running click on the headers tab.<br><br><img style="width: 624.00px" src="img\1e5a90f14bbc6d9c.png"><br><br>Change the value of the <code>Authorization</code> header to <code>&#34;JWT &lt;access_token&gt;&#34;</code> Replacing <code>&lt;access_token&gt;</code> with the token you received in the previous auth request.</p>
+<p>The response should show the username of the authenticated user.</p>
+<p class="image-container"><img style="width: 565.00px" src="img\2b8a40aef38e87cf.png"></p>
+<p>If you remove the Authorization header from the request you should see the following response indicating that the resource is only available to authorized parties.<br><br><img style="width: 624.00px" src="img\13fd84ec258555b0.png"><br></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Specifying Request Methods" duration="0">
+        <p>By supplying a value to the methods parameter of your flask routes we can specify which request methods that route should respond to.</p>
+<p>By passing methods= [‘POST&#39;] we are configuring the routes to respond to post requests. Data can be sent in a post request in several formats but we shall be handling json payloads. To receive the json data from a post request we simply use <code>request.get_json()</code> which is provided from Flask.<br><br>Next we shall implement a signup method to create new users in the database from post requests.</p>
+<h2 is-upgraded><strong>Task 4.1</strong></h2>
+<p>Create a /signup route which does the following:</p>
+<ol type="1" start="1">
+<li>Responds only to POST requests</li>
+<li>Receives new user data from the post request using request.get_json()</li>
+<li>Creates a newuser object using the User model</li>
+<li>Set the hashed password of the newuser object</li>
+<li>Saves the newuser object to the database.</li>
+</ol>
+<p><strong>Solution</strong></p>
+<pre><code>@app.route(&#39;/signup&#39;, methods=[&#39;POST&#39;])
+def signup():
+  userdata = request.get_json() # get json data
+  newuser = User(username=userdata[&#39;username&#39;], email=userdata[&#39;email&#39;]) # create user object
+  newuser.set_password(userdata[&#39;password&#39;]) # set password
+  db.session.add(newuser) # save user
+  db.session.commit()
+  return &#39;user created&#39;
+</code></pre>
+<p><br>However, because usernames and emails are set to be unique in the database this route will crash the server if duplicate requests are made with the same data. Hence we add the following exception handling which returns an appropriate error message.</p>
+<pre><code>@app.route(&#39;/signup&#39;, methods=[&#39;POST&#39;])
+def signup():
+  userdata = request.get_json() # get userdata
+  newuser = User(username=userdata[&#39;username&#39;], email=userdata[&#39;email&#39;]) # create user object
+  newuser.set_password(userdata[&#39;password&#39;]) # set password
+  try:
+    db.session.add(newuser)
+    db.session.commit() # save user
+  except IntegrityError: # attempted to insert a duplicate user
+    db.session.rollback()
+    return &#39;username or email already exists&#39; # error message
+  return &#39;user created&#39; # success</code></pre>
+<p>Now try creating a new user,  open the Sign Up request in the postman collection. Replace the url with your REPLs url and change the data in the request by clicking on the body tag and editing the JSON. Finally, send the request.</p>
+<p><img style="width: 624.00px" src="img\9b22cf6133463f3b.png"><br>This should create a new user in the application.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Model Relationships" duration="0">
+        <p>Now we want to make our second model which saves the To-Dos in our To-Do application. Because To-Do&#39;s must belong to a logged in user we need to set up a <strong>1 to many</strong> relationship between a User and a To-Do.<br></p>
+<h2 is-upgraded><strong>Task 5.1</strong></h2>
+<p>Update models.py to add a Todo model.</p>
+<pre><code>class Todo(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  text = db.Column(db.String(255), nullable=False)
+  userid = db.Column(db.Integer, db.ForeignKey(&#39;user.id&#39;), nullable=False) #set userid as a foreign key to user.id 
+  done = db.Column(db.Boolean, nullable=False)
+
+  def toDict(self):
+   return {
+     &#39;id&#39;: self.id,
+     &#39;text&#39;: self.text,
+     &#39;userid&#39;: self.userid,
+     &#39;done&#39;: self.done
+   }</code></pre>
+<p>Using db.ForeignKey we link this property to reference the Id Column of the User table. Next we want to update our User model to reference its ToDos.</p>
+<h2 is-upgraded><strong>Task 5.1</strong></h2>
+<p>Update User in models.py to add a todos field</p>
+<pre><code>class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(120), nullable=False)
+    todos = db.relationship(&#39;Todo&#39;, backref=&#39;user&#39;, lazy=True) # sets up a relationship to todos which references User
+
+    def toDict(self):
+      return {
+        &#34;id&#34;: self.id,
+        &#34;username&#34;: self.username,
+        &#34;email&#34;: self.email,
+        &#34;todos&#34;: self.todos,
+        &#34;password&#34;: self.password
+      }
+    
+    def set_password(self, password):
+        &#34;&#34;&#34;Create hashed password.&#34;&#34;&#34;
+        self.password = generate_password_hash(password, method=&#39;sha256&#39;)
+
+    def check_password(self, password):
+        &#34;&#34;&#34;Check hashed password.&#34;&#34;&#34;
+        return check_password_hash(self.password, password)
+
+    def __repr__(self):
+        return &#39;&lt;User {}&gt;&#39;.format(self.username)
+</code></pre>
+<p>Then update main.py to import the Todo model</p>
+<pre><code>from models import db, User, Todo</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Building Endpoints" duration="0">
+        <p>Next we want to make a route which allows logged in users to create a Todo.</p>
+<h2 is-upgraded><strong>Task 6.1</strong></h2>
+<p>Create a /todo POST route which does the following:</p>
+<ol type="1" start="1">
+<li>Restrict it to logged in users</li>
+<li>Store the post data in a variable called data</li>
+<li>Create a todo object setting userid to current_identity.id</li>
+<li>Save the todo object</li>
+<li>Return the id of the todo object and a status code of 201</li>
+</ol>
+<p><strong>Solution</strong></p>
+<pre><code>@app.route(&#39;/todo&#39;, methods=[&#39;POST&#39;])
+@jwt_required()
+def create_todo():
+  data = request.get_json()
+  todo = Todo(text=data[&#39;text&#39;], userid=current_identity.id, done=False)
+  db.session.add(todo)
+  db.session.commit()
+  return json.dumps(todo.id), 201 # return data and set the status code</code></pre>
+<p>If you execute the &#34;Create Todo&#34; request with your REPL&#39;s url and a token which hasn&#39;t yet expired the response would be the id of the newly created Todo.</p>
+<h2 is-upgraded><img style="width: 624.00px" src="img\4e8a873787c4362d.png"><br></h2>
+<aside class="warning"><p>If your token has expired simply run the log in route and copy the new token to use for the restricted access routes.</p>
+</aside>
+<h2 is-upgraded><strong>Task 6.2</strong></h2>
+<p>Create a /todo GET route which does the following:</p>
+<ol type="1" start="1">
+<li>Restrict access to logged in users</li>
+<li>Retrieve the user&#39;s todos</li>
+<li>Convert the todo objects to dictionaries</li>
+<li>Return the user&#39;s todos as json</li>
+</ol>
+<p><strong>Solution</strong></p>
+<pre><code>@app.route(&#39;/todo&#39;, methods=[&#39;GET&#39;])
+@jwt_required()
+def get_todos():
+  todos = Todo.query.filter_by(userid=current_identity.id).all()
+  todos = [todo.toDict() for todo in todos] # list comprehension which converts todo objects to dictionaries
+  return json.dumps(todos)</code></pre>
+<aside class="special"><p>This snippet uses a python syntax called <a href="https://www.pythonforbeginners.com/basics/list-comprehensions-in-python" target="_blank">list comprehensions</a> which creates a list from another list. You can use a for loop to achieve the same result.</p>
+</aside>
+<p>Run the &#34;Get Todos&#34; Request</p>
+<p class="image-container"><img style="width: 624.00px" src="img\e0960cfc1a25219d.png"></p>
+<h2 is-upgraded><strong>Task 6.3</strong></h2>
+<p>Create a /todo/&lt;id&gt; GET route which does the following:</p>
+<ol type="1" start="1">
+<li>Restrict access to logged in users</li>
+<li>Filters the Todo model by the logged in user&#39;s id and the id route parameter</li>
+<li>Returns an error message if not found</li>
+<li>Returns a json representation of the todo if found</li>
+</ol>
+<p><strong>Solution</strong></p>
+<pre><code>@app.route(&#39;/todo/&lt;id&gt;&#39;, methods=[&#39;GET&#39;])
+@jwt_required()
+def get_todo(id):
+  todo = Todo.query.filter_by(userid=current_identity.id, id=id).first()
+  if todo == None:
+    return &#39;Invalid id or unauthorized&#39;
+  return json.dumps(todo.toDict())</code></pre>
+<p>Edit and run the ‘GET Todo&#39; request.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\1ec3b0191cce5b4d.png"></p>
+<h2 is-upgraded><strong>Task 6.4</strong></h2>
+<p>Create a /todo/&lt;id&gt; PUT route which does the following:</p>
+<ol type="1" start="1">
+<li>Restrict access to logged in users</li>
+<li>Retrieves the json data form the request</li>
+<li>Retrieve the todo object via filtering the Todo model by the logged in user&#39;s id and the id route parameter</li>
+<li>Returns an error message if not found</li>
+<li>If found updates to object</li>
+<li>Saves the object to in the database</li>
+<li>Return updated in the response</li>
+</ol>
+<p>Edit and run the &#34;Update Todo&#34; request</p>
+<p class="image-container"><img style="width: 624.00px" src="img\1506b7ec6da6b339.png"></p>
+<h2 is-upgraded><strong>Task 6.5</strong></h2>
+<p>Create a /todo/&lt;id&gt; DELETE route which does the following:</p>
+<ol type="1" start="1">
+<li>Restrict access to logged in users</li>
+<li>Retrieve the todo object via filtering the Todo model by the logged in user&#39;s id and the id route parameter</li>
+<li>Returns an error message if not found</li>
+<li>Deletes the object from the database</li>
+<li>Return updated in the response</li>
+</ol>
+<p><strong>Solution</strong></p>
+<pre><code>@app.route(&#39;/todo/&lt;id&gt;&#39;, methods=[&#39;DELETE&#39;])
+@jwt_required()
+def delete_todo(id):
+  todo = Todo.query.filter_by(userid=current_identity.id, id=id).first()
+  if todo == None:
+    return &#39;Invalid id or unauthorized&#39;
+  db.session.delete(todo) # delete the object
+  db.session.commit()
+  return &#39;Deleted&#39;, 204</code></pre>
+<p>Run the &#34;Delete Todo&#34; request with an appropriate url, token and id.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\ce180d3e516631a7.png"></p>
+<p>You should get a response status of 204 indicating its deletion.<br></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conclusion" duration="0">
+        <p>Congratulations for making it to the end. You have just implemented a RESTful API with authentication via JSON Web Tokens. This lab forms the core of the server side programming done in the course and is VERY important with respect to your assessments.</p>
+<h2 is-upgraded><strong>References &amp; Additional Reading</strong></h2>
+<p><a href="https://pythonhosted.org/Flask-JWT/" target="_blank">Flask JWT</a></p>
+<p><a href="https://flask-sqlalchemy.palletsprojects.com/en/2.x/" target="_blank">Flask SQLAlchemy</a></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+
+</body>
+</html>

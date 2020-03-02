@@ -273,11 +273,9 @@ function submit(event){
    password: myform[&#39;password&#39;].value,
    email: myform[&#39;email&#39;].value
  }
-
  //send data to an api endpoint expecting the data
- postData(&#39;https://nmendezapps.firebaseio.com/users.json&#39;, data);</code></pre>
-<pre> </pre>
-<pre><code>myForm.reset();//clears the fields of the form
+ postData(&#39;https://nmendezapps.firebaseio.com/users.json&#39;, data);
+ myForm.reset();//clears the fields of the form
 }
 
 //attach the submit function to the submit event of myForm    
@@ -345,7 +343,7 @@ window.onload(function(event){
       </google-codelab-step>
     
       <google-codelab-step label="Conclusion" duration="0">
-        <p>Congratulations on making it to the end feel free to use labs 1-3 for javascript reference when building out your web applications.. </p>
+        <p>Congratulations on making it to the end feel free to use labs 1-3 for javascript reference when building out your web applications.</p>
 <h2 is-upgraded><strong>References &amp; Additional Reading</strong></h2>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math" target="_blank">Math Object</a></p>
 <p><a href="https://css-tricks.com/everything-you-need-to-know-about-date-in-javascript/" target="_blank">JS Date</a></p>

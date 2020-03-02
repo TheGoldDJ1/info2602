@@ -1,0 +1,342 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Lab 4 - Python and Flask</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid="UA-154889698-2"
+                  id="lab4"
+                  title="Lab 4 - Python and Flask"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="0">
+        <p class="image-container"><img style="width: 555.50px" src="img\81f7b3192e4d9ebc.png"></p>
+<h2 is-upgraded><strong>Server Side Intro</strong></h2>
+<p>In this lab we shall be introducing the python language and flask framework for building application servers</p>
+<h2 is-upgraded><strong>Task 1</strong></h2>
+<p>Just as in lab 1 follow the link below to open repl.it. Fork the project then sign in.</p>
+<p><a href="https://repl.it/@Snickdx/INFO-2602-Lab-4" target="_blank"><paper-button class="colored" raised>Open Lab 4</paper-button></a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Python Syntax 1" duration="0">
+        <h2 is-upgraded><strong>Variables Assignment &amp; Operators</strong></h2>
+<p>Python like javascript is dynamically typed. There is no keyword for declaring or initializing variables, therefore an assignment looks just like an initialization in python. </p>
+<pre><code>#This is how comments are written
+
+x = 10 #initialization
+x = 23 #assignment
+y #declaration
+
+z = ( x + y)/x + (78%3_) #usual mathematical operations supported 
+</code></pre>
+<aside class="special"><p><strong>Note: </strong>Variables names cannot begin with numbers clash with keywords, or include dashes or spaces.</p>
+</aside>
+<h2 is-upgraded><strong>Primitive Types and Strings</strong></h2>
+<p>Our primitive data types are as follows:</p>
+<pre><code>name = &#34;bobby&#34; #string
+age = 12 #integer
+height = 6.5 # float
+hasDate = False
+comp = 7j #complex
+intHeight = int(height) # 6
+strHeight = str(height) # &#39;6&#39;
+floatHeight = float(intHeight) # 6.0 
+ageType = type(age)
+
+</code></pre>
+<h2 is-upgraded><strong>Input Output</strong></h2>
+<pre><code>name  = input(&#34;Enter name: &#34;) # reads input
+print (name) # prints output</code></pre>
+<aside class="special"><p>The most important thing you should know about python is its indentation syntax. Unlike other languages python does NOT use &#34;{}&#34; instead scope is explicitly delimited with indentation.</p>
+</aside>
+<h2 is-upgraded><strong>Comparison</strong></h2>
+<p>If statements do not use () or {} instead : and indentation is used to delimit the condition and scope.</p>
+<pre><code>#correct
+if 3 &gt; 5:
+  print(&#34;more&#34;)
+else :
+ print(&#34;less&#34;)
+
+
+#wrong
+if 3 &gt; 5: print (&#34;more&#34;)
+else : print (&#34;less&#34;)
+
+# elif === else if
+mark = input(&#34;Enter mark: &#34;)
+mark = int(mark)
+if mark &gt; 70 :
+  print(&#34;A&#34;)
+elif mark &gt; 60:
+  print(&#34;B&#34;)
+elif mark &gt; 50:
+  print(&#34;C&#34;)
+else :
+  print(&#34;F&#34;) </code></pre>
+<h2 is-upgraded><strong>Iteration</strong></h2>
+<pre><code>i = 1
+while i &lt; 10:
+ print(i)
+ i+=1
+else:
+ print(&#34;This is run when the loop condition is no longer met&#34;)
+
+# iterating a list
+list = [&#34;bob&#34;, &#34;sally&#34;, &#34;john&#34;]
+for j in list:
+ print(j)
+
+
+# iterating between custom range an increment
+for i in range(0, 10, 2):
+ print(i)
+
+</code></pre>
+<aside class="special"><p><strong>Note:</strong> For incrementing variables; python does not support i++ instead use i+=&lt;value&gt;</p>
+</aside>
+<aside class="warning"><p><strong>Note: </strong>For iterating elements in a list in python we use For..in but in Javascript we use For...of. Keep this difference in mind as For...in is valid syntax in Javascript but has a completely different result. </p>
+</aside>
+<h2 is-upgraded><strong>Functions</strong></h2>
+<pre><code>#basic function
+def add(a, b):
+        return a + b
+
+def printPerson(name, age, height):
+        print(name, age, height)
+
+# you can specify arguments in any order if they are named
+printPerson(age=12, name=&#39;bob&#39;, height=5);
+
+#default arguments are used when they are not given in the function call
+def sayHello(fname, lname=&#39;Smith&#39;):
+        print(&#39;Hello &#39;+fname + &#39; &#39; + lname)
+
+sayHello(&#39;John&#39;);
+
+sayHello(&#39;Bill&#39;, &#39;Young&#39;);</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Python Syntax 2" duration="0">
+        <h2 is-upgraded><br><strong>Lists</strong></h2>
+<pre><code>list = [&#39;item1&#39;, &#39;item2&#39;, &#39;item3&#39;]
+list2 = [12, 33, 45, 58, 23]
+
+print(list);
+# negative indexing can access elements starting from the end
+print(list2[-1])
+
+# select a subset of a list
+print(list2[2:4])
+
+# gets the length of a list
+print(len(list2))
+
+#add items to list
+list.append(&#39;item4&#39;);
+
+#remove item from list
+item4 = list.pop()
+
+#copy list
+list3 = list2.copy()</code></pre>
+<h2 is-upgraded><strong>Dictionaries</strong></h2>
+<p>Dictionaries are the python equivalent of Javascript&#39;s object literals. They are simply key value pairs and work<br></p>
+<pre><code>mydict = {
+        &#34;name&#34;:&#34;bob&#34;,
+        &#34;age&#34;: 34
+}
+
+print(mydict)
+
+# assessing a key
+print(mydict[&#39;age&#39;])
+
+# adding a new key and value
+mydict[&#39;height&#39;] = 7
+
+# iterating keys
+for key in mydict:
+        print(key)
+
+# iterating values
+for key in mydict:
+        print(mydict[key])
+
+# check for a key
+if &#39;weight&#39; in mydict:
+        print(mydict[&#39;weight&#39;])
+else:
+        print(&#39;no weight property!&#39;)</code></pre>
+<h2 is-upgraded><strong>Classes</strong></h2>
+<p>Classes allow us to specify a blueprint for creating instances/objects with state and behaviour in the form of properties and methods. They differ from dictionaries in that they can exhibit OOP such as inheritance and polymorphism<br><br></p>
+<pre><code>class Person:
+
+        # every method must have self as the first parameter
+        def __init__(self, name, height, weight):
+                self.name = name
+                self.height = height
+                self.weight = weight
+        
+        def sayHello(self):
+                print(&#39;Hello! I am &#39;+self.name)
+
+# Inheritance by passing parent class
+class Student(Person):
+
+  # use super to call the parents version of the method
+        def __init__(self, stid, name, height, weight):
+                super().__init__(name, height, weight)
+                self.stid = stid
+        
+        # override method of parent
+        def sayHello(self):
+                print(&#34;Hello! I&#39;m a student, my name is&#34;, self.name)
+
+
+#
+bob = Person(&#39;bob&#39;, 12, 34)
+sally = Student(123, &#39;sally&#39;, 7, 34)
+
+bob.sayHello();
+sally.sayHello();
+
+print(bob.name);
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Flask" duration="0">
+        <p>Flask is a backend framework for creating web servers in python. As was discussed in the lecture, application servers are just programs which sit on the network, receive requests on a set of specific urls and return appropriate responses.</p>
+<p>Flask allows us to write <strong>routes</strong> which are just functions that are executed based on the url of the requests it receives.</p>
+<p class="image-container"><img style="width: 393.50px" src="img\402f19d14f8b585f.png"></p>
+<aside class="warning"><p>For the rest of this lab we will have to open a flask workspace. When it opens we also need to pop out the browser in a new tab by pressing the &#34;<img style="width: 23.00px" src="img\2149c4077c41a878.png">&#34; button. This is so we can alter the url of our requests. Please ensure you are <strong>using the preview to your application in a new tab.</strong>.</p>
+</aside>
+<p class="image-container"><img style="width: 624.00px" src="img\ceb9ff74bf985b35.png"></p>
+<h2 is-upgraded><br><br><strong>Task 2</strong></h2>
+<p>Just follow the instructions above please.</p>
+<p><a href="https://repl.it/@Snickdx/INFO-2602-Lab-41" target="_blank"><paper-button class="colored" raised>Open Lab 4.1</paper-button></a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Get Routes" duration="0">
+        <p>For this lab we will implement routes that facilitate GET requests. This means these routes only allow clients to get data as opposed to sending, deleting or updating.</p>
+<aside class="special"><p><strong>Note: </strong>The urls in the following screenshots would contain my <code>&lt;projectid&gt;</code>  and <code>&lt;user&gt;</code> which is &#34;INFO-2602-Lab-41&#34; and &#34;snickdx&#34; respectively. Yours will be different so replace <code>&lt;project-id&gt;</code> and <code>&lt;user&gt;</code> with yours on any url given in this lab to see your results.</p>
+</aside>
+<h2 is-upgraded><strong>Task 3</strong></h2>
+<p>Update main.py with the following</p>
+<pre><code>from flask import Flask, request
+import json
+
+
+app = Flask(__name__)
+
+global data
+
+# read data from file and store in global variable data
+with open(&#39;data.json&#39;) as f:
+        data = json.load(f)
+
+@app.route(&#39;/&#39;)
+def hello_world():
+    return &#39;Hello, World!&#39; # return ‘Hello World&#39; in response
+
+@app.route(&#39;/students&#39;)
+def get_students():
+    return json.dumps(data)# return student data in response
+
+
+app.run(host=&#39;0.0.0.0&#39;, port=8080)</code></pre>
+<p>Restart/Run the application and open a separate browser tab to <code>https://&lt;project-id&gt;.&lt;user&gt;/students</code> you should see the data of the server&#39;s response.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\13cf7e9b2ff2980c.png"></p>
+<p>If you point your browser to <code>chrome://extensions</code> you can enable the JSON View which will pretty print the data.</p>
+<p class="image-container"><img style="width: 425.00px" src="img\5cd2fa06663e46e4.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Route Parameters/Variables" duration="0">
+        <p>We can configure our routes to treat part of the url path as variables to take as input into the logic of the function. We usually do this to specify an id in our url some examples:</p>
+<ul>
+<li>host/photos/342</li>
+<li>host/vidoes/1</li>
+</ul>
+<p class="image-container"><img style="width: 624.00px" src="img\67c79aaf0435fecc.png"></p>
+<h2 is-upgraded><strong>Task 4</strong></h2>
+<p>Update <code>main.py</code> with the following route to receive a student id in the url so that we can return data for only one student.</p>
+<pre><code># route variables
+@app.route(&#39;/students/&lt;id&gt;&#39;)
+def get_student(id):
+  for student in data: 
+    if student[&#39;id&#39;] == id: # filter out the students without the specified id
+      return json.dumps(student)</code></pre>
+<p>View the result by navigating to <code>https://&lt;project-id&gt;.&lt;user&gt;/students/STD0001</code></p>
+<aside class="warning"><p><strong>Warning:</strong> Be careful with route parameters as they take up our namespace and cause clashes with other routes if we are not careful. For example we can&#39;t have another with the url <strong>&#34;/students/first&#34;</strong> because it would clash with <strong>&#34;/students/&lt;id&gt;&#34;</strong> and pass ‘first&#39; as the value of id.</p>
+</aside>
+<p class="image-container"><img style="width: 473.00px" src="img\77c8061f007d1469.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Query String" duration="0">
+        <p>For more advanced querying such as ranged queries, searching and filtering we use query parameters as input on the url. It is typical to design query parameters as optionals such that there is a fallback response if none is supplied by the user.</p>
+<h2 is-upgraded><strong>Task 5</strong></h2>
+<p><strong>Update</strong> the <code>get_students</code> function in <code>main.py</code> to allow a query parameter ‘pref&#39; that filters the dataset by a specified meal preference.</p>
+<pre><code>@app.route(&#39;/students&#39;)
+def get_students():
+  result = []
+  pref = request.args.get(&#39;pref&#39;) # get the parameter from url
+  if pref:
+    for student in data: # iterate dataset
+      if student[&#39;pref&#39;] == pref: # select only the students with a given meal preference
+        result.append(student) # add match student to the result
+    return json.dumps(result) # return filtered set if parameter is supplied
+  return json.dumps(data) # return entire dataset if no parameter supplied</code></pre>
+<p>Now point the browser to <code>https://&lt;project-id&gt;.&lt;user&gt;/students?pref=Chicken</code></p>
+<p>You should see only the students with the chicken meal preference.<br><br><img style="width: 624.00px" src="img\be98e5251c09df4a.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conclusion" duration="0">
+        <p>Congratulations you have just built your first application server with flask! In the next lab we shall take a deeper look into supporting other requests methods and using an ORM.</p>
+<h2 is-upgraded><strong>References &amp; Additional Reading</strong></h2>
+<p><a href="https://www.w3schools.com/python/python_lists.asp" target="_blank">Python Lists</a></p>
+<p><a href="https://www.w3schools.com/python/python_dictionaries.asp" target="_blank">Python Dictionaries</a></p>
+<p><a href="https://flask.palletsprojects.com/en/1.1.x/quickstart/#routing" target="_blank">Flask Routing</a></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+
+</body>
+</html>

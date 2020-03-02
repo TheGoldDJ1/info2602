@@ -3,13 +3,13 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2020-02-10T14:55:55Z",
-  "id": "lab3",
+  "updated": "2020-02-18T01:45:13Z",
+  "id": "lab4",
   "duration": 0,
-  "title": "Lab 3 - Advanced Javascript",
+  "title": "Lab 4 - Python and Flask",
   "authors": "Nicholas Mendez",
-  "summary": "In this code lab you will be exposed to the fundamentals of the Javascript Programming Language",
-  "source": "15vhC8Iw84bsrJGfytnXgthpy_Xj4jzpNwks5e7WPzaE",
+  "summary": "In this code lab you learn fundamental python programming and the flask framework",
+  "source": "1NYgQtZ7n2CfpPUbfybsCLBkKFsfjX1Gm8dhQKP_iFpM",
   "theme": "web",
   "status": [
     "published"
@@ -21,5 +21,5 @@
     "web"
   ],
   "ga": "UA-154889698-2",
-  "url": "lab3"
+  "url": "lab4"
 }

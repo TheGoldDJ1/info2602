@@ -1,43 +1,43 @@
 # Home
-## Announcements
 
-Please ensure you fill out the contacts <a href="https://docs.google.com/forms/d/e/1FAIpQLScg2h4NkJNOYQglwUAJrqAbgBCysFj8a3hjLmxsPUjUd5V5kw/viewform?usp=sf_link">form</a> to be added to the mailing list.
+## Notices
 
-<a href="https://docs.google.com/forms/d/e/1FAIpQLScg2h4NkJNOYQglwUAJrqAbgBCysFj8a3hjLmxsPUjUd5V5kw/viewform?usp=sf_link">CONTACT FORM</a>
+* Official Office hours: Thursdays 10:00am - 12:00pm, you can also organize meetings via slack
+* Corsework Exams: 
+    * 5th March 2020: Letures 1 & 2
+    * 6th March 2020: Lectures 3 & 4
+    * Multiple Choice, Terms & Definitions, Short-answer, IMPORTANT Functions From Lab
+* Deadline for A1 Extended to 28th Feb 2020
+* A2 To Be Released Next Week
 
-## Advanced Computer Literacy
-Click on the following link to view list of advanced computing literacy skills.
 
-[SKILLS LISTING](https://docs.google.com/document/d/1dDqwOBqGi9j5LS66CE3BWI-uV09s1A0WTi7cuG2jCqY/edit?usp=sharing)
+## Important Links
+ * <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScg2h4NkJNOYQglwUAJrqAbgBCysFj8a3hjLmxsPUjUd5V5kw/viewform?usp=sf_link">Contact Form</a> : To receive important email notifications
+ * <a target="_blank" href="https://docs.google.com/document/d/1dDqwOBqGi9j5LS66CE3BWI-uV09s1A0WTi7cuG2jCqY/edit?usp=sharing">Computer Literacy</a> : Computing things you should know for this course.
+ * <a target="_blank" href="https://join.slack.com/t/webtechnologies1/shared_invite/enQtOTIwNjczNDI4OTc2LTdjY2I4NzQ1MDdiNjY5MjYwYmI1OGRjOTk5NjVlNzU0ZThiNDAwMGJlNDhmZGFlOGVlNzMzYjEzNmJkMDQ2M2I">Slack Workspace Invite</a> : To join the course slack workspace.
+ * <a target="_blank" href="https://webtechnologies1.slack.com">Slack Workspace</a> : Link to logon to the slack workspace
+ * <a target="_blank" href="\\safstdcitsvr003\Data\Courses\Courses 2019-2020\BSc\INFO2602\">Course Folder in Lab</a>: Copy and paste ```\\safstdcitsvr003\Data\Courses\Courses 2019-2020\BSc\INFO2602\``` into ==WINDOWS EXPLORER== on a ==LAB MACHINE== to open the shared folder. ==Create a shortcut to the folder on your desktop.==
+* <a target="_blank" href="https://docs.google.com/document/d/1CYVN4OoAItWgIB2C9TYmStPfIzQsDRYv4bQjBolb2mk/edit?usp=sharing">Workstation Setup Guide</a> : For instructions to install required software for this course on our windows machine.
+* <a targer="_blank" href="https://docs.google.com/document/d/1keObpveXpiQibWL__qofA6ZlmPFS3Nas-OaonbR8QVI/edit?usp=sharing">Diagnostic Exercises</a> : A list of exercies you can try to practice with JS/Python, the list will be updated periodically with more questions.
 
-## Slack Group Invite Link
-Slack is a messaging and collaboration platform we shall use for labs and communication.
+!!! Success "Taking Lab Attendance"
+    A QR code will be given for each lab. Scanning the QR code will take you to a form to take roll. Open the link below on a lab machine (allow webcam access) to scan the QR code and fill out the form. <br><br>
+    
+    <iframe allow="camera" src="" style="width:100%; min-height:500px;"></iframe>
 
-[JOIN ON SLACK](https://join.slack.com/t/webtechnologies1/shared_invite/enQtOTIwNjczNDI4OTc2LTdjY2I4NzQ1MDdiNjY5MjYwYmI1OGRjOTk5NjVlNzU0ZThiNDAwMGJlNDhmZGFlOGVlNzMzYjEzNmJkMDQ2M2I)
+    <a href="javascript: let iframe = document.querySelector('iframe'); iframe.setAttribute('src', 'https://www.the-qrcode-generator.com/scan');">Open Scanner</a>
 
-## Taking Attendence
-A QR code will be given for each lab. Scanning the QR code will take you to a form to take roll. You can inatall a QR code scanner on you phone or use the folling sites on the lab machines.
+    <a href="https://www.the-qrcode-generator.com/scan" target="blank">Click Here To open Separate Window</a> 
 
-<a href="https://www.the-qrcode-generator.com/scan" target="blank">ONLINE QR SCANNER</a>
-
-## Workstation Setup Instructions
-Click on the link below for instructions to install required software for this course on our windows machine.
-
-<a href="https://docs.google.com/document/d/1CYVN4OoAItWgIB2C9TYmStPfIzQsDRYv4bQjBolb2mk/edit?usp=sharing">SOFTWARE GUIDE</a>
-
-## Diagnostic Exercies
-Here are a list of exercies you can try to practice with JS/Python, the list will be updated periodically with more questions.
-<a href="https://docs.google.com/document/d/1keObpveXpiQibWL__qofA6ZlmPFS3Nas-OaonbR8QVI/edit?usp=sharing" target="_blank">VIEW EXERCISES</a>
-
-## Lab Assignments (Updated 03/02/2020)
+## Lab Assignments (Updated 18/02/2020)
 
 !!! warning "Changing Streams"
-    If you need to change your assigned stream or you are not unassigned one; please fill out this <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSehOg8Au1EqA77abtOZ_DZ0YIUbYCGN7VkCqQ0giEQ4I0XFeA/viewform?usp=sf_link">Lab Form</a> to be reassigned.
+    If you need to change your assigned stream or you are not unassigned one; please fill out this ==<a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSehOg8Au1EqA77abtOZ_DZ0YIUbYCGN7VkCqQ0giEQ4I0XFeA/viewform?usp=sf_link">Lab Clash Form</a>== to be reassigned.
 
 
-Lab Stream 1: Monday 4:00PM - 6:00PM <br/>
-Lab Stream 2: Tuesday 8:00PM - 10:00AM <br/>
-Lab Stream 3: Friday 10:00AM - 12:00PM
+Lab Stream 1: Monday 4:00PM - 6:00PM CSL2<br/>
+Lab Stream 2: Tuesday 8:00PM - 10:00AM CSL1<br/>
+Lab Stream 3: Friday 10:00AM - 12:00PM CSL2
 
 | ID        | Lab Session |
 |-----------|-------------|
@@ -46,10 +46,12 @@ Lab Stream 3: Friday 10:00AM - 12:00PM
 | 811001486 | 3           |
 | 811004486 | 3           |
 | 813000698 | 1           |
+| 813003807 | 2           |
 | 813117407 | 1           |
+| 813118092 | 1           |
 | 814000498 | 1           |
 | 814003019 | 3           |
-| 814004219 | 3           |
+| 814004219 | 1           |
 | 814004338 | 1           |
 | 814005674 | 1           |
 | 815006741 | 3           |
@@ -79,6 +81,7 @@ Lab Stream 3: Friday 10:00AM - 12:00PM
 | 816008321 | 1           |
 | 816008683 | 2           |
 | 816008774 | 3           |
+| 816008988 | 1           |
 | 816009068 | 3           |
 | 816009215 | 2           |
 | 816009482 | 3           |
@@ -146,10 +149,10 @@ Lab Stream 3: Friday 10:00AM - 12:00PM
 | 816017045 | 2           |
 | 816017146 | 3           |
 | 816017202 | 1           |
-| 816017229 | 3           |
+| 816017229 | 1           |
 | 816017443 | 1           |
 | 816017693 | 2           |
 | 816017891 | 3           |
-| 816117142 | 1           |
-| 816117389 | 2           |
+| 816117142 | 2           |
+| 816117389 | 3           |
 | 816117713 | 1           |
