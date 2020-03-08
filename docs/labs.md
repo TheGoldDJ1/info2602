@@ -6,4 +6,6 @@
 
 ## [Lab 3: Advanced Javascript](./lab3)
 
-## [lab 4: Python & Flask Intro (Code Lab)](./lab4)
+## [lab 4: Python & Flask Intro](./lab4)
+
+## [lab 5: Flask REST API & Auth](./lab5)

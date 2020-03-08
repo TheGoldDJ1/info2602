@@ -12,6 +12,8 @@
 
 # [Lecture 5: Web Design Concepts](https://docs.google.com/presentation/d/1H1XpDQEPFkfCuO8qrIB76vCarDoi1hslKu_RqZYQKC8/edit?usp=sharing)
 
-# [Lecture 6: Libraries, Frameworks & Tooling]()
+# [Lecture 6: Web Application Deployment Models]()
 
-# [Lecture 7: The Browser Engine]()
+# [Lecture 7: Libraries, Frameworks & Tooling]()
+
+# [Lecture 8: The Browser Engine]()

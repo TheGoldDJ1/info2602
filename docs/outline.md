@@ -1,4 +1,4 @@
-<!----- Conversion time: 2.155 seconds.
+<!----- Conversion time: 1.424 seconds.
 
 
 Using this Markdown file:
@@ -11,7 +11,7 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β18
-* Tue Feb 18 2020 13:37:12 GMT-0800 (PST)
+* Thu Mar 05 2020 15:32:58 GMT-0800 (PST)
 * Source doc: https://docs.google.com/open?id=1eAtFx9SiqJcC4e3wJn0HVKO1Q9lJv_huLpXwZpPDu98
 ----->
 
@@ -40,7 +40,7 @@ Conversion notes:
 
 **LECTURER: **Mr. Nicholas Mendez [nicholas.mendez@sta.uwi.edu](mailto:nicholas.mendez@sta.uwi.edu)
 
-**OFFICE HOURS**
+**OFFICE HOURS: **Thurdays 1:00pm - 3:00pm
 
 **TUTOR: **Ms Venessa Kanhai 
 
@@ -324,9 +324,11 @@ Carnival Tue 25/02/2020
    </td>
    <td>01/03/2020
    </td>
-   <td>Coursework Exam
+   <td>Coursework Exam 1 \
+Flask Templating & Forms
    </td>
-   <td>Lab 5: Flask Routing & SQLAlchemy
+   <td>Lab 5: Flask Routing & SQLAlchemy \
+
    </td>
    <td>
    </td>
@@ -336,10 +338,10 @@ Carnival Tue 25/02/2020
    </td>
    <td>08/03/2020
    </td>
-   <td>Full Stack Web Development
+   <td>Web Application Deployment Models
    </td>
-   <td>Lab 6: Flask Templating \
-Assignment 2 Due
+   <td>Lab 6: Flask Templating & Forms \
+Assignment 2 Released
    </td>
    <td>
    </td>
@@ -353,7 +355,7 @@ Assignment 2 Due
 Help Desk
    </td>
    <td>Lab 8: Full Stack Development \
-
+Project Released
    </td>
    <td>
    </td>
@@ -363,9 +365,10 @@ Help Desk
    </td>
    <td>22/03/2020
    </td>
-   <td>Frameworks, Libraries & Angular Into
+   <td>3rd Party Resources Angular Intro
    </td>
-   <td>Lab Exam
+   <td>Lab Exam \
+Assignment 2 Due
    </td>
    <td>
    </td>
@@ -375,7 +378,7 @@ Help Desk
    </td>
    <td>29/03/2020
    </td>
-   <td>The Critical Rendering Path
+   <td>The Browser Engine
    </td>
    <td>Lab 9: Intro To Angular \
 1 hour Labs  \
