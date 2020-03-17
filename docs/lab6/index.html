@@ -1,0 +1,555 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Lab 6 - Jinja Templating &amp; Forms</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid="UA-154889698-2"
+                  id="lab6"
+                  title="Lab 6 - Jinja Templating &amp; Forms"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="0">
+        <p>Up until this point we have relied on Javascript for handling all of our view logic when building out our dynamic web applications. Sites built in that manner are said to be a Single Page Application (SPA) and they rely on techniques like AJAX to give the user an applike experience. <br><br>However, in this lab we will explore how we can build a web application without a single line of javascript. To do this we would require our application server to handle the view logic as opposed to javascript.</p>
+<h2 is-upgraded><strong>Task 1</strong></h2>
+<p>Start up the lan 6 workspace.</p>
+<p><a href="https://repl.it/@Snickdx/INFO-2602-Lab-6" target="_blank"><paper-button class="colored" raised>Open Lab 6</paper-button></a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Jinja Templates" duration="0">
+        <p>As we will not be using javascript to render our views, we need another mechanism to write dynamic html. We shall use<a href="https://jinja.palletsprojects.com/en/2.11.x/" target="_blank"> jinja2 </a>which is a <a href="https://www.fullstackpython.com/template-engines.html" target="_blank">template engine</a>, it allows us to write our html dynamically on the server as opposed to rendering in the client with javascript.<br><br>Jinja allows us to split up our html code into components called templates and pass data to them. We can also have templates inherit from other templates so that common markup do not have to be repeated. <br></p>
+<h2 is-upgraded>Task 2</h2>
+<p><br>Open <code>templates/layout.html</code>.<br></p>
+<pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+  
+    &lt;link rel=&#34;stylesheet&#34; href=&#34;&#123;&#123; url_for(&#39;static&#39;, filename=&#39;style.css&#39;) }}&#34;&gt;
+     &lt;!--Import Google Icon Font--&gt;
+    &lt;link href=&#34;https://fonts.googleapis.com/icon?family=Material+Icons&#34; rel=&#34;stylesheet&#34;&gt;
+    &lt;!-- Compiled and minified CSS --&gt;
+    &lt;link rel=&#34;stylesheet&#34; href=&#34;https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css&#34;&gt;
+    &lt;!--Let browser know website is optimized for mobile--&gt;
+    &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34;/&gt;
+    &lt;title&gt;{% block title %}{% endblock %}&lt;/title&gt;
+
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;nav class=&#34;teal&#34;&gt;
+      &lt;div class=&#34;nav-wrapper&#34;&gt;
+        &lt;a href=&#34;#!&#34; class=&#34;brand-logo center&#34;&gt;{% block page %}{% endblock %}&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/nav&gt;
+
+    &lt;div id=&#34;content&#34;&gt;{% block content %}{% endblock %}&lt;/div&gt;
+
+    &lt;script src=&#34;https://code.iconify.design/1/1.0.4/iconify.min.js&#34;&gt;&lt;/script&gt;
+    &lt;!-- Compiled and minified JavaScript --&gt;
+    &lt;script src=&#34;https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js&#34;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>This is our base template which means all other templates would inherit the markup inside of it.</p>
+<p>The <code>{% block title %}{% endblock %}</code> code is jinja syntax which indicates areas of the template to be replaced by its children. Blocks must be uniquely named and also defined in a child template.<br><br>Now open templates/<code>login.html</code>.<br></p>
+<pre><code>{% extends &#34;layout.html&#34; %}
+{% block title %}Login{% endblock %}
+{% block page %}Login{% endblock %}
+
+&#123;&#123; super() }}
+
+{% block content %}
+  
+{% endblock %}</code></pre>
+<p>Every child template must begin with an extended line which indicates its parent template. The text/HTML specified in the blocks of a child template would be rendered within its parent once super() is called.<br><br>Next if you look in <code>main.py</code> you will see that the root route returns a function call to render_template(). <br></p>
+<pre><code>@app.route(&#39;/&#39;)
+def index():
+  return render_template(&#39;login.html&#39;)</code></pre>
+<p><br><br>It will render whatever html file is specified and located in the templates directory. Hence the following result is achieved.<br><br><img style="width: 624.00px" src="img\1a31f72809cec22.png"></p>
+<p>If you view the source of the page you will notice all of the parent&#39;s markup is included when the child is rendered.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Forms" duration="0">
+        <p>We shall integrate <a href="https://flask-wtf.readthedocs.io/en/stable/quickstart.html#creating-forms" target="_blank">Flask WTForms</a> (a helper library for <a href="https://wtforms.readthedocs.io/" target="_blank">WTForms</a>) in order to handle and validate user input to our web pages. In specifying a form we create a class which reflects the data it receives. </p>
+<h2 is-upgraded><strong>Task 3</strong></h2>
+<p>Create a new file called <code>forms.py</code> and enter the following:</p>
+<pre><code>from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import InputRequired, EqualTo, Email
+
+class SignUp(FlaskForm):
+    username = StringField(&#39;username&#39;, validators=[InputRequired()])
+    email = StringField(&#39;email&#39;, validators=[Email(), InputRequired()])
+    password = PasswordField(&#39;New Password&#39;, validators=[InputRequired(), EqualTo(&#39;confirm&#39;, message=&#39;Passwords must match&#39;)])
+    confirm  = PasswordField(&#39;Repeat Password&#39;)
+    submit = SubmitField(&#39;Sign Up&#39;, render_kw={&#39;class&#39;: &#39;btn waves-effect waves-light white-text&#39;})
+</code></pre>
+<p>Here we have done the following:</p>
+<ol type="1" start="1">
+<li>Created a form with fields username, email, password, confirm and submit</li>
+<li>Specified that all fields must have input to be valid</li>
+<li>Set email validation on the email field</li>
+<li>Set the password field to be equal to he confirm field for validation</li>
+<li>We pass materialize css classes to the submit button via the render_kw parameter</li>
+</ol>
+<p>Next we want to create a signup route which creates the newuser and performs a redirect if the form input is valid.</p>
+<h2 is-upgraded><strong>Task 3.1</strong></h2>
+<p>Update <code>main.py</code> as follows:</p>
+<pre><code>@app.route(&#39;/signup&#39;, methods=[&#39;GET&#39;, &#39;POST&#39;])
+def signup():
+  form = SignUp() # create form object
+  if form.validate_on_submit():
+    data = request.form # get data from form submission
+    newuser = User(username=data[&#39;username&#39;], email=data[&#39;email&#39;]) # create user object
+    newuser.set_password(data[&#39;password&#39;]) # set password
+    db.session.add(newuser) # save new user
+    db.session.commit()
+    flash(&#39;Account Created!&#39;)# send message
+    return redirect(url_for(&#39;index&#39;))# redirect to login page
+  return render_template(&#39;signup.html&#39;, form=form) # pass form object to template</code></pre>
+<p><br>The <code>flash()</code> function allows us to record a message then retrieve it once at the next request from the same client. This allows us to essentially pass some context to the next page the user is being redirected to.</p>
+<p>We create a form object using the <code>SignUp()</code> form class we previously defined. This allows us to render the form on the template.</p>
+<p>Now we want to update the layout  template to render any flash message it receives.</p>
+<h2 is-upgraded><strong>Task 3.2</strong></h2>
+<p>Update <code>template/layout.html</code> adding the following after the nav element</p>
+<pre><code>{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    &lt;nav class=&#34;white black-text&#34; style=&#34;padding: 10px&#34;&gt;
+    &lt;div class=&#34;nav-wrapper&#34;&gt;
+        &lt;ul class=&#34;flashes&#34;&gt;
+        {% for message in messages %}
+          &lt;li&gt;&#123;&#123; message }}&lt;/li&gt;
+        {% endfor %}
+        &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+  {% endif %}
+{% endwith %}</code></pre>
+<p>This jinja code retrieves any flash messages and renders them out in the div if any exists. Note that statements such as for and if are supported in jinja. We place this in the layout template to allow any flash messages to be displayed on any page the user is redirected to.</p>
+<h2 is-upgraded><strong>Task 3.3</strong></h2>
+<p>Next, replace the entire content of <code>template/signup.html</code> with the following</p>
+<pre><code>{% extends &#34;layout.html&#34; %}
+{% block title %}Sign Up{% endblock %}
+{% block page %}Sign Up{% endblock %}
+
+&#123;&#123; super() }}
+
+{% block content %}
+ &lt;div class=&#34;row&#34;&gt;
+      &lt;div class=&#34;row&#34;&gt;
+        &lt;form id=&#34;myForm&#34; class=&#34;col s12 m8 offset-m2&#34; method=&#34;POST&#34; action=&#34;/signup&#34;&gt;
+            &#123;&#123; form.csrf_token }}
+
+            &lt;div class=&#34;input-field col s12 m8 offset-m2&#34;&gt; 
+              &#123;&#123; form.username(size=20, class=&#34;validate&#34;) }}
+              &#123;&#123; form.username.label }}
+            &lt;/div&gt;
+
+            &lt;div class=&#34;input-field col s12 m8 offset-m2&#34;&gt;
+              &#123;&#123; form.email(size=50, class=&#34;validate&#34;) }}
+              &#123;&#123; form.email.label }}
+            &lt;/div&gt;
+
+            &lt;div class=&#34;input-field col s12 m8 offset-m2&#34;&gt;
+              &#123;&#123; form.password(size=20, class=&#34;validate&#34;) }}
+              &#123;&#123; form.password.label }}
+            &lt;/div&gt;
+
+            &lt;div class=&#34;input-field col s12 m8 offset-m2&#34;&gt;
+              &#123;&#123; form.confirm(size=20, class=&#34;validate&#34;) }}
+              &#123;&#123; form.confirm.label }}
+            &lt;/div&gt;
+
+            &lt;div class=&#34;input-field col s12 m8 offset-m2&#34;&gt;
+              &#123;&#123;form.submit}}
+            &lt;/div&gt; 
+        &lt;/form&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+{% endblock %}</code></pre>
+<p>As form was passed to the template in our <code>&#34;/&#34;</code> route, we can then reference it in the template to render its various fields. The class parameter allows us to pass any css class to the markup of the form field. Now visit <code>&lt;repl.url&gt; /signup</code>. <br></p>
+<p><img style="width: 573.00px" src="img\12e9a4c3ed286d0a.png"><br><br>When you enter the valid data you should be redirected to the login page showing the flash message from the previous request. If you reload the page the message will disappear.</p>
+<p class="image-container"><img style="width: 586.00px" src="img\4a7853473fc8f9b0.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Session Based Authentication" duration="0">
+        <p>In this lab we shall implement session based authentication. In this scheme sessions are preserved in cookies (metadata stored in the browser) on the client and in memory of the server. When a cookie is created on the client every subsequent request from the client contains a session id which the server uses to identify them.</p>
+<p class="image-container"><img style="width: 438.50px" src="img\fc2029e12b8c1be0.png"></p>
+<p>We shall use <a href="https://flask-login.readthedocs.io/en/latest/" target="_blank">Flask-Login</a> which would handle our sessions and cookies for us. Flask login requires our user models to have 4 methods; is_authenticated(), is_active(), is_anonymous() and get_id() however generic implementations inherited from UserMixin. <br><br></p>
+<h2 is-upgraded><strong>Task 4.1</strong></h2>
+<p>Update the User model to inherit UserMixin. Update models.py as follows:</p>
+<pre><code>class User(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(120), nullable=False)
+    todos = db.relationship(&#39;Todo&#39;, backref=&#39;user&#39;, lazy=True) # sets up a relationship to todos which references User
+
+    def toDict(self):
+      return {
+        &#34;id&#34;: self.id,
+        &#34;username&#34;: self.username,
+        &#34;email&#34;: self.email,
+        &#34;password&#34;: self.password
+      }
+    
+    #hashes the password parameter and stores it in the object
+    def set_password(self, password):
+        &#34;&#34;&#34;Create hashed password.&#34;&#34;&#34;
+        self.password = generate_password_hash(password, method=&#39;sha256&#39;)
+    
+    #Returns true if the parameter is equal to the object&#39;s password property
+    def check_password(self, password):
+        &#34;&#34;&#34;Check hashed password.&#34;&#34;&#34;
+        return check_password_hash(self.password, password)
+    
+    #To String method
+    def __repr__(self):
+        return &#39;&lt;User {}&gt;&#39;.format(self.username)  </code></pre>
+<h2 is-upgraded><strong>Task 4.2</strong></h2>
+<p>Create a login form by updating the LogIn class in forms.py as follows</p>
+<pre><code>class LogIn(FlaskForm):
+    username = StringField(&#39;username&#39;, validators=[InputRequired()])
+    password = PasswordField(&#39;New Password&#39;, validators=[InputRequired()])
+    submit = SubmitField(&#39;Login&#39;, render_kw={&#39;class&#39;: &#39;btn waves-effect waves-light white-text&#39;})</code></pre>
+<p>Next we want to update our login route to render the form and handle its submission.<br></p>
+<h2 is-upgraded><strong>Task 4.2</strong></h2>
+<p>Update the ‘/&#39; route in  main.py </p>
+<pre><code>@app.route(&#39;/&#39;, methods=[&#39;GET&#39;, &#39;POST&#39;])
+def index():
+  form = LogIn()
+  if form.validate_on_submit(): # respond to form submission
+    data = request.form
+    user = User.query.filter_by(username = data[&#39;username&#39;]).first()
+    if user and user.check_password(data[&#39;password&#39;]): # check credentials
+      flash(&#39;Logged in successfully.&#39;) # send message to next page
+      login_user(user) # login the user
+      return redirect(url_for(&#39;todos&#39;)) # redirect to main page if login successful
+    else:
+      flash(&#39;Invalid username or password&#39;) # send message to next page
+      return redirect(url_for(&#39;index&#39;)) # redirect to login page if login unsuccessful
+  return render_template(&#39;login.html&#39;, form=form)</code></pre>
+<p>The form validate_on_submit() code only runs after the form has been submitted. It retrieves a user if the credentials are correct then starts a session by passing the user object to the login_user() function. Then the user is redirected to the main page.</p>
+<h2 is-upgraded><strong>Task 4.</strong>3</h2>
+<p><br>Replace the content of <code>login.html</code> with the following to render the form.</p>
+<pre><code>{% extends &#34;layout.html&#34; %}
+{% block title %}Login{% endblock %}
+{% block page %}Login{% endblock %}
+
+&#123;&#123; super() }}
+
+{% block content %}
+   &lt;div class=&#34;row&#34;&gt;
+      
+        &lt;form class=&#34;col s12 m8 offset-m2&#34; method=&#34;POST&#34; action=&#34;/&#34;&gt;
+            &#123;&#123; form.csrf_token }}
+
+            &lt;div class=&#34;input-field col s12 m8 offset-m2&#34;&gt; 
+              &#123;&#123; form.username(size=20, class=&#34;validate&#34;) }}
+              &#123;&#123; form.username.label }}
+            &lt;/div&gt;
+
+            &lt;div class=&#34;input-field col s12 m8 offset-m2&#34;&gt;
+              &#123;&#123; form.password(size=20, class=&#34;validate&#34;) }}
+              &#123;&#123; form.password.label }}
+            &lt;/div&gt;
+
+            &lt;div class=&#34;input-field col s12 m8 offset-m2&#34;&gt;
+              &#123;&#123;form.submit}}
+            &lt;/div&gt; 
+        &lt;/form&gt;
+      
+  &lt;/div&gt;
+{% endblock %}</code></pre>
+<p><br>Before we test, update <code>templates/todo.html</code> with some jinja syntax that would welcome the logged in user.<br></p>
+<h2 is-upgraded><strong>Task 4.4</strong></h2>
+<p>Overwrite <code>templates/todo.html</code> with the following:</p>
+<pre><code>{% extends &#34;layout.html&#34; %}
+{% block title %}Todo{% endblock %}
+{% block page %}Todo{% endblock %}
+
+&#123;&#123; super() }}
+
+{% block content %}
+  {% if current_user.is_authenticated %}
+   &lt;h3&gt; Hi &#123;&#123; current_user.username }}! &lt;/h3&gt;
+  {% endif %}
+{% endblock %}</code></pre>
+<p>We use jinja syntax to check if the user visiting the page has already logged in then write the username on the page.</p>
+<p>Finally we can protect the todo route with the <code>@login_required</code> decorator to ensure only logged in users can access it.</p>
+<p>Now if we sign in with one of our previously created users we will be directed to the todo page with a flash message and text welcoming the user.</p>
+<p class="image-container"><img style="width: 539.00px" src="img\353732d33964d03c.png"></p>
+<p>If you reload the page, the flash message would disappear but the user is still logged in. This is due to the cookie and session management provided by flask-login.</p>
+<p class="image-container"><img style="width: 471.00px" src="img\1e2b429585a499.png"></p>
+<p>If you click on the start of the url bar you will see that flask-login has set cookies on the browser, if you click through you can find the values in the cookie. This allows users to remain logged in between page loads.</p>
+<p>If you open the chrome debugger, open the network tab and reload the page you can view the details of the request to todos. In the headers tab you can see the value of the cookie automatically sent in the request.</p>
+<p class="image-container"><img style="width: 607.00px" src="img\22c7b70303ad0516.png"></p>
+<aside class="special"><p>The session key is passed to the server and is used to identify the currently logged in user. On the server side the session is kept in memory, if the session is ended on the server side the key is invalidated and the user must login again to get a new one.</p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Templating" duration="0">
+        <p>Now that users are logged in we can have them manipulate data in the application. First we create a form to add todos</p>
+<h2 is-upgraded><strong>Task 5.1</strong></h2>
+<p>Updates <code>forms.py</code> to create a AddTodo form.</p>
+<pre><code>class AddTodo(FlaskForm):
+  text = TextAreaField(&#39;Text&#39;, validators =[InputRequired()])
+  submit = SubmitField(&#39;Add&#39;, render_kw={&#39;class&#39;: &#39;btn waves-effect waves-light white-text&#39;})</code></pre>
+<p>Next update our todos template to include the form</p>
+<h2 is-upgraded><strong>Task 5.2</strong></h2>
+<p>Update <code>templates/todo.html</code></p>
+<pre><code>{% extends &#34;layout.html&#34; %}
+{% block title %} Todo{% endblock %}
+{% block page %} &#123;&#123; current_user.username }}&#39;s&#39; Todo{% endblock %}
+
+&#123;&#123; super() }}
+
+{% block content %}
+  {% if current_user.is_authenticated %}
+  &lt;div class=&#34;container&#34;&gt;
+    &lt;div class=&#34;row&#34;&gt;
+      &lt;form class=&#34;col s12 m8 offset-m2 card-panel&#34; method=&#34;POST&#34; action=&#34;/todos&#34;&gt;
+            
+            &#123;&#123; form.csrf_token }}
+
+            &lt;div class=&#34;input-field col s12 m8 offset-m2&#34;&gt; 
+              &#123;&#123; form.text(size=200, class=&#34;validate materialize-textarea&#34;) }}
+              &#123;&#123; form.text.label }}
+            &lt;/div&gt;
+
+            &lt;div class=&#34;input-field col s12 m8 offset-m2&#34;&gt;
+              &#123;&#123;form.submit}}
+            &lt;/div&gt; 
+        &lt;/form&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+        
+  &lt;/div&gt;
+
+  {% endif %}
+{% endblock %}</code></pre>
+<p>We have also moved the username into the Navbar to save space.</p>
+<h2 is-upgraded>Task 5.3</h2>
+<p>Next, update our /todos route to handle the submission.</p>
+<pre><code>@app.route(&#39;/todos&#39;, methods=[&#39;GET&#39;, &#39;POST&#39;])
+@login_required
+def todos():
+  form = AddTodo()
+  if form.validate_on_submit():
+    data = request.form # get request data
+    todo = Todo(text=data[&#39;text&#39;], done=False, userid=current_user.id) # create todo object
+    db.session.add(todo) # save todo object
+    db.session.commit()
+    flash(&#39;Todo Created!&#39;) # send message
+    return redirect(url_for(&#39;todos&#39;)) # redirect
+  return render_template(&#39;todo.html&#39;, form=form)</code></pre>
+<p>We can get the id of the currently logged in user by using the id property of the current_user object provided by flask-wtf. If we test the form we should see the flash message indicating the creation of the todo.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\2fac9869f26e01b0.png"></p>
+<p>Next we&#39;d like to render our todos on the page. This is a simple matter of querying the data and passing it to the template. First update our /todo route.</p>
+<h2 is-upgraded><strong>Task 5.4</strong></h2>
+<p>Update the /todos route in main.py</p>
+<pre><code>@app.route(&#39;/todos&#39;, methods=[&#39;GET&#39;, &#39;POST&#39;])
+@login_required
+def todos():
+  todos = Todo.query.filter_by(userid=current_user.id).all()
+  if todos is None:
+      todos = [] # if user has no todos pass an empty list
+  form = AddTodo()
+  if form.validate_on_submit():
+    data = request.form
+    todo = Todo(text=data[&#39;text&#39;], done=False, userid=current_user.id)
+    db.session.add(todo)
+    db.session.commit()
+    flash(&#39;Todo Created!&#39;)
+    return redirect(url_for(&#39;todos&#39;))
+  return render_template(&#39;todo.html&#39;, form=form, todos=todos)</code></pre>
+<p><br>Next we update our templates/todo.html file to render our table.</p>
+<h2 is-upgraded><strong>Task 5.5</strong></h2>
+<p><strong>Replace </strong>the entire content of templates/todo.html with the following </p>
+<pre><code>{% extends &#34;layout.html&#34; %}
+{% block title %} Todo{% endblock %}
+{% block page %} &#123;&#123; current_user.username }}&#39;s&#39; Todo{% endblock %}
+
+&#123;&#123; super() }}
+
+{% block content %}
+  {% if current_user.is_authenticated %}
+  &lt;div class=&#34;container&#34;&gt;
+    &lt;div class=&#34;row&#34;&gt;
+      &lt;form class=&#34;col s12 m8 offset-m2 card-panel&#34; method=&#34;POST&#34; action=&#34;/todos&#34;&gt;
+            
+            &#123;&#123; form.csrf_token }}
+
+            &lt;div class=&#34;input-field col s12 m8 offset-m2&#34;&gt; 
+              &#123;&#123; form.text(size=200, class=&#34;validate materialize-textarea&#34;) }}
+              &#123;&#123; form.text.label }}
+            &lt;/div&gt;
+
+            &lt;div class=&#34;input-field col s12 m8 offset-m2&#34;&gt;
+              &#123;&#123;form.submit}}
+            &lt;/div&gt; 
+        &lt;/form&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;row&#34;&gt;
+      &lt;table&gt;
+        &lt;thead&gt;
+          &lt;tr&gt;
+            &lt;td&gt;Todo&lt;/td&gt;&lt;td&gt;Status&lt;/td&gt;&lt;td&gt;Actions&lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+          {% for todo in todos %}
+            &lt;tr&gt;
+              &lt;td&gt;&#123;&#123;todo.text}}&lt;/td&gt;
+              &lt;td&gt;
+                {% if todo.done %}
+                  DONE
+                {% else %}
+                  PENDING
+                {% endif %}
+              &lt;/td&gt;
+              &lt;td&gt;
+                &lt;a class=&#34;waves-effect waves-light btn&#34; href=&#34;/editTodo/&#123;&#123;todo.id}}&#34;&gt;EDIT&lt;/a&gt;
+                &lt;a class=&#34;waves-effect waves-light btn&#34; href=&#34;/todos?toggle=&#123;&#123;todo.id}}&#34;&gt;TOGGLE DONE&lt;/a&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+          {% endfor %}
+        &lt;tbody&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+        
+  &lt;/div&gt;
+
+  {% endif %}
+{% endblock %}</code></pre>
+<p>We make use of the for syntax from jinja2 to render a table row for every todo object in <code>todos</code> which was passed by the route. Now if you reload the todo page you should see a table of todos.<br><br>We also place an if statement in the status column which would render ‘DONE&#39; or ‘PENDING&#39; based on the value of the done property of the todo object.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\2b4df9492f41b3e3.png"></p>
+<p>Here&#39;s a <a href="https://repl.it/@Snickdx/INFO-2602-Lab-6-2" target="_blank">snapshot</a> of the workspace after completing task 5.5 in case there were any errors along the way.</p>
+<p>We shall explore how the buttons work in the next section.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Using query params" duration="0">
+        <p>As we won&#39;t be using any javascript for this app all interactivity must be done via requests to the browser this can be achieved by either sending a POST/GET request via a HTML form or a get request via  hyperlinks. <br><br>As such, the toggle &#34;done button&#34; passes a query parameter to the page so the server may know which todo to mark as done.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\43bcd53a060a0661.png"></p>
+<p>Now we can update main.py to respond to this query parameter.</p>
+<h2 is-upgraded><strong>Task 5.6</strong></h2>
+<p>Update the /todos route to check the query parameter and update the appropriate todo.</p>
+<pre><code>@app.route(&#39;/todos&#39;, methods=[&#39;GET&#39;, &#39;POST&#39;])
+@login_required
+def todos():
+  toggle_id = request.args.get(&#39;toggle&#39;)
+  if toggle_id:
+    todo = Todo.query.get(toggle_id) # retrieve todo
+    if todo:
+      todo.done = not todo.done # toggle the done state
+      db.session.add(todo) # save the todo
+      db.session.commit()
+  todos = Todo.query.filter_by(userid=current_user.id).all()
+  if todos is None:
+      todos = []
+  form = AddTodo()
+  if form.validate_on_submit():
+    data = request.form
+    todo = Todo(text=data[&#39;text&#39;], done=False, userid=current_user.id)
+    db.session.add(todo)
+    db.session.commit()
+    flash(&#39;Todo Created!&#39;)
+    return redirect(url_for(&#39;todos&#39;))
+  return render_template(&#39;todo.html&#39;, form=form, todos=todos)</code></pre>
+<p>Now when the &#34;toggle done&#34; button is clicked the server updates the appropriate todo and renders its new status on the page.</p>
+<p class="image-container"><img style="width: 505.00px" src="img\83becacefc69f9a.png"></p>
+<p>Next we are going to add functionality to the &#34;edit&#34; button.</p>
+<h2 is-upgraded><strong>Task 5.7</strong></h2>
+<p>Update main.py adding the following route</p>
+<pre><code>@app.route(&#39;/editTodo/&lt;id&gt;&#39;, methods=[&#39;GET&#39;, &#39;POST&#39;])
+@login_required
+def edit_todo(id):
+  data = request.form
+  if data : # if data exists a form submission occured
+    todo = Todo.query.filter_by(userid=current_user.id, id=id).first() # query  todo
+    todo.text = data[&#39;text&#39;] # update text
+    db.session.add(todo) # save todo
+    db.session.commit()
+    flash(&#39;Todo Updated!&#39;)
+    return redirect(url_for(&#39;todos&#39;))
+  return render_template(&#39;edit.html&#39;, id=id) # pass id to template</code></pre>
+<p>We define a route parameter in the route (id) so that when the page is requested the server knows which todo is to be updated. As we will use a plain HTML form in the template as opposed to flask forms we do not have a validate_on_submit() method. However, we can simply check if form data exists in the request to react to a form submission.</p>
+<h2 is-upgraded><strong>Task 5.8</strong></h2>
+<p>Finally, update <code>templates/edit.html</code></p>
+<pre><code>{% extends &#34;layout.html&#34; %}
+{% block title %}Edit{% endblock %}
+{% block page %}Edit{% endblock %}
+
+&#123;&#123; super() }}
+
+{% block content %}
+&lt;div class=&#34;container&#34;&gt;
+  &lt;div class=&#34;row&#34;&gt;
+      &lt;form class=&#34;col s12 m8 offset-m2&#34; method=&#34;POST&#34; action=&#34;\editTodo\&#123;&#123;id}}&#34;&gt;
+    &lt;div class=&#34;input-field col s12 m8 offset-m2&#34;&gt; 
+      &lt;textarea class=&#34;validate materialize-textarea&#34; id=&#34;text&#34; name=&#34;text&#34; required=&#34;&#34; size=&#34;200&#34; style=&#34;height: 43px;&#34;&gt;&lt;/textarea&gt;
+      &lt;label for=&#34;text&#34;&gt;Text&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;input-field col s12 m8 offset-m2&#34;&gt;
+      &lt;i class=&#34;btn waves-effect waves-light white-text waves-input-wrapper&#34; style=&#34;&#34;&gt;&lt;input class=&#34;waves-button-input&#34; id=&#34;submit&#34; name=&#34;submit&#34; type=&#34;submit&#34; value=&#34;Update&#34;&gt;&lt;/i&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+{% endblock %}</code></pre>
+<p>Instead of rendering a flask form we used a basic HTML form. The action attribute receives the id of the todo from the route.</p>
+<p><img style="width: 510.00px" src="img\f55c247a35b5c117.png">\</p>
+<p>Now clicking the update button should take you to another form. On submission you should be redirected to the todos page showing the updated todo.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conclusion" duration="0">
+        <p>That&#39;s the end of the lab. You&#39;ve just built an entire CRUD application without writing any javascript. This is possible because we shifted all of our view logic to the server side.</p>
+<h2 is-upgraded><strong>References &amp; Additional Reading</strong></h2>
+<p><a href="https://flask-login.readthedocs.io/en/latest/" target="_blank">Flask Login</a></p>
+<p><a href="https://flask.palletsprojects.com/en/1.1.x/patterns/templateinheritance/" target="_blank">Jinja Template Inheritance</a></p>
+<p><a href="https://flask-wtf.readthedocs.io/en/stable/quickstart.html" target="_blank">Flask Forms</a></p>
+<p><a href="https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/" target="_blank">Flask Message Flashing</a></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+
+</body>
+</html>

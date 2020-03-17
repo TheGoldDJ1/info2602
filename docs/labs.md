@@ -9,3 +9,5 @@
 ## [lab 4: Python & Flask Intro](./lab4)
 
 ## [lab 5: Flask REST API & Auth](./lab5)
+
+## [lab 6: Jinja Templating & Forms](./lab6)

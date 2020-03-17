@@ -29,7 +29,7 @@
 
     <a href="https://www.the-qrcode-generator.com/scan" target="blank">Click Here To open Separate Window</a> 
 
-## Lab Assignments (Updated 18/02/2020)
+## Lab Assignments (Updated 12/03/2020)
 
 !!! warning "Changing Streams"
     If you need to change your assigned stream or you are not unassigned one; please fill out this ==<a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSehOg8Au1EqA77abtOZ_DZ0YIUbYCGN7VkCqQ0giEQ4I0XFeA/viewform?usp=sf_link">Lab Clash Form</a>== to be reassigned.
@@ -51,7 +51,7 @@ Lab Stream 3: Friday 10:00AM - 12:00PM CSL2
 | 813118092 | 1           |
 | 814000498 | 1           |
 | 814003019 | 3           |
-| 814004219 | 1           |
+| 814004219 | 3           |
 | 814004338 | 1           |
 | 814005674 | 1           |
 | 815006741 | 3           |
@@ -139,6 +139,7 @@ Lab Stream 3: Friday 10:00AM - 12:00PM CSL2
 | 816016092 | 1           |
 | 816016203 | 3           |
 | 816016271 | 2           |
+| 816016355 | 3           |
 | 816016418 | 2           |
 | 816016485 | 3           |
 | 816016509 | 1           |

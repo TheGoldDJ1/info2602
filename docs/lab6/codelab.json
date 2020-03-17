@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-03-10T21:35:02Z",
+  "id": "lab6",
+  "duration": 0,
+  "title": "Lab 6 - Jinja Templating \u0026 Forms",
+  "authors": "Nicholas Mendez",
+  "summary": "In this code lab we shall introduce the ORM SQLAlchemy and build a REST API in flask",
+  "source": "1uRQ_AIwOASZhCAAAYgnrph3ckKlfv0fOxYfjHm8Z0to",
+  "theme": "web",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "Web"
+  ],
+  "tags": [
+    "web"
+  ],
+  "ga": "UA-154889698-2",
+  "url": "lab6"
+}
