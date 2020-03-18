@@ -2,14 +2,14 @@
 
 ## Notices
 
-* Official Office hours: Thursdays 10:00am - 12:00pm, you can also organize meetings via slack
-* Corsework Exams: 
-    * 5th March 2020: Letures 1 & 2
-    * 6th March 2020: Lectures 3 & 4
-    * Multiple Choice, Terms & Definitions, Short-answer, IMPORTANT Functions From Lab
-* Deadline for A1 Extended to 28th Feb 2020
-* A2 To Be Released Next Week
+### Mock Lab Exam
+Note as this exam was written without an implementation and testcases so it has not gone through the balancing process that the real exam would. The exam environment is in gitpod. 
 
+Note if you need to cancel the server running in ther terminal; click into the terminal and press ctrl + c.
+
+<a target="_blank" href="https://docs.google.com/document/d/1OX3bnVzKhClgm12DQ6fOcZWYLbiCFXp1Q8nfw63gxpo/edit?usp=sharing">Question Paper</a>
+
+<a target="_blank" href="https://gitpod.io/#https://github.com/uwidcit/info2602mockLE">Gitpod Exam Environment (GitHub Login Required)</a>
 
 ## Important Links
  * <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScg2h4NkJNOYQglwUAJrqAbgBCysFj8a3hjLmxsPUjUd5V5kw/viewform?usp=sf_link">Contact Form</a> : To receive important email notifications
