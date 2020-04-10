@@ -13,3 +13,8 @@
 ## [lab 6: Jinja Templating & Forms](./lab6)
 
 ## [lab 7: Introduction to Angular](./lab7)
+
+## [lab 8 Web App Deployment](./lab8)
+
+
+
