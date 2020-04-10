@@ -3,13 +3,13 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2020-03-26T06:27:46Z",
-  "id": "lab3",
+  "updated": "2020-04-10T13:03:27Z",
+  "id": "lab7",
   "duration": 0,
-  "title": "Lab 8 - Form Submission \u0026 Debugging",
+  "title": "Lab 7 - Intro to Angular",
   "authors": "Nicholas Mendez",
-  "summary": "In this code lab you will be exposed to the fundamentals of the Javascript Programming Language",
-  "source": "1zoxzeMzVJBholkhnJ0f5d3lzZDnZC6LvzVRM3tsYtpk",
+  "summary": "In this code lab we shall introduce the angular frontend framework",
+  "source": "1bREAvm1hu8J0b1nGuGFKHrLDs-9EppfN2-kMTPpZu28",
   "theme": "web",
   "status": [
     "published"
@@ -21,5 +21,5 @@
     "web"
   ],
   "ga": "UA-154889698-2",
-  "url": "lab3"
+  "url": "lab7"
 }

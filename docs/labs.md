@@ -11,3 +11,5 @@
 ## [lab 5: Flask REST API & Auth](./lab5)
 
 ## [lab 6: Jinja Templating & Forms](./lab6)
+
+## [lab 7: Introduction to Angular](./lab7)

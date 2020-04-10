@@ -1,0 +1,549 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Lab 7 - Intro to Angular</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid="UA-154889698-2"
+                  id="lab7"
+                  title="Lab 7 - Intro to Angular"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="0">
+        <p class="image-container"><img style="width: 480.00px" src="img\12a071978ffb42df.png"></p>
+<p>In this code lab we shall introduce the angular frontend framework. Frontend frameworks provide a suite of features which allow developers to build large-scale performance ‘app-like&#39; web applications.</p>
+<p>Start up the lab 7 workspace in gitpod.</p>
+<p><a href="https://gitpod.io/#https://github.com/uwidcit/info2602lab7" target="_blank"><paper-button class="colored" raised>Open Lab 7</paper-button></a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Project Structure" duration="0">
+        <p>Angular projects are comprised of the following:</p>
+<p>Components -  A collection of html, css and typescript which relates to a single view or part of the application</p>
+<p>Styles - css files which describe the presentation of a component</p>
+<p>Templates - Html files which describe the UI of our components</p>
+<p>Services - Used to provide shared functionality and state between components </p>
+<p>Modules - Allows us to further group related components.</p>
+<p class="image-container"><img style="width: 545.50px" src="img\2ba4911dfcac97c.png"></p>
+<p>Currently in the project we have one module. (<code>app.module.ts</code>) and one component (<code>app.component.ts</code>). These files are written in typescript which is just javascript with some extra syntax to support type checking and other features.</p>
+<p>In this lab we shall re-implement in the app built in the previous lab but with templating on the client side with angular. This project also has <a href="https://material.angular.io/" target="_blank">angular material</a> installed which we will be using instead of materialize. This extension adds material design UI elements written as angular components.</p>
+<p>Open <code>app.module.ts</code>. It is our primary component and is the first view the user would see. We have added several angular material components to the page including:</p>
+<ul>
+<li>Toolbar</li>
+<li>Button</li>
+<li>Input</li>
+<li>Snackbar</li>
+<li>List</li>
+</ul>
+<aside class="special"><p><strong>Note: </strong>In order to load these components we need to import them into our module app.module.ts.<br><br><img style="width: 610.00px" src="img\bc440b754c7c6f82.png"></p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Components" duration="0">
+        <p>These form the basic building blocks of our application. The various screens/views of our application are also components. We can use the angular cli to generate boilerplate code for new components by running the following commands.</p>
+<pre>ng generate component login</pre>
+<p>This should create a folder called login which contains the following files:</p>
+<ol type="1" start="1">
+<li><code>login.component.css</code> : Styling of the component</li>
+<li><code>login.component.html</code>: Markup of the component</li>
+<li><code>login.component.ts</code>: Programming logic</li>
+<li><code>login.component.spec</code>.ts: Unit Tests</li>
+</ol>
+<p>We also want another page for our todos so run the following command</p>
+<pre>ng generate component todo</pre>
+<p><br>The generate command also adds these components to our application&#39;s module (<code>app.module.ts</code>).</p>
+<p class="image-container"><img style="width: 575.00px" src="img\30bbb873df766db7.png"></p>
+<p>At this point we can start a development server to run the project by executing the following command:</p>
+<pre>ng serve</pre>
+<p>Your project should run on port 4200.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\588e35763245f75b.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Routing" duration="0">
+        <p>For single page javascript applications client side routing is a feature whereby users can navigate to different sections of the application via urls. Similarly to the idea of routing on the server we map urls to views and override the default behaviour the url bar.</p>
+<p>Next we shall setup the router to link the root url &#34;\&#34; to the  login component  and &#34;\todo&#34; to our todos component.</p>
+<p>This is done simply by importing our components and adding the following entries to the Routes array in <code>app-routing.module.ts.</code></p>
+<p>Update our router module with our components and set up the routes for them.</p>
+<p><code>app-routing.module.ts</code></p>
+<pre><code>import { NgModule } from &#39;@angular/core&#39;;
+import { Routes, RouterModule } from &#39;@angular/router&#39;;
+import { AppComponent } from &#39;./app.component&#39;;
+
+//import our newly created components
+import { TodoComponent } from &#39;./todo/todo.component&#39;;
+import { LoginComponent } from &#39;./login/login.component&#39;;
+
+//setup routing
+const routes: Routes = [
+  { path: &#39;&#39;, component: LoginComponent },
+  { path: &#39;todos&#39;, component: TodoComponent },
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }</code></pre>
+<p>Next we need to update our base template with <code>&lt;router-outlet&gt;&lt;/router-outlet&gt;</code> which lets angular know where to render the component currently routed to. In this case we want it to completely replace the contents of our base template (<code>app.component.html)</code>. So fully replace the contents of <code>app.component.html</code> with the following:</p>
+<pre><code>&lt;router-outlet&gt;&lt;/router-outlet&gt;</code></pre>
+<p>Now when navigating to &#34;/&#34; and &#34;/todos&#34; we should see the content of the corresponding components.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\460990bd3441197e.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Data Binding" duration="0">
+        <p>Open <code>login.component.ts.</code> As you can see logic for components are written as classes. The template of the component will have access to any state and methods of it&#39;s associate component class. </p>
+<p class="image-container"><img style="width: 527.00px" src="img\8d56726b1181fbf7.png"></p>
+<p>the @Component is a typescript decorator which specifies which template and styles belong to this component. ngOnInit() is a method of a component which is run when the component is initialized and ready on the page. The constructor of a component class is used for <a href="https://angular.io/guide/dependency-injection" target="_blank">dependency injection</a> which allows us to use services or other components in the component class.</p>
+<p>The first <a href="https://angular.io/start/start-data#services" target="_blank">service </a>we shall use in this lab is <a href="https://angular.io/guide/reactive-forms#using-the-formbuilder-service-to-generate-controls" target="_blank">FormBuilder</a> which allows us to do what its name implies.</p>
+<p>Update <code>login.component.ts</code> as follows:</p>
+<pre><code>import { Component, OnInit } from &#39;@angular/core&#39;;
+import { FormBuilder } from &#39;@angular/forms&#39;;
+import { Router } from &#39;@angular/router&#39;;
+
+@Component({
+  selector: &#39;app-login&#39;,
+  templateUrl: &#39;./login.component.html&#39;,
+  styleUrls: [&#39;./login.component.css&#39;]
+})
+export class LoginComponent implements OnInit {
+
+  loginForm;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router
+  ){
+
+  }
+
+  ngOnInit(){
+    this.loginForm = this.formBuilder.group({
+      username:&#39;&#39;,
+      password:&#39;&#39;
+    }); //create a form group and save it to loginForm
+  }
+
+  onSubmit(userData){
+      this.router.navigate([&#39;todos&#39;]);//navigate to another page
+  }
+
+}
+</code></pre>
+<p>When the component is initialized we use FormBuilder to create a formGroup which is an object angular uses to handle form data.</p>
+<aside class="special"><p>Note how FormBuilder is called. It must be <strong>imported</strong> then <strong>injected </strong>into the constructor of the class. It is then used as a property of the class named formBuilder.</p>
+</aside>
+<p>For simplicity sake we will skip the implementation of login and simply navigate to the todos page when the form is submitted. Next we add styling to our component.</p>
+<p><code>login.component.css</code></p>
+<pre><code>main{
+    padding: 2em;
+    background-color: #E0E0E0;
+    height: calc(100% - 64px);
+    box-sizing: border-box;
+}
+  
+#login-card{
+margin-left: auto;
+margin-right: auto;
+width: 500px;
+}
+
+.example-form {
+min-width: 150px;
+max-width: 500px;
+width: 100%;
+}
+
+.example-full-width {
+width: 100%;
+}</code></pre>
+<p>Finally,  we update the template with the markup of the form. We make use of the matToolbar, matCard and matFormField components provided by angular material.</p>
+<p><code>login.component.html</code></p>
+<pre><code>&lt;mat-toolbar color=&#34;primary&#34;&gt;
+    &lt;mat-toolbar-row&gt;
+      &lt;span&gt;Login&lt;/span&gt;
+    &lt;/mat-toolbar-row&gt;
+  &lt;/mat-toolbar&gt;
+  
+  &lt;main&gt;
+    &lt;mat-card id=&#34;login-card&#34;&gt;
+  
+      &lt;form class=&#34;example-form&#34; id=&#34;loginForm&#34; [formGroup]=&#34;loginForm&#34; (ngSubmit)=&#34;onSubmit(loginForm.value)&#34;&gt;
+        &lt;mat-card-content&gt;
+  
+            &lt;mat-form-field class=&#34;example-full-width&#34;&gt;
+              &lt;mat-label&gt;Username&lt;/mat-label&gt;
+              &lt;input matInput formControlName=&#34;username&#34; type=&#34;text&#34; placeholder=&#34;username&#34;&gt;
+            &lt;/mat-form-field&gt;
+            &lt;mat-form-field class=&#34;example-full-width&#34;&gt;
+              &lt;mat-label&gt;Password&lt;/mat-label&gt;
+              &lt;input matInput formControlName=&#34;password&#34; type=&#34;password&#34; placeholder=&#34;password&#34;&gt;
+            &lt;/mat-form-field&gt;
+  
+        &lt;/mat-card-content&gt;
+        &lt;mat-card-actions&gt;
+            &lt;button mat-raised-button type=&#34;submit&#34; color=&#34;primary&#34;&gt;Login&lt;/button&gt;
+        &lt;/mat-card-actions&gt;
+      &lt;/form&gt;
+  
+    &lt;/mat-card&gt;
+  &lt;/main&gt;</code></pre>
+<p>Angular, like other frameworks, allows us to bind data values from our component class to its template. There are three kinds of data binding:</p>
+<ol type="1" start="1">
+<li>From source-to-view</li>
+<li>From view-to-source</li>
+<li>Two-way</li>
+</ol>
+<p>In <code>login.component.html</code> we have made the following bindings:</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>A: <code>login.component.html</code></p>
+</td><td colspan="1" rowspan="1"><p>B: <code>login.component.ts</code></p>
+</td><td colspan="1" rowspan="1"><p>Type</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><a href="https://angular.io/start/start-forms" target="_blank">formGroup</a> attribute of LoginForm</p>
+</td><td colspan="1" rowspan="1"><p>loginForm property</p>
+</td><td colspan="1" rowspan="1"><p>One-way A to B property binding</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>submit event of #loginForm</p>
+</td><td colspan="1" rowspan="1"><p>onSubmit method</p>
+</td><td colspan="1" rowspan="1"><p>One-way A to B event binding</p>
+</td></tr>
+</table>
+<p>These bindings can be made in different contexts as shown in the following table.</p>
+<p class="image-container"><img style="width: 574.50px" src="img\2ed0738545d481b8.png"></p>
+<p>Next we update the todo component. Start by entering the following in <code>todo.component.css.</code></p>
+<pre><code>main{
+    padding: 2em;
+    background-color: #E0E0E0;
+    min-height: calc(100% - 64px);
+    box-sizing: border-box;
+}
+
+#create-card{
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+}
+    
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+#createBtn{
+    position: absolute;
+    right: 10px;
+}
+
+mat-card{
+    margin:10px;
+}</code></pre>
+<p>Then the template todo.component.html.</p>
+<pre><code>&lt;mat-toolbar color=&#34;primary&#34;&gt;
+    &lt;mat-toolbar-row&gt;
+        &lt;span&gt;Todos&lt;/span&gt;
+    &lt;/mat-toolbar-row&gt;
+&lt;/mat-toolbar&gt;
+  
+&lt;main&gt;
+    &lt;mat-card id=&#34;create-card&#34;&gt;
+
+        &lt;form id=&#34;createForm&#34; class=&#34;example-form&#34; [formGroup]=&#34;createForm&#34; (ngSubmit)=&#34;onSubmit(createForm.value)&#34;&gt;
+            &lt;mat-card-content&gt;
+
+                &lt;mat-form-field class=&#34;example-full-width&#34;&gt;
+                    &lt;mat-label&gt;Text&lt;/mat-label&gt;
+                    &lt;input matInput type=&#34;text&#34; formControlName=&#34;text&#34; placeholder=&#34;Enter Todo Text&#34;&gt;
+                &lt;/mat-form-field&gt;
+            
+            &lt;/mat-card-content&gt;
+            &lt;mat-card-actions&gt;
+                &lt;button id=&#34;createBtn&#34; mat-raised-button type=&#34;submit&#34; color=&#34;primary&#34;&gt;Create&lt;/button&gt;
+            &lt;/mat-card-actions&gt;
+        &lt;/form&gt;
+
+    &lt;/mat-card&gt;
+
+    
+    &lt;mat-list&gt;
+        &lt;mat-card *ngFor=&#34;let todo of todoList&#34;&gt;
+            &lt;mat-card-content&gt;
+                &lt;mat-checkbox (change)=&#34;toggle($event, todo.id)&#34; [(ngModel)]=&#34;todo.done&#34; &gt;&#123;&#123;todo.text}}&lt;/mat-checkbox&gt;
+            &lt;/mat-card-content&gt;
+            &lt;mat-card-actions&gt;
+                &lt;button mat-raised-button (click)=&#34;deleteTodo(todo.id)&#34; color=&#34;primary&#34;&gt;Delete&lt;/button&gt;
+            &lt;/mat-card-actions&gt;
+        &lt;/mat-card&gt;
+    &lt;/mat-list&gt;
+    
+&lt;/main&gt;</code></pre>
+<p>In this template we have the following bindings</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>A: <code>todo.component.html</code></p>
+</td><td colspan="1" rowspan="1"><p>B: <code>todo.component.ts</code></p>
+</td><td colspan="1" rowspan="1"><p>Type</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><a href="https://angular.io/start/start-forms" target="_blank">formGroup</a> attribute of LoginForm</p>
+</td><td colspan="1" rowspan="1"><p>createForm property</p>
+</td><td colspan="1" rowspan="1"><p>One-way A to B property binding</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>The submit event of #createForm</p>
+</td><td colspan="1" rowspan="1"><p>onSubmit method</p>
+</td><td colspan="1" rowspan="1"><p>One-way A to B event binding</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>The change event of mat-checkbox</p>
+</td><td colspan="1" rowspan="1"><p>toggle() method (note the $event) argument</p>
+</td><td colspan="1" rowspan="1"><p>One-way A to B event binding</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>The value of the mat-checkbox</p>
+</td><td colspan="1" rowspan="1"><p>The value of the current todo object&#39;s done property. (todo.done)</p>
+</td><td colspan="1" rowspan="1"><p>Two-way property binding</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>The text content of mat-checkbox</p>
+</td><td colspan="1" rowspan="1"><p>The value of the current todo object&#39;s text property (todo.text)</p>
+</td><td colspan="1" rowspan="1"><p>Two-way interpolation</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>The click event on the Delete button</p>
+</td><td colspan="1" rowspan="1"><p>deleteTodo() method</p>
+</td><td colspan="1" rowspan="1"><p>One-Way A to B event binding</p>
+</td></tr>
+</table>
+<p>In angular we rely on a really useful directive called <a href="https://angular.io/guide/template-syntax#ngfor" target="_blank">ngFor</a>, which can repeatedly write out DOM elements for us. ngFor lets us create mat-card elements for every element in our todoList property. We also bind a method called toggle() to the change event of the checkboxes of a todo. The value of the checkbox is also two-way binded to the corresponding object in the todoList property. This is done by assigning it to [(ngModel)].</p>
+<p><br>And finally <code>todo.component.ts</code></p>
+<pre><code>import { Component, OnInit } from &#39;@angular/core&#39;;
+import { FormBuilder } from &#39;@angular/forms&#39;;
+import {MatSnackBar} from &#39;@angular/material/snack-bar&#39;;
+
+@Component({
+  selector: &#39;app-todo&#39;,
+  templateUrl: &#39;./todo.component.html&#39;,
+  styleUrls: [&#39;./todo.component.css&#39;]
+})
+export class TodoComponent implements OnInit{
+
+  createForm;
+  todoList;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private snackbar: MatSnackBar,
+  ){
+    this.createForm = this.formBuilder.group({
+      text: &#39;&#39;
+    });
+  }
+
+  async loadTodos(){
+  }
+
+  alert(message){
+    this.snackbar.open(message, &#39;Dismiss&#39;, {duration: 3000});
+  }
+
+  async ngOnInit(){
+    this.loadTodos();
+  }
+
+  async onSubmit(todoData){
+    this.createForm.reset();
+
+  }
+ 
+}</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Services" duration="0">
+        <p>Services are singletons which exist in our application and allows us to reuse functionality and share state across the various components of the application.</p>
+<p>Next we are going to create a todo service by executing the following command:</p>
+<pre>ng generate service todo</pre>
+<p>This should create a todo.service.ts with the following contents.</p>
+<p class="image-container"><img style="width: 434.00px" src="img\8f7c1404df47c25f.png"></p>
+<p>Unlike components there is no template file for services they are purely programming logic to be reused across the application.</p>
+<p>Next update <code>todo.service.ts</code> with the following.</p>
+<pre><code>import { Injectable } from &#39;@angular/core&#39;;
+import { HttpClient } from &#39;@angular/common/http&#39;;
+import { HttpHeaders } from &#39;@angular/common/http&#39;;
+import { environment } from &#39;src/environments/environment&#39;;
+
+@Injectable({
+  providedIn: &#39;root&#39;
+})
+
+export class TodoService {
+
+  httpOptions;
+  server;
+
+  //CRUD METHODS
+  //We call toPromise() so that all methods return a promise
+  createTodo({text}){
+    return this.http.post(`${environment.server}/todos.json`, {text, done:false}, this.httpOptions).toPromise();
+  }
+
+  async getTodos(){
+    let todos = [];
+    
+    let observable = this.http.get(`${environment.server}/todos.json`, this.httpOptions);
+    
+    let data = await observable.toPromise();//convert observable returned by get() into a promise so we can await the value
+
+    //just some transformation of the data
+    //because of how firebase stores a collection in a object
+    for(let [key, value] of Object.entries(data)){
+      value.id = key;
+      todos.push(value);
+    }
+
+    return todos;
+  }
+
+  async deleteTodo(id){
+    const observable = this.http.delete(`${environment.server}/todos/${id}.json`, this.httpOptions);
+    let result = await observable.toPromise();
+    return result;
+  }
+
+  toggleStatus(id, done){
+    return this.http.put(`${environment.server}/todos/${id}/done.json`, done, this.httpOptions).toPromise();
+  }
+
+  constructor(
+    private http: HttpClient,
+  ) { 
+
+    // Configuration parameter for http.get,post,put etc
+    this.httpOptions = {
+      headers : new HttpHeaders({//set headers using HttpHeaders()
+                  &#39;Content-Type&#39;: &#39;application/json&#39;
+                }
+      )
+    };
+
+  }
+}</code></pre>
+<p>Environment variables allow us to define configurations for our application in one place such that it is easy to change. We will create a variable to point to the url of our application server so this app can be easily reconfigured to worth with another server.</p>
+<p> <br>Update <code>environments.environment.ts</code> with the following:</p>
+<pre><code>export const environment = {
+  production: false,
+  server: &#39;https://nmendezapps.firebaseio.com&#39;
+};</code></pre>
+<p>Now that our service is created update our todo.component.ts to inject and use it.</p>
+<p><code>todo.component.ts</code></p>
+<pre><code>import { Component, OnInit } from &#39;@angular/core&#39;;
+import { FormBuilder } from &#39;@angular/forms&#39;;
+import {MatSnackBar} from &#39;@angular/material/snack-bar&#39;;
+import { TodoService } from &#39;../todo.service&#39;;
+
+@Component({
+  selector: &#39;app-todo&#39;,
+  templateUrl: &#39;./todo.component.html&#39;,
+  styleUrls: [&#39;./todo.component.css&#39;]
+})
+export class TodoComponent implements OnInit{
+
+  createForm;
+  todoList;
+
+  constructor(
+    private formBuilder: FormBuilder,//inject services
+    private snackbar: MatSnackBar,
+    private todo: TodoService
+  ){
+    this.createForm = this.formBuilder.group({
+      text: &#39;&#39;
+    });//create formGroup
+  }
+  
+  //retrieve todos from todo service
+  async loadTodos(){
+   this.todoList = await this.todo.getTodos();
+  }
+
+  alert(message){
+    this.snackbar.open(message, &#39;Dismiss&#39;, {duration: 3000});
+  }
+
+  async toggle(event, id){
+    const result = this.todo.toggleStatus(id, event.checked);
+    if(!(&#39;error&#39; in result))
+      this.alert(&#34;Updated&#34;);
+  }
+
+  async deleteTodo(id){
+    let result = await this.todo.deleteTodo(id);
+    this.loadTodos();
+    this.alert(&#39;Deleted!&#39;);
+  }
+
+  async ngOnInit(){
+    this.loadTodos();
+  }
+
+  async onSubmit(todoData){
+    let result: any =  await this.todo.createTodo(todoData);
+    if(&#39;error&#39; in result){
+      console.log(result.error);
+    }else{
+      this.alert(&#34;Todo Created!&#34;);
+    }
+    this.loadTodos();
+    this.createForm.reset();
+  }
+ 
+}</code></pre>
+<p>Finally in the preview you should then see the functional todo application as illustrated below.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\8f95464457b6c01.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conclusion" duration="0">
+        <p>That&#39;s the end of your introduction to angular. Indeed it has a steep learning curve but it&#39;s a robust framework for scaling out frontend applications and managing state between its views.</p>
+<h2 is-upgraded><strong>References &amp; Additional Reading</strong></h2>
+<p><a href="https://angular.io/guide/" target="_blank">Angular Guide</a></p>
+<p><a href="https://angular.io/guide/template-syntax" target="_blank">Angular Templating</a></p>
+<p><a href="https://material.angular.io/" target="_blank">Angular Material</a></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+
+</body>
+</html>

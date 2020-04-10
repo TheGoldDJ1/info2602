@@ -11,6 +11,8 @@ Note if you need to cancel the server running in ther terminal; click into the t
 
 <a target="_blank" href="https://gitpod.io/#https://github.com/uwidcit/info2602mockLE">Gitpod Exam Environment (GitHub Login Required)</a>
 
+<a target="_blan"k href="https://docs.google.com/forms/d/e/1FAIpQLSfPw1UOnDdxBh25ji2A4rDm87RB_iuBZE8U_JA0pkZ_c6rQIw/viewform?usp=sf_link">Mock Exam Feedback Form</a>
+
 ## Important Links
  * <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScg2h4NkJNOYQglwUAJrqAbgBCysFj8a3hjLmxsPUjUd5V5kw/viewform?usp=sf_link">Contact Form</a> : To receive important email notifications
  * <a target="_blank" href="https://docs.google.com/document/d/1dDqwOBqGi9j5LS66CE3BWI-uV09s1A0WTi7cuG2jCqY/edit?usp=sharing">Computer Literacy</a> : Computing things you should know for this course.
