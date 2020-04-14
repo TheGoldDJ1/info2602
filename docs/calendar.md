@@ -1,9 +1,6 @@
-# Calendar
-
-## COURSE CALENDAR
+# COURSE CALENDAR
 
 (Each week has a theoretical and practical component)
-
 
 <table>
   <tr>
@@ -132,7 +129,7 @@ Assignment 2 Released
    <td>Lab Exam Prep \
 Web Application Deployment Models
    </td>
-   <td>Lab 8: Mock Lab Exam \
+   <td>Mock Lab Exam \
 Project Released,  \
 Finalize teams & Projects
    </td>
@@ -159,7 +156,7 @@ Assignment 2 Due
    </td>
    <td>The Browser Engine
    </td>
-   <td>Lab 9: Intro To Angular \
+   <td>Lab 7: Intro To Angular \
 Project checkpoint
    </td>
    <td>Spiritual Baptist 30/03/2020
@@ -172,7 +169,7 @@ Project checkpoint
    </td>
    <td>The Web Platform
    </td>
-   <td>Lab 10: Web App Deployment \
+   <td>Lab 8: Web App Deployment \
 
    </td>
    <td>Good Friday 10/04/2020
@@ -185,7 +182,7 @@ Project checkpoint
    </td>
    <td>
    </td>
-   <td>Lab 11: Web APIs
+   <td>Lab 9: Web APIs
    </td>
    <td>Easter Monday 13/04/2020
    </td>
@@ -207,5 +204,5 @@ Project Submission
 
 
 
-<!-- Docs to Markdown version 1.0β19 -->
+<!-- Docs to Markdown version 1.0β22 -->
 

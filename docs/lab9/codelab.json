@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-04-14T16:48:24Z",
+  "id": "lab9",
+  "duration": 0,
+  "title": "Lab 9 - Application Server Deployment",
+  "authors": "Nicholas Mendez",
+  "summary": "This code lab will show you how to deploy an application server to heroku.",
+  "source": "1t20e1DrOBONQqU0Toz0yh3VT5q4taqaPSqWKMICclck",
+  "theme": "web",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "Web"
+  ],
+  "tags": [
+    "web"
+  ],
+  "ga": "UA-154889698-2",
+  "url": "lab9"
+}

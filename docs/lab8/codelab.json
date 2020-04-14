@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-04-10T13:13:20Z",
+  "id": "lab8",
+  "duration": 0,
+  "title": "Lab 8 - Application Deployment",
+  "authors": "Nicholas Mendez",
+  "summary": "This code lab will show you how to deploy a web app to firebase",
+  "source": "1WVglAOCyKB61ZQFHwH06bvlww3GzTWixr0BSY6F70Co",
+  "theme": "web",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "Web"
+  ],
+  "tags": [
+    "web"
+  ],
+  "ga": "UA-154889698-2",
+  "url": "lab8"
+}

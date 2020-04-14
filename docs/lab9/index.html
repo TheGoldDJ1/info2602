@@ -1,0 +1,127 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Lab 9 - Application Server Deployment</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid="UA-154889698-2"
+                  id="lab9"
+                  title="Lab 9 - Application Server Deployment"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="0">
+        <p class="image-container"><img style="width: 624.00px" src="img\45a6449e1ab8dc70.png"></p>
+<h2 is-upgraded><strong>Heroku</strong></h2>
+<p>Heroku is a cloud platform as a service supporting several programming languages. Heroku is one of the few multi-language platforms which can host application servers for free without a credit card!</p>
+<p>We shall set up heroku to auto deploy our application using git. </p>
+<h2 is-upgraded><strong>Task 1</strong></h2>
+<p>First you need to fork the template repository into your github account. Start by following the link below.</p>
+<p><a href="https://github.com/uwidcit/info2602ps" target="_blank"><paper-button class="colored" raised>Open Project Starter Repo</paper-button></a></p>
+<p>Make sure you&#39;re logged into github then click the &#34;Fork&#34; button.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\128b59a712246c1.png"></p>
+<p>After the fork is completed, you should now edit the gitpod link in your readme.md file to point to your repository</p>
+<p class="image-container"><img style="width: 624.00px" src="img\5dd2698f40b9e7db.png"></p>
+<p>Next, update the gitpod link in the readme to point to your repository&#39;s url which should look like</p>
+<p><a href="https://github.com/" target="_blank">https://github.com/</a>&lt;username&gt;/info2602ps.git.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\eada2554e0860ccc.png"></p>
+<p>Then click on the green &#34;Commit Changes&#34; button below to save the changes to the readme file.</p>
+<p>Finally you can open your workspace by clicking on your gitpod button.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\77f359629b4e0fe1.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Creating a Heroku App" duration="0">
+        <p>Before completing this step you need to <a href="https://signup.heroku.com/login" target="_blank">create a heroku account</a>. The heroku cli should already be installed in the workspace. </p>
+<h2 is-upgraded><strong>Task 2</strong></h2>
+<p>Now you can login in the cli using the following command.</p>
+<pre>heroku login --interactive</pre>
+<p>Next you want to create a heroku app by entering this command.</p>
+<pre>heroku create</pre>
+<p>The app should be created with a random name and can be seen on your <a href="https://dashboard.heroku.com/apps/" target="_blank">heroku dashboard</a>.</p>
+<p>At this point your project should be linked to two git repositories, one for github and heroku. It is important to ensure that the heroku repository is linked when restarting the workspace. You can view the repositories with the command:</p>
+<pre>git remote -v</pre>
+<p>You should see links for github and heroku.</p>
+<p class="image-container"><img style="width: 485.00px" src="img\9650a135b4566670.png"></p>
+<aside class="special"><p>Note: If for some reason you need to reconnect your workspace to your heroku app you can run the following command.</p>
+<p><code>heroku git:remote -a &lt;heroku-app-name&gt;</code></p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Pushing Changes To Git" duration="0">
+        <h2 is-upgraded><strong>Task 3</strong></h2>
+<p>Now try making a change to one of the templates.</p>
+<p><code>templates/home.html</code></p>
+<pre><code>{% extends &#34;layout.html&#34; %}
+{% block title %}Backend App{% endblock %}
+{% block page %}Backend App{% endblock %}
+
+&#123;&#123; super() }}
+
+{% block content %}
+    &lt;h1&gt;Hello! This view is partially rendered on the server using jinja&lt;/h1&gt;
+    &lt;h2&gt;It must be dynamically served&lt;/h2&gt;
+{% endblock %}</code></pre>
+<p>Next you want to save the changes to your github repository using the source control tab (3rd item in navigation on the left) in gitpod as shown below.</p>
+<p class="image-container"><img style="width: 410.00px" src="img\4ab0ac58c2600b8b.gif"></p>
+<p>In the diagram we:</p>
+<ul>
+<li>Created a commit message.</li>
+<li>Staged all changes of our files.</li>
+<li>Committed the changes.</li>
+<li>Then push the changes.</li>
+</ul>
+<p>This pushes the changes to your gitpod repo.</p>
+<h2 is-upgraded><strong>Task 4</strong></h2>
+<p>To deploy to heroku you also need to push changes to heroku. So after a commit is made you can run the following command to push to the heroku repo.</p>
+<pre>git push heroku master</pre>
+<p>A successful commit should show something similar to the image below.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\fa1c8aa0a8186fc2.png"></p>
+<p>You can then view your application by ctrl + click the link in the terminal or by viewing your heroku dashboard.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\c67470c2c9706565.png"></p>
+<p>Clicking on your application.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\e565b3789c7a4ed9.png"></p>
+<p> Then finally clicking &#34;Open App&#34;.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\97c735919c969982.png"></p>
+<p>Your application server should be running on heroku!</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conclusion" duration="0">
+        <p>And that&#39;s how you can deploy a flask application on heroku!</p>
+<h2 is-upgraded>References &amp; Additional Reading</h2>
+<p><a href="https://devcenter.heroku.com/articles/git" target="_blank">Git Deployment with Heroku</a></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+
+</body>
+</html>

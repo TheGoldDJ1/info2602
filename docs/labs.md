@@ -16,5 +16,7 @@
 
 ## [lab 8 Web App Deployment](./lab8)
 
+## [lab 9 Web App Deployment](./lab9)
+
 
 

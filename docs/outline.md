@@ -1,4 +1,10 @@
-<!----- Conversion time: 1.424 seconds.
+  
+ Demote headings (H1 → H2, etc.)
+ HTML headings/IDs
+ Wrap HTML
+ Render HTML tags
+Help: Docs, Bugs
+<!----- Conversion time: 1.22 seconds.
 
 
 Using this Markdown file:
@@ -10,9 +16,10 @@ Using this Markdown file:
 
 Conversion notes:
 
-* Docs to Markdown version 1.0β18
-* Thu Mar 05 2020 15:32:58 GMT-0800 (PST)
-* Source doc: https://docs.google.com/open?id=1eAtFx9SiqJcC4e3wJn0HVKO1Q9lJv_huLpXwZpPDu98
+* Docs to Markdown version 1.0β22
+* Fri Apr 10 2020 06:20:40 GMT-0700 (PDT)
+* Source doc: INFO 2602 Outline Student Version
+* Tables are currently converted to HTML tables.
 ----->
 
 
@@ -40,7 +47,7 @@ Conversion notes:
 
 **LECTURER: **Mr. Nicholas Mendez [nicholas.mendez@sta.uwi.edu](mailto:nicholas.mendez@sta.uwi.edu)
 
-**OFFICE HOURS: **Thurdays 1:00pm - 3:00pm
+**OFFICE HOURS: **Thursday 1:00pm - 3:00pm
 
 **TUTOR: **Ms Venessa Kanhai 
 
@@ -166,29 +173,28 @@ In the Information Technology degree this is the first course that focuses on de
     17. JS ECMAScript 6
     18. DOM Manipulation
     19. AJAX
-    20. Web Components
-6. The Critical Rendering Path
-    21. DOM
-    22. CSSOM
-    23. Render Tree
-    24. Accessibility Tree
+6. The Browser Engine
+    20. Browser Architecture
+    21. Layout Process
+    22. Javascript Runtime
 7. Server-side programming with Flask
-    25. Routing
-    26. Server Side Templating
-    27. File Uploads
-    28. ORM usage
+    23. Routing
+    24. Server Side Templating
+    25. File Uploads
+    26. ORM usage
 8. Intro to Angular
 9. Web Storage
-    29. Local Storage
-    30. Session Storage
-    31. Cache Storage
-    32. Indexed DB
-    33. Cookies
+    27. Local Storage
+    28. Session Storage
+    29. Cache Storage
+    30. Indexed DB
+    31. Cookies
 10. Web APIs
-    34. Web Workers
-    35. Web Sockets
-    36. Service Workers
-    37. Network State
+    32. Web Workers
+    33. Web Sockets
+    34. Service Workers
+    35. Network State
+    36. Web Components
 
 
 ## COURSE LEARNING OUTCOMES
@@ -219,6 +225,3 @@ Recommended Text
 [https://frontendmasters.com/books/front-end-handbook/2019/](https://frontendmasters.com/books/front-end-handbook/2019/)
 
 [https://www.smashingmagazine.com/2019/01/web-standards-guide/](https://www.smashingmagazine.com/2019/01/web-standards-guide/)
-
-
-
