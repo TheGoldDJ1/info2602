@@ -1,28 +1,3 @@
-  
- Demote headings (H1 → H2, etc.)
- HTML headings/IDs
- Wrap HTML
- Render HTML tags
-Help: Docs, Bugs
-<!----- Conversion time: 1.22 seconds.
-
-
-Using this Markdown file:
-
-1. Cut and paste this output into your source file.
-2. See the notes and action items below regarding this conversion run.
-3. Check the rendered output (headings, lists, code blocks, tables) for proper
-   formatting and use a linkchecker before you publish this page.
-
-Conversion notes:
-
-* Docs to Markdown version 1.0β22
-* Fri Apr 10 2020 06:20:40 GMT-0700 (PDT)
-* Source doc: INFO 2602 Outline Student Version
-* Tables are currently converted to HTML tables.
------>
-
-
 **COURSE TITLE: Web Programming and Technologies I **
 
 **COURSE CODE: INFO 2602**

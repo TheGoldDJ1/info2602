@@ -16,7 +16,9 @@
 
 ## [lab 8 Web App Deployment](./lab8)
 
-## [lab 9 Web App Deployment](./lab9)
+## [lab 9 Application Server Deployment](./lab9)
+
+## [lab 10 Single Page Applications](./lab10)
 
 
 

@@ -1,0 +1,344 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Lab 10 - Single Page Apps</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid="UA-154889698-1"
+                  id="lab10"
+                  title="Lab 10 - Single Page Apps"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="0">
+        <p class="image-container"><img style="width: 624.00px" src="img\ae43fdf83967e116.png"></p>
+<h2 is-upgraded><strong>Building Web Applications</strong></h2>
+<p>In this code lab we will build a single page application with a 3rd party integration. Single Page Applications are websites which aim to offer an ‘app like&#39; behavior. This is mainly achieved by providing experiences which do not cause page loads(reloads or redirecting), hence the name &#34;Single Page&#34;. Instead we rely on javascript to show different parts of our application and perform AJAX to retrieve and send data to an application server.</p>
+<h2 is-upgraded><strong>Task 1</strong></h2>
+<p>Follow the link below to get started.</p>
+<p><a href="https://repl.it/@Snickdx/INFO-2602-Lab-10-1" target="_blank"><paper-button class="colored" raised>Open Lab 10</paper-button></a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Util.js" duration="0">
+        <p>When creating large web applications it is desirable to split your javascript into files to improve the manageability of the code base. <code>util.js</code> contains two functions which would be reused at different parts of the application.</p>
+<p><code>util.js</code> contains three things:</p>
+<p><strong>server</strong> : a variable which stores the url of our application server</p>
+<p><strong>toast() </strong>: a function which makes use of materialize to flash messages to the user</p>
+<p><strong>sendRequest()</strong></p>
+<p class="image-container"><img style="width: 624.00px" src="img\1dd0b969c8cde709.png"></p>
+<p><strong>sendRequest() does the following:</strong></p>
+<ol type="1" start="1">
+<li>accepts a url, method and data (optional) parameters</li>
+<li>checks <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank">localstorage</a> for an entry called ‘access_token&#39;</li>
+<li>If data was supplied adds it to an http request</li>
+<li>adds the ‘access_token&#39; to the header of the http request</li>
+<li>Sends the http request at the specified method, url and data</li>
+<li>Returns the data from the response</li>
+</ol>
+<aside class="special"><p><strong>Note:</strong> When using JWT (JSON Web Token) authentication, one approach is to store tokens in localStorage for use in other parts of the application. Hence sendRequest() will look for the JWT  in localStorage as ‘access_token&#39; then send it in the header of the http request for access to restricted data.</p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sign Up &amp; Login" duration="0">
+        <h2 is-upgraded><strong>Form Submission</strong></h2>
+<p>The default behavior of an HTML5 form submission is to have the <strong>browser</strong> make an HTTP request to the url provided in the action attribute of the form. However, this would cause a redirect and thus is not allowed in a SPA.</p>
+<p>Instead we let javascript interrupt the submission get the data from the form and send the http request in the background.</p>
+<h2 is-upgraded><strong>Task 3</strong></h2>
+<p>Update <code>signup.js</code> with the  following.</p>
+<pre><code>async function signup(event){
+  event.preventDefault();//prevent page redirect
+
+  let form = event.target;
+  let fields = event.target.elements;
+  
+  let data = {
+    username: fields[&#39;username&#39;].value,
+    email: fields[&#39;email&#39;].value,
+    password: fields[&#39;password&#39;].value,
+  }
+
+  //reset form
+  form.reset();
+
+  //send data to application server
+  let result = await sendRequest(`${server}/signup`, &#39;POST&#39;, data);
+  
+  if(&#39;error&#39; in result){
+    toast(&#34;Login Failed: &#34;+result[&#39;error&#39;]);//show error message
+  }else{
+    toast(&#34;Logged Successful&#34;);
+    window.location.href= &#39;index.html&#39;;//redirect the page
+  }
+}
+//attach signup to submit event of form
+document.forms[&#39;signUpForm&#39;].addEventListener(&#39;submit&#39;, signup);</code></pre>
+<p>signup() retrieves the data from the form and uses sendRequest() to send the data to the application server. The function also uses toast() to flash an appropriate message based on the response of the server. Then redirects the browser by changing <code>window.location.href</code></p>
+<p class="image-container"><img style="width: 624.00px" src="img\d3d4259c7e6a727a.png"></p>
+<p>The form in signup.html should now be functional and redirect to the login page when a user is successfully created.</p>
+<p>login.js already has code similar to signup.js which submits the form and submits to the application server. You can now log in with the user credentials given in the sign up page. You open the application tab in chrome dev tools (F12) to inspect the JWT  in localStorage.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\8fe911b2af54c656.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Multiple Views" duration="0">
+        <p>Software applications are usually comprised of multiple views/screens, for many websites this is achieved by hosting multiple web pages linked to each other. Websites of this kind are sometimes referred to as multi-page applications. </p>
+<p>However, in single page applications the markup for all of our views are either</p>
+<ol type="1" start="1">
+<li>Written in a single file page.</li>
+<li>Injected into the page using javascript at runtime.</li>
+</ol>
+<p>INFO 1601 Lab 9 is an example of a SPA using approach 2 where ajax was used to navigate to different sections of the application.</p>
+<p>In this lab we use <a href="https://materializecss.com/tabs.html" target="_blank">materialize css tabs</a> to implement the 1st  approach. The markup for both of our tabs exist in index.html but materialize would only show the contents of one tab at a time. </p>
+<p><code>index.html</code></p>
+<p class="image-container"><img style="width: 624.00px" src="img\b427585853abcc52.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img\b3cce871e31d0707.png"></p>
+<p>By using tabs we can add multiple views to index.html. Note that materialize can only do this if the tab elements have been properly initialized in javascript.</p>
+<p><code>app.js</code></p>
+<p class="image-container"><img style="width: 624.00px" src="img\bf1e172f09a44cd9.png"></p>
+<h2 is-upgraded><strong>Task 4</strong></h2>
+<p>Update <strong>the contents of the todo tab (div with id todo)</strong> with the following:</p>
+<p><code>index.html</code></p>
+<pre><code>&lt;section id=&#34;todo&#34; class=&#34;col s12 container&#34;&gt;
+
+  &lt;div class=&#34;card&#34; &gt;
+    &lt;div class=&#34;card-content&#34;&gt;
+      &lt;span class=&#34;card-title&#34;&gt;Create Todo&lt;/span&gt;
+      &lt;form name=&#34;addForm&#34;&gt;
+        &lt;div class=&#34;input-field&#34;&gt;
+          &lt;input type=&#34;text&#34; name=&#34;addText&#34; placeholder=&#34;enter to-do&#34; class=&#34;materialize-textarea&#34;&gt;&lt;/textarea&gt;
+          &lt;label for=&#34;addText&#34;&gt;Enter todo Text&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;input class=&#34;btn white-text&#34; type=&#34;submit&#34; value=&#34;SAVE&#34; /&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;ul class=&#34;collection with-header&#34; id=&#34;result&#34;&gt;&lt;/ul&gt;
+
+&lt;/section&gt;</code></pre>
+<p>The markup should add a form to the page.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\d6ad6d9469c9d27f.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="AJAX" duration="0">
+        <h2 is-upgraded><strong>Dynamic Applications</strong></h2>
+<p>Applications are described as <a href="https://en.wikipedia.org/wiki/Dynamic_web_page" target="_blank">dynamic</a> when a scripting language is used to dynamically write html to the page. Often this is done to present data which is stored in a database. </p>
+<h2 is-upgraded><strong>Application Servers</strong></h2>
+<p>As web applications run on the browser they typically do not talk to databases directly for security reasons. Instead an <a href="https://en.wikipedia.org/wiki/Application_server" target="_blank">application server</a> would sit on the internet, query the database and expose the desired data via a url for our web applications. </p>
+<p class="image-container"><img style="width: 386.50px" src="img\62267873e70f5306.png"></p>
+<h2 is-upgraded><strong>Web Service API</strong></h2>
+<p>The set of urls supported by an application server is often referred to as a web service <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Introduction" target="_blank">API </a>(Application Programming Interface) as they provide an interface for our web applications to the database.</p>
+<h2 is-upgraded><strong>Performing AJAX</strong></h2>
+<p>Web applications rely on <a href="https://en.wikipedia.org/wiki/Ajax_(programming)" target="_blank">AJAX</a> (Asynchronous Javascript &amp; XML) which is a model whereby javascript makes an HTTP request to an application server then dynamically writes html with the data in the response. </p>
+<p><a href="https://lab5-completed.herokuapp.com/todos" target="_blank">https://lab5-completed.herokuapp.com/todos</a> is an endpoint of the flask application from <a href="https://nmendez.app/info2602/lab5/#0" target="_blank">lab5</a> deployed on heroku. Below is the response when an http request is made to the endpoint however the data is restricted to authenticated users </p>
+<p class="image-container"><img style="width: 244.50px" src="img\df0699fa45c00cc3.png"></p>
+<h2 is-upgraded><strong>Task 5</strong></h2>
+<p>Update app.js with the following functions which perform ajax to render the todo data onto the page.</p>
+<p><code>apps.js</code></p>
+<pre><code>async function displayTodos(data){
+
+  let result = document.querySelector(&#39;#result&#39;);//access the DOM
+
+  result.innerHTML = &#39;&#39;;//clear result area
+  
+  let html = &#39;&#39;;//make an empty html string 
+
+  if(&#34;error&#34; in data){//user not logged in 
+    html+= `
+      &lt;li class=&#34;card collection-item col s12 m4&#34;&gt;
+                &lt;div class=&#34;card-content&#34;&gt;
+                  &lt;span class=&#34;card-title&#34;&gt;
+                    Error : Not Logged In
+                  &lt;/span&gt;
+                &lt;/div&gt;
+        &lt;/li&gt;
+    `;
+  }else{
+    for(let todo of data){
+      html+= `
+        &lt;li class=&#34;card collection-item col s12 m4&#34;&gt;
+                  &lt;div class=&#34;card-content&#34;&gt;
+                    &lt;span class=&#34;card-title&#34;&gt;${todo.text}
+                      &lt;label class=&#34;right&#34;&gt;
+                        &lt;input type=&#34;checkbox&#34; data-id=&#34;${todo.id}&#34; onclick=&#34;toggleDone(event)&#34; ${todo.done ? &#39;checked&#39;: &#39;&#39;} /&gt;
+                        &lt;span&gt;Done&lt;/span&gt;
+                      &lt;/label&gt;
+                    &lt;/span&gt;
+                  &lt;/div&gt;
+                  &lt;div class=&#34;card-action&#34;&gt;
+                    &lt;a href=&#34;#&#34; onclick=&#34;deleteTodo(&#39;${todo.id}&#39;)&#34;&gt;DELETE&lt;/a&gt;
+                  &lt;/div&gt;
+          &lt;/li&gt;
+      `;//create html for each todo data by interpolating the values in the todo
+    }
+  }
+  
+  //add the dynamic html to the DOM
+  result.innerHTML = html;
+}
+
+async function loadView(){
+  let todos = await sendRequest(`${server}/todo`, &#39;GET&#39;);
+  displayTodos(todos);
+}
+
+loadView();</code></pre>
+<aside class="special"><h2 is-upgraded><strong>Note the following:</strong></h2>
+<ol type="1" start="1">
+<li><code>displayTodos()</code> uses sendRequest() to retrieve the data from the url.</li>
+<li>In the html template we attach a function called <code>toggleDone()</code> to the onclick event of the checkbox in our todos.</li>
+</ol>
+<p class="image-container"><img style="width: 610.00px" src="img\74bc3da67290c029.png"></p>
+<ol type="1" start="3">
+<li><code>As toggleDone()</code> is an event handler it can receive an <strong><code>event</code></strong> object which is <strong>very important</strong> as we will use it to pass data from our template to toggle done.</li>
+<li>We also create a ternary which adds the <code>checked</code> attribute to the checkbox if the todo is done ie <code>todo.done == true</code>.</li>
+<li>data-id is a custom <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes" target="_blank">data attribute</a> which we use to store the id of the todo in the input element itself.</li>
+<li>The <code>delete()</code> function is attached to the click event of the delete button. <code>delete()</code> we can pass the <strong>event</strong> object to it as well, but it only needs the id of the todo so that value is passed instead.</li>
+<li>The <code>loadView()</code> function calls <code>sendRequest()</code> and <code>displayTodos()</code> to retrieve todo data from the server and write the result to the page.</li>
+</ol>
+</aside>
+<p>We haven&#39;t created any user data so the code added wouldn&#39;t have any visual effect just yet.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Creation" duration="0">
+        <p>Next we add the functionality to create user data.</p>
+<h2 is-upgraded><strong>Task 6</strong></h2>
+<p>Add the following functions to app.js.</p>
+<pre><code>async function createTodo(event){
+  event.preventDefault();//stop the form from reloading the page
+  let form = event.target.elements;//get the form from the event object
+
+  let data = {
+    text: form[&#39;addText&#39;].value,//get data from form
+    done: false,// newly created todos aren&#39;t done by default
+  }
+
+  event.target.reset();//reset form
+
+  let result = await sendRequest(`${server}/todo`, &#39;POST&#39;, data);
+
+  if(&#39;error&#39; in result){
+    toast(&#39;Error: Not Logged In&#39;);
+  }else{
+    toast(&#39;Todo Created!&#39;);
+  }
+    
+  loadView();
+}
+
+//attach createTodo() to the submit event of the form
+document.forms[&#39;addForm&#39;].addEventListener(&#39;submit&#39;, createTodo);</code></pre>
+<p>The form should now be functional and newly created todos should render on the page with a message.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\8bd3b84551d4dbe7.gif"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Updates and Deletion" duration="0">
+        <p>Applications can also support updating and deleting data, this is done by having javascript make the appropriate http request in the background then reloading the data from the database so the user can see the result.</p>
+<h2 is-upgraded><strong>Task 7 </strong></h2>
+<p>Add the following to scripts.js</p>
+<pre><code>async function toggleDone(event){
+  let checkbox = event.target;
+
+  let id = checkbox.dataset[&#39;id&#39;];//get id from data attribute
+
+  let done = checkbox.checked;//returns true if the checkbox is checked
+  let result = await sendRequest(`${server}/todo/${id}`, &#39;PUT&#39;, {done: done});
+
+  let message = done ? &#39;Done!&#39; : &#39;Not Done!&#39;;
+  toast(message);
+}
+
+async function deleteTodo(id){
+  let result = await sendRequest(`${server}/todo/${id}`, &#39;DELETE&#39;);
+
+  toast(&#39;Deleted!&#39;);
+
+  loadView();
+}</code></pre>
+<aside class="special"><p><strong>Note the following:</strong></p>
+<ol type="1" start="1">
+<li><code>toggleDone()</code> inverts the value of the done property of the todo then sends it to <code>sendRequest()</code> to make the update in the database.</li>
+<li><code>toggleDone()</code> uses the <strong>event </strong>object it receives to get the element that emitted the event. Then by using the <code>dataset</code> property of the element, the value of data-id (the id of the todo) is retrieved. </li>
+<li>Because the input is of type checkbox, we use the <code>checked</code> property of the element instead of <code>value</code>.</li>
+<li><code>toggleDone()</code> function uses a ternary to flash an appropriate message based on the inverted done value.</li>
+<li><code>deleteTodo()</code> receives the id of the todo to be deleted, sends an appropriate http delete request, flashes a message then reloads the data from the server to remove the deleted todo.</li>
+</ol>
+</aside>
+<p>When previewing the app you can observe functioning updates and deletion of the todos.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\ab9c6302d53e7dfe.gif"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Logout" duration="0">
+        <p>Lastly we implement a simple logout function by deleting the JWT from localStorage then redirecting the page. The logout click is already set to call the login function on click.</p>
+<p class="image-container"><img style="width: 523.00px" src="img\6e8a4d0c37bb9dd5.png"></p>
+<h2 is-upgraded><strong>Task 8</strong></h2>
+<p>Update app.js with the following</p>
+<pre><code>function logout(){
+  window.localStorage.removeItem(&#39;access_token&#39;);
+  window.location.href =&#34;index.html&#34;;
+}</code></pre>
+<p>Clicking the link should now take you back to the login page. If you navigate to app.html without logging in you should see the following error message.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\2c734952f1fa0ea.png"></p>
+<p>Attempting to create a todo while not logged in should also flash an error message.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conclusion" duration="0">
+        <p>We rely on data attributes to send data to our elements. Then using the event object we can get the element in our event handlers. From there, we access the data by using the element&#39;s dataset property. </p>
+<p>Example</p>
+<p class="image-container"><img style="width: 624.00px" src="img\6a04d3b9636b4934.png"></p>
+<p> Understanding this pattern can go a long way in the implementation of the view logic of our web applications. <br><br><img style="width: 558.00px" src="img\ecbdf041d21a24ec.gif"><br></p>
+<p>A completed Repl of the lab is available here:</p>
+<p><a href="https://repl.it/@Snickdx/INFO-2602-Lab-10-2" target="_blank"><paper-button class="colored" raised>Completed Lab 10</paper-button></a> </p>
+<h2 is-upgraded>References &amp; Additional Reading</h2>
+<p><a href="https://chunkbytes.com/2019/03/single-page-applications-vs-multi-page-applications/" target="_blank">Single Page vs Multi Page Apps</a></p>
+<p><a href="https://apidocs.imgur.com/?version=latest#intro" target="_blank">Imgur API Documentation</a></p>
+<p><a href="https://codeburst.io/jwt-authorization-in-flask-c63c1acf4eeb" target="_blank">https://codeburst.io/jwt-authorization-in-flask-c63c1acf4eeb</a></p>
+<p><a href="https://pythonbasics.org/flask-cookies/" target="_blank">https://pythonbasics.org/flask-cookies/</a></p>
+<p><a href="https://flask.palletsprojects.com/en/1.1.x/security/" target="_blank">https://flask.palletsprojects.com/en/1.1.x/security/</a></p>
+<p><a href="https://realpython.com/token-based-authentication-with-flask/" target="_blank">https://realpython.com/token-based-authentication-with-flask/</a></p>
+<p><a href="https://security.openstack.org/guidelines/dg_cross-site-scripting-xss.html" target="_blank">https://security.openstack.org/guidelines/dg_cross-site-scripting-xss.html</a></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+
+</body>
+</html>

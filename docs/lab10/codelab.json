@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-05-06T03:09:36Z",
+  "id": "lab10",
+  "duration": 0,
+  "title": "Lab 10 - Single Page Apps",
+  "authors": "Nicholas Mendez",
+  "summary": "In this code lab we will build a single page application with a 3rd party integration.",
+  "source": "16ihJSKfoHdQey2sUBm86cskEcGqUPB9rXdQWdKOKVvM",
+  "theme": "web",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "Web"
+  ],
+  "tags": [
+    "web"
+  ],
+  "ga": "UA-154889698-1",
+  "url": "lab10"
+}

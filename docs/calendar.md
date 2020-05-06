@@ -1,4 +1,4 @@
-# COURSE CALENDAR
+# Calendar
 
 (Each week has a theoretical and practical component)
 

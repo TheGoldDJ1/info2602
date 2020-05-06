@@ -108,10 +108,77 @@
 
       </google-codelab-step>
     
+      <google-codelab-step label="Postman Collections" duration="0">
+        <p>Next we shall create and deploy a postman collection for our API. First add some routes to the application.</p>
+<p><code>main.py</code></p>
+<pre><code>@app.route(&#39;/data&#39;, methods=[&#39;GET&#39;])
+def getData():
+  token = request.args.get(&#39;token&#39;)
+  res = &#39;Hello token=&#39;+token if token else &#34;Hello&#34;
+  return res
+
+@app.route(&#39;/data&#39;, methods=[&#39;POST&#39;])
+def addData():
+  data = request.json
+  res = &#39;Hello data=&#39;+json.dumps(data) if data else &#34;Hello&#34;
+  return res, 201
+
+@app.route(&#39;/data/:id&#39;, methods=[&#39;DELETE&#39;])
+def removeData(id):
+  res = &#39;id &#39;+id+&#39; Deleted!&#39;
+  return res, 204
+
+@app.route(&#39;/data/:id&#39;, methods=[&#39;UPDATE&#39;])
+def updateData(id):
+  data = request.json
+  res = &#39;id &#39;+id
+  res += &#39; Hello data=&#39;+json.dumps(data) if data else &#34;Hello&#34;
+  return res, 201
+
+</code></pre>
+<p>Stage and Commit the changes</p>
+<p class="image-container"><img style="width: 334.00px" src="img\987830e4f85cb314.png"></p>
+<p>Then push</p>
+<p class="image-container"><img style="width: 491.00px" src="img\752bbf8a6058564b.png"></p>
+<p>Now push to heroku with the following command.</p>
+<pre>git push heroku master</pre>
+<p>Now open postman and signup/login. Then create a new collection.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\a1796e6c479ed98b.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Creating Requests" duration="0">
+        <p>Now the collection is created you can then create a new request by clicking the &#34;NEW&#34; button and entering the /data route on your application server&#39;s url.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\f5ba7a66c9ba7166.png"></p>
+<p>Then click the SAVE button to save the request to the collection. Give the request a name and a description then save it to the current collection.</p>
+<p class="image-container"><img style="width: 601.00px" src="img\aca3bed356b1dbd1.png"></p>
+<p>Next create another request to the post route. Change the url to &lt;server&gt;/data. Change the method from GET to POST on the left of the url bar.</p>
+<p>Then edit the body by clicking on the body tab, select &#34;raw&#34; in the radio list and set the dropdown to &#34;JSON&#34;.</p>
+<p>You can then enter the post data in the text field below.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\eb3f6e86ff210a7d.png"></p>
+<p>Press send then press save to save the request giving it a name and description.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Publishing The Collection" duration="0">
+        <p>At this point you should have two requests in your collection. In the toolbar on the left click the menu button next to your collection then select. Publish Docs</p>
+<p class="image-container"><img style="width: 359.00px" src="img\c178ce6ab45fde9a.png"></p>
+<p>This should open a browser tab to Edit the Published Collection. Scroll to the bottom then click &#34;Publish Collection&#34; on the bottom of the page.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\df12ab43420c5bc2.png"></p>
+<p>Your collection should be now published at the url given.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\21ac0941905185ba.png"></p>
+<p>If you save more requests to your collection your doc site would be updated accordingly.</p>
+
+
+      </google-codelab-step>
+    
       <google-codelab-step label="Conclusion" duration="0">
-        <p>And that&#39;s how you can deploy a flask application on heroku!</p>
+        <p>And that&#39;s how you can deploy a flask application on heroku and create a corresponding postman documentation for the server&#39;s endpoints.</p>
 <h2 is-upgraded>References &amp; Additional Reading</h2>
 <p><a href="https://devcenter.heroku.com/articles/git" target="_blank">Git Deployment with Heroku</a></p>
+<p><a href="https://learning.postman.com/docs/postman/api-documentation/documenting-your-api/" target="_blank">Documenting APIs in Postman</a></p>
 
 
       </google-codelab-step>
